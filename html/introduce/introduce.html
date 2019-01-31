@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+<title>项目简介</title>
+<link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+<link rel="stylesheet" href="../../css/commoncss/bootstrap.min.css">
+<link rel="stylesheet" href="../../font/iconfont.css">
+<link rel="stylesheet" href="../../css/commoncss/normalize.css">
+<link rel="stylesheet" href="../../css/commoncss/common_header.css">
+<link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+<link rel="stylesheet" href="../../css/commoncss/common.css">
+<link rel="stylesheet" href="../../css/introduce.css">
+<script LANGUAGE="JavaScript">
+ function mobile_device_detect(url)
+ {
+        var thisOS=navigator.platform;
+        var os=new Array("iPhone","iPod","iPad","android","Nokia","SymbianOS","Symbian","Windows Phone","Phone","Linux armv71","MAUI","UNTRUSTED/1.0","Windows CE","BlackBerry","IEMobile");
+ for(var i=0;i<os.length;i++)
+        {
+ if(thisOS.match(os[i]))
+        {  
+  window.location=url;
+ }
+          
+ }
+ //因为相当部分的手机系统不知道信息,这里是做临时性特殊辨认
+ if(navigator.platform.indexOf('iPad') != -1)
+        {
+  window.location=url;
+ }
+ //做这一部分是因为Android手机的内核也是Linux
+ //但是navigator.platform显示信息不尽相同情况繁多,因此从浏览器下手，即用navigator.appVersion信息做判断
+  var check = navigator.appVersion;
+  if( check.match(/linux/i) ) {
+   //X11是UC浏览器的平台 ，如果有其他特殊浏览器也可以附加上条件
+   if(check.match(/mobile/i) || check.match(/X11/i))
+ {
+   window.location=url;
+   } 
+ }
+ //类in_array函数
+ Array.prototype.in_array = function(e)
+ {
+  for(i=0;i<this.length;i++)
+  {
+   if(this[i] == e)
+   return true;
+  }
+  return false;
+ }
+ }
+mobile_device_detect("introduce_m/html/introduce_m.html");
+</script>
+</head>
+<body>
+	<div class="page-wrapper" id="app">
+		<!-- 头部 start-->
+		<head-nav :is-show="false"></head-nav>
+		<!-- 头部 end-->
+		<div class="main-container">
+			<!-- banner start -->
+			<div class="bannerBox">
+				<!-- <img src="../../images/introduce/haibao-1366.jpg" alt=""> -->
+                        <div  class="active carousel  carousel-fade slide"  data-ride="carousel" id="project-carousel">
+                                <ol class="carousel-indicators">                                
+                                    <li  data-target="#project-carousel" data-slide-to="0" class="active"></li>    
+                                    <li  data-target="#project-carousel" data-slide-to="1"></li>
+                                    <li  data-target="#project-carousel" data-slide-to="2"></li>
+                                    <li  data-target="#project-carousel" data-slide-to="3"></li>
+                                    <li  data-target="#project-carousel" data-slide-to="4"></li>
+                                </ol>
+                                <div class="carousel-inner">                                   
+                                    <div class="item active">                               
+                                        <a href="#" class="carousel-a">
+                                            <img src="../../images/introduce/pic_1.jpg" alt="" class="banner-img">
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#" class="carousel-a">
+                                            <img src="../../images/introduce/pic_2.jpg" alt="" class="banner-img">
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#" class="carousel-a">
+                                            <img src="../../images/introduce/pic_3.jpg" alt="" class="banner-img">
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#" class="carousel-a">
+                                            <img src="../../images/introduce/pic_4.jpg" alt="" class="banner-img">
+                                        </a>
+									</div>
+									<div class="item">
+										<a href="#" class="carousel-a">
+											<img src="../../images/introduce/pic_5.jpg" alt="" class="banner-img">
+										</a>
+										</div>
+								</div>
+								<a class="left carousel-control" href="#project-carousel" role="button" data-slide="prev">
+									<span class="iconfont icon-gengduo" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#project-carousel" role="button" data-slide="next">
+									<span class="iconfont icon-gengduo" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+               </div>
+              
+
+			</div>
+			<!-- banner end -->
+				
+			<div class="g-container content-move">				
+				<div class="content-wrapper ">
+					<!-- 项目简介 start -->
+					<div class="project-jj white c-border">
+							<div class="title">
+								<div class="model-title">
+									<div class="title-text ">项目简介</div>
+								    <div class="line-dot">
+										
+									</div>
+								</div>
+							</div>
+							<div class="person-content cnt-box">
+									<div class="project-img">
+											<img class="imgRadius" src="../../images/introduce/xiangmu_pic.png" alt="">
+										</div>
+									<div class="jj-content content">
+											国家重大研发计划“全球变化大数据的科学认知与云共享平台”项目拟通过整合中国优势数据资源，突破部门分割的限制，建成中国首个全球变化大数据云共享平台，为全球变化研究提供直接可用的全球变化关键参数数据产品； 发展大数据集成分析技术体系，为全球变化研究的敏感因子与焦点问题认知提供数据与技术支撑，提升中国对全球变化的认知能力， 塑造中国在国际全球变化认知中的后发优势，是打破国立机构数据与信息“深藏闺中”的先行实践，也为跨部门、跨领域数据集成与共享提供样板，为我国的全球变化国际合作与话题引领提供有效的支撑。 项目建成的全球变化大数据云共享平台布局在国家气象信息中心，通过共享门户（GloBiD）提供和分享按主题、用户定制的全球变化大数据包，网站具备数据包的下载、可视化、在线近实时处理、统计、定制化等功能，实现一站式全球变化大数据共享网络服务。
+									</div>
+							</div>
+					</div>
+					<!-- 项目简介 end -->
+					<!-- 人物介绍 start -->
+					<div class="project-person white c-border">
+							<div class="title">
+									<div class="model-title">
+										<div class="title-text text-left">首席科学家</div>
+										<div class="line-dot ">
+											
+										</div>
+									</div>
+								</div>
+								<div class="person-content cnt-box">
+									<div class="person-img">
+										<img class="imgRadius" src="../../images/introduce/kexuejia.png" alt="">
+									</div>
+									<div class="person-intro  content">
+											吴炳方，1962年生，博士，研究员，2004年首批“百千万人才工程”入选者，UNEP GEO-4贡献者与GEO-5审阅人，地球观测组织农业主题联合主席，UN ESCAP亚太区域旱灾机制专家组长，全球农业监测计划（GEOGLAM）与农业联合实验计划（JECAM）的发起者之一，中国-比利时全球植被卫星计划(Global-V)的中方牵头人。聚焦全球变化三大方向（粮食安全、水安全、碳收支）研究20余载，研究团队成员地面调查足迹遍布全球80余国，取得一系列系统性与原创性成果。 开展全球农情监测17年,独创了多尺度、多时空分辨率、多指标的全球农情遥感速报系统(CropWatch)，是中国对FAO AIMS的首次系统性贡献，取得显著国际影响力与社会效益。CropWatch农情遥感中英速报（季报）为全球118个国家和地区提供农情监测信息服务，成为公认的国际影响力仅次于美国的第二大农情遥感监测系统，农情监测结果被中办/国办采纳32次，获国家领导人批示20次，为国家粮食安全提供了信息支撑。 独创的多尺度-多源数据协同的陆表蒸散遥感估算系统(ETWatch)以及耗水管理为核心的流域水资源管理方法。2009年ETWatch由世行研究所（WBI）向全球推广，世界银行高度赞誉其在真实耗水量遥感监测与水资源冲突分析方面起到的关键作用。 组织全国力量完成1990、2000、2005年、2010年四期，涵盖38类的土地30米分辨率土地覆盖数据集(ChinaCover)和8个指标的全国生态参量数据集。该产品被环保部及中科院等20余个相关单位使用，为我国生态十年评估及固碳估算提供了关键的数据支撑。发表的三峡水库温室气体排放量有力的回答了国际媒体的质疑，维护了三峡绿色水电地位。 近五年承担国家自然科学基金委与联合国环境规划署联合资助的“气候变化情景下赞比西流域农业开发对粮食和水资源短缺的影响”、“非洲生态系统监测、研究和管理能力评估”项目；欧盟第7框架全球农业与环境监测创新项目（SIGMA）课题；中科院战略先导专项“陆地生态系统固碳参量遥感监测及估算技术研究”，环保部“全国生态环境十年变化(2000-2010年)遥感调查与评估”项目；国家863计划课题“全球大宗作物遥感定量监测关键技术”；粮食公益项目“粮食数量安全预警监控应急技术与装备”。 获得发明专利6项，发表专著2部、论文300余篇，含SCI论文50余篇，登记软件著作权24项。
+									</div>
+								</div>
+					</div>
+					<!-- 人物介绍 end -->
+					
+				</div>
+				
+
+			</div>
+		
+		</div>
+		
+		<foot></foot>
+		<!-- 回到顶部 start-->
+        <div class="toTop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+	</div>
+	<script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+	<script src="../../js/commonjs/polyfill.min.js"></script>
+	<script src="../../js/commonjs/bootstrap.min.js"></script>
+	<script src="../../js/commonjs/vue.min.js"></script>
+	<script src="../../js/commonjs/header.js"></script>
+	<script src="../../js/commonjs/footer.js"></script>
+	<script src="../../js/commonjs/toTop.js"></script>
+	<script>
+        var vm = new Vue({
+            el:"#app"
+		});
+		$(".toTop").tooltip("toTop",{
+        'movespeed':'300',
+        'showspeed':'300',
+        'overheight':'400'
+    });
+    </script>
+</body>
+</html>

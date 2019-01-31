@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>最新进展</title>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../../css/commoncss/common.css">
+    <link rel="stylesheet" href="../../css/commoncss/dynamicScience.css">
+    <link rel="stylesheet" href="../../css/commoncss/scienceOne.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper" id="app" v-cloak>
+        <!-- 头部 start-->
+       <head-nav></head-nav>    
+       <!-- 头部 end-->
+       <div class="main-container">
+            <div class="g-container">
+                    <div class="page-nav"><span class="last-page">科技动态</span><span class="arrow-icon">&gt;</span><span>最新进展</span></div> 
+               <div class="white content-wrapper c-border">
+                    <div class="title">
+                        <div class="model-title">
+                            <div class="title-text ">最新进展</div> 
+                            <div class="line-dot ">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 内容 start-->
+                    <div class="cnt-wrapper ">
+                      <!-- 第一部分 start-->
+                        <div class="box-model">
+                            <ul>
+                                <li class="news-li" v-for="item in intelData1">
+                                    <div class="li-div" v-show="item">
+                                        <!-- 左 start-->
+                                        <a :href="'latestProgress_detail.html?id='+item[0].id" target="_blank" class="news-left border imgRadius">
+                                            <img :src="item[0].topPic" :alt="item[0].topPic">
+                                            <p class="img-des img-desIntel" v-html="item[0].title"></p>
+                                        </a>
+                                        <!-- 左 end-->
+                                        <!-- 右 start-->
+                                        <div class="news-right " >
+                                            <div class="news-right-box" v-for="x in item[1]">
+                                                <!-- <a href="detailIntel2.html" target="_blank" class="news-title" v-html="x.title"></a> -->
+                                                <ul class="small-title">
+                                                    <li v-for="y in x"><a :href="'latestProgress_detail.html?id='+y.id" target="_blank" v-html="y.title"></a></li>
+                                                </ul>
+                                            </div>
+                                           
+                                        </div>
+                                        <!-- 右 end-->
+                                    </div>
+                                </li>
+                               
+                                <li class="news-li" v-show="intelData2">
+                                    <div class="second-news">
+                                        <div class="pic-display">
+                                            <ul class="pic-ul">
+                                                <li v-for="item2 in intelData2">
+                                                    <a :href="'latestProgress_detail.html?id='+item2.id" class="a-mouse imgRadius">
+                                                    <img :src="item2.topPic" alt="">
+                                                    <div class="pic-des">
+                                                        <span v-html="item2.title"></span>
+                                                    </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                       </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                    </div>
+                    <!-- 第一部分 end-->
+               </div>
+                
+            </div>
+       </div>
+    </div>
+    <foot></foot>
+     <!-- 回到顶部 start-->
+     <div class="toTop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+   </div>
+   <script src="../../js/commonjs/polyfill.min.js"></script>
+    <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="../../js/commonjs/vue.min.js"></script>
+    <script src="../../js/commonjs/axios.min.js"></script>
+    <script src="../../js/commonjs/header.js"></script>
+    <script src="../../js/commonjs/footer.js"></script>
+    <script src="../../js/commonjs/toTop.js"></script>
+    <script src="../../js/scienceDynamic/latestProgress.js"></script>
+</body>
+</html>

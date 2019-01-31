@@ -1,0 +1,63 @@
+var ctx = "${ctx}";
+
+$(function () {
+    $(".my-autc").click(function () {
+        $(".choice").show();
+    });
+
+    $(".choice p").click(function (event) {
+        
+        event.stopPropagation();
+        $(".choice").hide();
+        $(".tit").html($(this).text());
+    });
+});
+
+function shareProduct(productId){
+	$("#shareProductDialog" ).removeClass('hide').dialog({
+		resizable: false,
+		dialogClass: "no-close",
+		width: '200',
+		modal: true,
+		title: "<div class='widget-header'><h4 class='smaller'><i class='ace-icon fa fa-rmb yellow'></i>邀请</h4></div>",
+		title_html: true,
+		buttons: [
+			{
+				html: "<i class='ace-icon glyphicon glyphicon-ok bigger-110'></i>&nbsp; 邀请",
+				"class" : "btn btn-primary btn-minier",
+				click: function() {
+					$("#shareProductId").val(productId);
+					var frm = $("#shareProductForm");
+					var params=frm.serialize();
+					$.ajax({
+					    type : "POST",
+					    url : '/comment/sharePruduct',
+					    data : params,
+					    success : function(data) {
+					    	data=eval("("+data+")");
+								alert(data.msg);
+								if(data.code==0){
+									//window.location.href="../resource/main?tableId="+$("#tableId").val(); 
+									$("#shareProductUser").val("");
+									$("#shareProductDialog" ).dialog( "close" );
+								}else if(data.code==2){
+									window.location.href="/login"; 
+								}
+					    }
+					});
+					
+				}
+			}
+			,
+			{
+				html: "<i class='ace-icon glyphicon glyphicon-remove bigger-110'></i>&nbsp; 取消",
+				"class" : "btn btn-minier",
+				click: function() {
+					parent.window.$( this ).dialog( "close" );
+				}
+			}
+		]
+	}); 
+    
+    return false;
+}

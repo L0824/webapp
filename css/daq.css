@@ -1,0 +1,31 @@
+.header-nav .nav-ul>li:nth-child(3) .a0{-webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2);}
+.header-nav .nav-ul>li:nth-child(3) .line{width:100%;}
+.rows{display: -webkit-box;display: -ms-flexbox;display: flex;}
+html, body{height: auto;min-height: 100vh;}
+.banner{background: url('../images/dataGathering/banner_bg.png') center;background-size: cover;height: 505px;overflow: hidden;width:100%;min-width: 1200px;}
+.g-container{width:1200px;margin: 0 auto;}
+.banner>.g-container{height: 100%;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;-webkit-box-align: center; -ms-flex-align: center; align-items: center;}
+.banner .left-banner{padding-left: 25px;}
+.right-banner img{width: 100%;}
+.main{height: 659px;}
+.btn-data{margin-top: 26px;}
+.mainfoot{background: url('../images/dataGathering/picture_3.png') center no-repeat;height: 508px;width: 100%;min-width: 1200px;}
+.mainfoot_1{display: inline-block;vertical-align: middle;}
+.img_lc{margin-top: 44px;}
+a.btn{padding:15px 36px;background: #6566F4;color: #fff;font-size: 16x;border-radius: 0;/*font-family: '黑体';*/margin-top:5px;}
+a.btn:not(:last-child){margin-right: 20px;}
+a.btn:hover{opacity: 0.8;color: #fff;}
+a.btn .icon-jiantou{font-size:16px;margin-left:10px;}
+.main-container{background:-webkit-gradient(linear,left top, left bottom,from(#F3FBFB),to(#FEFFFF));width: 100%;min-width: 1200px;}
+.main-container .hj-line{margin-bottom:40px;width: 108px;height: 8px;background: #7ee0de;}
+.media-heading{margin-bottom:40px;}
+.media-heading h5{font-size: 20px;color: #000;/*font-family: '黑体';*/}
+.media-list{margin-bottom: 10px;}
+.media-list>li .media-body{position: relative;padding-left: 15px;line-height: 32px;}
+.media-list>li .media-body:after{content: ''; position: absolute; top: 12px; left: 0; width:4px; height: 4px; border-radius: 50%; border: 2px solid #7ee0de;}
+.one-cnt{padding-top: 48px;}
+.media, .media .media{margin-top: 0;}
+.two-left{margin-top: 20px;margin-right: 63px;margin-bottom: 134px;}
+.one-cnt>ul>li:not(:last-child){margin-bottom: 100px;}
+.media .media-body{color: #666;font-size: 14px;}
+.h4{display: inline-block;font-size: 36px;color: #fff;margin-top: 49px;margin-bottom: 18px;}

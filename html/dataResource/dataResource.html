@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>数据检索</title>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+    <link rel="stylesheet" href="../../css/commoncss/bootstrap.min.css">
+    <link rel="stylesheet" href="../../js/commonjs/bootstraptable/bootstrap-table.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../../css/commoncss/common.css">
+    <link rel="stylesheet" href="../../css/commoncss/tab.css">
+    <!-- <link rel="stylesheet" href="../../css/dataResourceDetail.css"> -->
+    <link rel="stylesheet" href="../../css/dataResource.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <template type="text/x-template" id="dataResourceBox">
+      <div class="main-right-box flex-right"  v-if='topRow'> 
+        <!-- 上 start-->
+        <div class="top-box white c-border">
+                <div class="top-row" v-for="(item,index1) in topRow">
+                    <div class="left-top">
+                        <span class="datas-title "><i>{{item.title}}</i><i>:</i></span>
+                        <ul id="ulNum1" class="datas-cnt" v-if="all">
+                            <li :class="{'cur':all[index1]['isActive']}" @click="clickAll(index1)"><a href="javascript:void(0)" >全部</a></li>
+                            <li v-for="(i,index2) in item.list" :class="{cur:checkedCur[index1][index2]['isActive']}" @click="changeCur(index1,index2)"><a href="javascript:void(0)">{{i.txt}}</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="more-click ">
+                        <span>更多<i class="icon-more-click">+</i></span>
+                    </div> -->
+                </div>
+                
+        </div>
+        <!-- 上 end-->
+        <!-- 下 start-->
+        <div class="middle-box white c-border">
+          <div class="datas-table">
+            <div id="containerDiv" class="container body-content" >  
+                <div class="table-search-box">
+                    <div class="left-search">
+                        <label for="">数据检索:</label><input type="text" v-model="searchKey"><span class="sousuo-box"><i class="iconfont icon-sousuo icon-search"></i></span>
+                    </div>
+                    <div class="right-name ">
+                        <label>排序:</label>
+                        <ul>
+                            <li class="cur"><span>相关度</span></li>
+                            
+                            <li><span>访问量</span></li>
+                            
+                            <li><span>最新时间</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <table id="table" class="table-hover"></table>  
+            </div>  
+            </div>
+        </div>
+        <!-- 下 end--> 
+        </div> 
+    </template>
+    
+    <div class="page-wrapper" id="app" v-cloak >
+        <!-- 头部 start-->
+       <head-nav></head-nav>
+        <!-- 头部 end-->
+        <!-- 内容 start-->
+        <div class="main-container">
+            <div class="g-container"> 
+                <div class="page-nav"><span class="last-page">数据服务</span><span class="arrow-icon">&gt;</span><span>数据检索</span></div> 
+                <div class="cnt-box">           
+                  <div class="main-left  white radius" v-if='categoryArr'>
+                    <div class="category-wrapper">
+                        <div class="main-title-box">
+                            <div class="bg"></div>
+                            <span class="main-title">
+                                <span class="title">数据分类</span>
+                                <span class="border-line"></span>
+                                <span class="all" :class="{'cur':isCur}" @click="showAllData">(<a href="javascript:;">全部</a>)</span>
+                            </span>
+                        </div>
+                         <div class="category-content-box" v-for="(item,index) in categoryArr">
+                            <div class="category-content">
+                                <h4 class="menu-title"><i class=" icon-category iconfont" :class="item.icon"></i>{{item.name}}</h4>
+                                <ul class="submenu-ul">
+                                    <li v-for="(x,subindex) in item.list" :class="{'cur':(x.id==dataGroupId)}" ><a href="javascript:void(0)"  class="a-hover"  @click="changeRight(index,subindex,x.id)">{{x.name}}</a></li>
+                                </ul>
+                            </div>
+                         </div>
+                    </div> 
+                 </div>
+               <div id="rightTypeDiv" class="main-right">
+                   <!-- 右侧组件 start-->
+                   <data-resource-box  ref="rightTable" :top-row="topRow"   :base = "baseUrl"></data-resource-box>
+                   <!-- 右侧组件 end-->
+               </div>
+              </div> 
+            </div>
+        </div>
+        <!-- 内容 end-->
+        <!-- 底部 start-->
+        <foot></foot>
+        <!-- 底部 end-->
+        <!-- 回到顶部 start-->
+        <div class="toTop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+    </div>   
+   <!-- <script src="../../js/commonjs/bootstraptable/jquery.min.js"></script> -->
+   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+   <script src="../../js/commonjs/polyfill.min.js"></script>
+   <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap.min.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap-table.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap-table-zh-CN.js"></script>
+    <script src="../../js/commonjs/vue.min.js"></script>
+     <script src="../../js/commonjs/axios.min.js"></script>
+    <script src="../../js/commonjs/header.js"></script>    
+    <script src="../../js/commonjs/footer.js"></script>
+    <script src="../../js/commonjs/toTop.js"></script>
+    <script src="../../js/dataResource/dataResource.js"></script> 
+</body>
+
+</html>

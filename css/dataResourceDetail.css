@@ -1,0 +1,100 @@
+.white{background: #fff;}
+.detail-box{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column;}
+.detail-box .datas-detail{margin-bottom: 10px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding: 40px 40px 48px 40px; margin-bottom: 10px; border: 1px solid #dadada;}
+.detail-box .datas-detail .datas-title{padding-bottom: 18px;}
+.detail-box .datas-detail .article-title{color: #000; font-size: 20px; text-align: center;/* font-family: '黑体';*/}
+.detail-box .datas-detail .article-author{margin-top: 11px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;-ms-flex-wrap: wrap;flex-wrap: wrap; font-size: 14px;}
+.detail-box .datas-detail .dot-d{margin: 0 5px; color: #959595;}
+.b-color{color: #000;}
+.text-c{color: #7b7b7b;}
+.dot-e{color: #000; margin: 0 5px;}
+.detail-box .datas-detail .article-cnt{border-top: 1px solid #e7f0fe; border-bottom: 1px solid #e7f0fe; padding-top: 20px; padding-bottom: 30px; height: 100%;}
+/* 访问量 start*/
+.article-cnt .visitor-volume{position: relative; width:100%; height:355px; margin-bottom: 18px;}
+.article-cnt .visitor-volume .articleImg{width: 100%; height: 100%;border: 1px solid #dedede;}
+.article-cnt .visitor-volume .article-datas{position: absolute; left: 1px; bottom: 0; width: 806px; height: 32px; line-height: 32px; padding-left:10px; background: #000; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; color: #fff; font-size: 14px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;}
+.article-cnt .visitor-volume .article-datas .feature{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-align: center;-ms-flex-align: center;align-items: center;margin-right: 25px;}
+.article-cnt .visitor-volume .article-datas .feature .iconfont{font-size: 12px;}
+.margin{margin-bottom: 27px;}
+.icon-box{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;margin-right: 5px;width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 50%;}
+.new-shijian{background: #40A83B;}
+.icon-shijian{color: #fff;}
+.new-data{background: #549FF2;}
+.icon-shujuliang{color: #fff;}
+.new-fw{background: #8736A5;}
+.icon-fangwenliang{color: #fff;}
+/* 访问量 end*/
+/* 数据摘要 start*/
+.article-description{font-size: 16px;}
+.article-description .des-title{color:#000; font-weight: bold;}
+.article-description .des-cnt{color: #000;}
+.info-box{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column;}
+.info-box .single-info .single-info-box{padding: 15px 0 0 26px; color: #7b7b7b; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-direction: column; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -ms-flex-wrap: wrap; flex-wrap: wrap;}
+.info-box .single-info h4{font-size: 18px; color: #222;}
+.info-box .single-info.download a{color: #2F75F5;margin-right: 10px;}
+.info-box .single-info.download a:hover{color: #2F75F5;text-decoration: underline;}
+.icon-tubiao{color: #80ddff; margin-right:10px;}
+.info-box .info-padding{display: -webkit-box;display: -ms-flexbox;display: flex; margin-bottom: 11px; width: 381px; word-wrap:break-word;/*超出换行*/}
+.info-box .info-padding.title_w{width: 100%;}
+.info-box .info-padding .single-info-title{display: inline-block; color: #2F75F5; min-width: 112px; width: 28px;text-align: right;margin-right: 5px;font-size: 15px;}
+.info-padding.fill-width{width: 100%; margin-right: 0;}
+.info-box .fill-width.info-padding:nth-child(odd){margin-right: 0;}
+.info-box .info-padding:nth-child(odd){margin-right: 20px;}
+.last-para{color: #DC7700;}
+.info-box .info-padding p{margin-bottom: 10px;}
+.margin-b{margin-bottom: 5px;}
+.inline{display: inline-block;}
+.f-title{display: inline-block;}
+.s-title{display:inline-block;}
+.txt-indent{margin-left: 20px;}
+/* 新增样式 */
+.single-info-box .onelevel{color: #8d8d8d; margin-bottom: 7px;}
+.lastC{color: #8d8d8d;}
+.maohao{margin: 0 5px;}
+.t-title{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;}
+.t-box{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center;}
+.start{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start;}
+.flex-one{-webkit-box-flex: 1; -ms-flex: 1; flex: 1;}
+.onlyTwo{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align:start; -ms-flex-align:start; align-items:flex-start;}
+.marginT{margin-top: 6px;}
+.inline{display: inline;}
+.inline>div{display: inline;}
+.colorone{color: #888; font-weight: bold; font-size: 14px;}
+.twolevel:not(:last-child) .onlyTwo{margin-bottom: 6px;}
+.twolevel:not(:last-child) .twobox{margin-bottom: 15px}
+.two{color: #304461; font-weight: bold; font-size: 14px;}
+/* 数据摘要 end*/
+.enter-gis{padding-left: 5px;}
+.enter-gis .enter-btn{display: inline-block; padding: 10px 15px; color: #fff; background: #2F75F5; margin-right: 20px; border-radius: 4px; font-size: 14px;}
+.single-info-cnt.last-p{margin-bottom: 33px;}
+/* 与我相关start */
+.related{width: 808px;}
+.related-box{padding:33px 40px; color: #000; font-size: 14px; /* height: 306px; */ border: 1px solid #dadada;}
+.related-box>h4{font-size:16px; color: #000; margin-bottom: 33px;}
+.icon-yuwoxiangguan{color: #2F75F5; font-size: 16px; margin-right: 8px;}
+.panel-box .literature-ul>li a{color: #000; font-size: 14px; overflow: hidden; -o-text-overflow:ellipsis; text-overflow:ellipsis; white-space: nowrap;}
+.panel-box .literature-ul>li{overflow: hidden; -o-text-overflow:ellipsis; text-overflow:ellipsis; white-space: nowrap; margin-top:20px; width: 352px;}
+.panel-box .literature-ul>li:nth-child(odd){margin-right: 104px;}
+.panel-box .literature-ul{width: 808px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;-ms-flex-wrap: wrap;-o-flex-wrap: wrap;flex-wrap:wrap;}
+.panel-box .literature-ul>li a:hover{color: #2F75F5; text-decoration: underline;}
+.panel-fade-enter-active, .component-fade-leave-active{-webkit-transition: opacity .3s ease; -o-transition: opacity .3s ease; transition: opacity .3s ease;}
+.panel-fade-enter, .component-fade-leave-to {opacity: 0;}
+/*与我相关end*/
+.retrievalTable{padding:20px 10px 0 10px;overflow:hidden;}
+#layer-box{display: none;}
+#layer-box2{display: none;}
+#layer-box .layui-form-label{width:auto;padding: 9px 0;text-align: left;}
+#layer-box .layui-btn-normal{background:#2F75F5;}
+#retrieval td a:hover{color:#2F75F5;}
+.layui-laydate-content td.laydate-selected{background-color:#e2f7fb !important;}
+.layui-laydate-content td.l4aydate-selected{background-color:#e2f7fb !important;} 
+.layui-laydate-footer span:hover{color: #2F75F5 !important;}
+/* .bootstrap-table .pagination-detail{display: block;}  */
+.layui-input-inline{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-ms-flex-direction: row;flex-direction: row;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+.layui-input-inline .to{margin: 0 5px;}
+.table-box thead tr {border:none !important;}
+.table-box tbody tr td:first-child {border-left:none !important;}
+.table-box tbody tr td:last-child{border-right:none !important;}
+.table-box tbody tr:first-child td{border-top: none !important;}
+.fixed-table-container{border: 1px solid #dddddd !important;}
+.fixed-table-body{height: 100% !important;}

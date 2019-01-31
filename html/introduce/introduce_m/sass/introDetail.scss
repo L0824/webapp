@@ -1,0 +1,62 @@
+@import './commoncss/normalize.scss';
+@import './commoncss/common.scss';
+.banner-box{
+    width: 100%;
+}
+.banner-box img{
+    width: 100%;
+    height:rem(488);
+}
+.a-container{
+    width: 100%;
+    background: #fff;
+    padding:rem(30) 0;
+}
+.a-container .xq-title{
+    font-size: rem(40);
+    color: #000;
+    margin-bottom: rem(30);
+}
+.a-container .xq-unit{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-bottom: rem(60);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.left-xq{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.left-xq .icon-head{
+    color: #6F6F6F;
+    margin-right: rem(15);
+    font-size: rem(50);
+}
+.left-xq .xq-txt{
+    font-size: rem(25);
+    color: #858585;
+}
+.a-container .xq-cnt{
+    text-indent: 2em;
+    color: #333;
+    font-size: rem(28);
+    line-height: rem(40);
+}

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全球变化大数据云共享平台</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"/> 
+    <link rel="stylesheet" href="css/commoncss/normalize.css">
+    <link rel="stylesheet" href="font/iconfont.css">
+    <link rel="stylesheet" href="js/commonjs/swiper/swiper-4.2.2.min.css">
+    <link rel="stylesheet" href="css/index.css">
+  	<link href="Cesium-1.44/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  	<script type="text/javascript" src="Cesium-1.44/Build/Cesium/Cesium.js"></script>
+  	<style>
+      html, body, #cesiumContainer {
+          width: 100%;min-width: 1200px; height:100%; margin: 0; padding: 0; overflow: hidden; 
+   
+      }
+  	</style>
+ </head>
+ <body class="body-box">
+ <div class="body-wrapper" style="z-index:100">
+     <div class="index">
+          <!-- 标题 start-->
+          <header class="header">
+            <div class="g-container">
+                <div class="head-box">
+                    <i class="icon-logo entr-r"><img src="images/logo.png" alt=""></i>
+                    <div class="title-text entr">
+                        <span class="chinese-text">全球变化大数据云共享平台</span>
+                        <span class="english-text"></span>
+                    </div>
+                </div>
+                <a href="html/home.html" class="title-right"> 
+                    <div class="toWebsiteMap"><span>进入首页</span></div>
+                </a>  
+            </div>            
+          </header>
+         <!-- 标题 end-->
+          <!-- 功能页面入口 start-->
+        <div class="box">
+            <div id="cesiumContainer" class=""></div>
+            <div class="mask"></div>
+        </div>
+     </div>
+     <div class="swiper-box">
+        <div class="swiper-container" dir="btt">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide swiper-no-swiping">
+                    <section class="page page1">
+                            <div class="page-box">
+                                <div class="top"></div>
+                                <div class="main">
+                                    <div class="g-container">
+                                    <div class="title">数据服务</div>
+                                    <div class="des">在大数据时代，对各种统计、计算、科学研究或技术所倚靠的数据来源。</div>
+                                    <div class="images">
+                                        <ul>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_01.png" alt="">
+                                                        <img class="pic" src="images/sy_1_1.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                        <img class="pic middle" src="images/sy_1_2.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                        <img class="pic middle" src="images/sy_1_3.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_04.png" alt="">
+                                                        <img class="pic" src="images/sy_1_4.png" alt="">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            
+                            </section>
+                </div>
+                <div class="swiper-slide swiper-no-swiping">
+                    <section class="page page2">
+                            <div class="page-box">
+                                <div class="top"></div>
+                                <div class="main">
+                                    <div class="g-container">
+                                    <div class="title">在线云计算</div>
+                                    <div class="des">分布式新型体系结构，多种廉价计算资源并行计算，大幅度提高IT基础设施的计算速度和存储能力。</div>
+                                    <div class="images">
+                                        <ul>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_01.png" alt="">
+                                                        <img class="pic" src="images/sy_2_1.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                        <img class="pic middle" src="images/sy_2_2.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                        <img class="pic middle" src="images/sy_2_3.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_04.png" alt="">
+                                                        <img class="pic" src="images/sy_2_4.png" alt="">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            </section>
+                </div>
+                <div class="swiper-slide swiper-no-swiping">
+                        <section class="page page3">
+                                <div class="page-box">
+                                  <div class="top"></div>
+                                  <div class="main">
+                                    <div class="g-container">
+                                        <div class="title">数据汇聚</div>
+                                        <div class="des">合并来自不同数据源的数据,由多方的数据共同存在才能够实现产品价值。</div>
+                                        <div class="images">
+                                            <ul>
+                                                <li>
+                                                    <div class="img-border">
+                                                            <img src="images/sy_sjfw_picture_01.png" alt="">
+                                                            <img class="pic" src="images/sy_sjfw_picture_1.png" alt="">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="img-border">
+                                                            <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                            <img class="pic middle" src="images/sy_sjfw_picture_2.png" alt="">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="img-border">
+                                                            <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                            <img class="pic middle" src="images/sy_sjfw_picture_3.png" alt="">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="img-border">
+                                                            <img src="images/sy_sjfw_picture_04.png" alt="">
+                                                            <img class="pic" src="images/sy_sjfw_picture_4.png" alt="">
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                             
+                        </section>
+                </div>
+                <div class="swiper-slide swiper-no-swiping">
+                    <section class="page page4">
+                        <div class="page-box">
+                            <div class="top"></div>
+                            <div class="main">
+                                <div class="g-container">
+                                    <div class="title">科技动态</div>
+                                    <div class="des">网站定期更新国际，国内的最新新闻和科技动态。</div>
+                                    <div class="images">
+                                        <ul>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_01.png" alt="">
+                                                        <img class="pic" src="images/sy_1_1.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                        <img class="pic middle" src="images/sy_1_2.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                                                        <img class="pic middle" src="images/sy_1_3.png" alt="">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="img-border">
+                                                        <img src="images/sy_sjfw_picture_04.png" alt="">
+                                                        <img class="pic" src="images/sy_1_4.png" alt="">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </section>
+                </div>
+            </div>
+        </div>
+     </div>  
+    <!-- <div class="banner-box">
+    <div class="m-container">
+    <div class="banner_slider" id="banner_slider">
+        <div class="banner_slider_dots" id="#banner_slider_dots">
+            <a href="javascript:;" class="dots_item dots_active">
+                <div class="btn"><img src="images/sy_sjfw.png" alt="数据服务"></div>
+                <span>数据服务</span>
+            </a>
+            <a href="javascript:;" class="dots_item">
+                <div class="btn"> <img src="images/sy_zxyjs.png" alt="在线云计算"></div>
+                <span>在线云计算</span>
+                
+            </a>
+            <a href="javascript:;" class="dots_item">
+                <div class="btn"><img src="images/sy_sjhj.png" alt="数据汇聚"></div>
+                <span>数据汇聚</span>
+            </a>
+            <a href="javascript:;" class="dots_item">
+                <div class="btn"><img src="images/sy_kjdt.png" alt="科技动态"></div>
+                <span>科技动态</span>
+            </a>		
+        </div>
+    </div>
+    <div class="banner_slider_pics_box" >
+        <div class="banner_slider_pics" id="banner_slider_pics">
+             <!-- 1  -->
+            <!-- <a href="javascript:void(0)"  class="a_pics">
+                <div class="title">
+                    <p>在大数据时代，对各种统计、计算、科学研究或技术所倚靠的数据来源。</p>
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_01.png" alt="">
+                    <img class="pic" src="images/sy_1_1.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_02.png" alt="">
+                    <img class="pic middle" src="images/sy_1_2.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_02.png" alt="">
+                    <img class="pic middle" src="images/sy_1_3.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_04.png" alt="">
+                    <img class="pic" src="images/sy_1_4.png" alt="">
+                </div>
+            </a> -->
+            <!-- 1  -->
+            <!-- 2 -->
+            
+            <!-- <a href="javascript:void(0)" class="a_pics">
+                <div class="title">
+                    <p>分布式新型体系结构，多种廉价计算资源并行计算，大幅度提高IT基础设施的计算速度和存储能力.</p>
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_01.png" alt="">
+                    <img class="pic" src="images/sy_2_1.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_02.png" alt="">
+                    <img class="pic middle" src="images/sy_2_2.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_02.png" alt="">
+                    <img class="pic middle" src="images/sy_2_3.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_04.png" alt="">
+                    <img class="pic" src="images/sy_2_4.png" alt="">
+                </div>
+            </a> -->
+            <!-- 2 -->
+            <!-- 3 -->
+            <!-- <a href="javascript:void(0)" class="a_pics">
+                <div class="title">
+                    <p>合并来自不同数据源的数据,由多方的数据共同存在才能够实现产品价值</p>
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_01.png" alt="">
+                    <img class="pic" src="images/sy_sjfw_picture_1.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_02.png" alt="">
+                    <img class="pic middle" src="images/sy_sjfw_picture_2.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_02.png" alt="">
+                    <img class="pic middle" src="images/sy_sjfw_picture_3.png" alt="">
+                </div>
+                <div class="img-border">
+                    <img src="images/sy_sjfw_picture_04.png" alt="">
+                    <img class="pic" src="images/sy_sjfw_picture_4.png" alt="">
+                </div>
+            </a> -->
+            <!-- 3 -->
+            <!-- 4 -->
+            <!-- <a href="javascript:void(0)" class="a_pics">
+                    <div class="title">
+                        <p>网站定期更新国际，国内的最新新闻和科技动态</p>
+                    </div>
+                    <div class="img-border">
+                        <img src="images/sy_sjfw_picture_01.png" alt="">
+                        <img class="pic" src="images/sy_4_1.png" alt="">
+                    </div>
+                    <div class="img-border">
+                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                        <img class="pic middle" src="images/sy_4_2.png" alt="">
+                    </div>
+                    <div class="img-border">
+                        <img src="images/sy_sjfw_picture_02.png" alt="">
+                        <img class="pic middle" src="images/sy_4_3.png" alt="">
+                    </div>
+                    <div class="img-border">
+                        <img src="images/sy_sjfw_picture_04.png" alt="">
+                        <img class="pic" src="images/sy_4_4.png" alt="">
+                    </div>
+            </a> -->
+            <!-- 4 -->
+         
+        <!-- </div> -->
+    <!-- </div>   -->
+<!-- </div> -->
+<!-- </div>   -->
+<!-- <div class="enterToHome"> -->
+    <!-- <a href="html/home.html">
+        <i>点击进入 </i>
+        <div class="arrow">
+         <span></span>
+        </div>
+    </a> -->
+<!-- </div>     -->
+    <!-- <div class="function-entrance">
+            <div class="g-container">
+            <div class="entrance-box">
+                <div class="entrance-ul">
+                    <div class="entrance-li">
+                        <a class="left-icon entr entr-box" href="#">
+                            <img class="img-entr" src="images/shujvziyuan.png" alt="">
+                            <div class="page-description">
+                                <div class="page-title">数据资源</div>
+                                <div class="p-des">数据资源是在大数据时代，对各种统计、计算、科学研究或技术所倚靠的数据来源。</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="entrance-li">
+                        <a href="html/home.html" class="enter-home">
+                            <div class="outer-a">
+                                <div class="outer-b">
+                                    <div class="outer-c">
+                                        <span class="enter-text">点击进入</span>
+                                        <span class="iconfont icon-jiantou"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="entrance-li">
+                        <a class="right-icon entr entr-box" href="#">
+                            <div class="page-description">
+                                <div class="page-title right-text">在线算法分析</div>
+                                <div class="p-des right-text">在线分析是在大数据时代，对数据采集挖掘、应用的技术越来越受到瞩目。</div>
+                            </div>
+                            <img class="img-entr" src="images/zaixiansuandfa.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+  </div> -->
+    <script src="js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="js/commonjs/jquery-1.7.1.min.js"></script>
+    <script src="js/commonjs/swiper/swiper-4.2.2.min.js"></script>
+    <!-- <script src="js/index.js"></script> -->
+    <script type="text/javascript" src="scripts/cesium/main.js"></script>
+    <script>
+        $(document).ready(function() {
+        var swiper = new Swiper('.swiper-container',{
+            direction: 'vertical', 
+            loop: true,
+            speed:600,
+            noSwiping : true,
+            autoplay: {
+                delay: 4000,//4秒切换一次
+            },
+           
+        });
+        swiper.lockSwipes()
+	});
+    </script>
+    <!-- <script>      
+      var cesiumContainer = document.getElementById("cesiumContainer");
+      var entrance = document.getElementsByClassName("function-entrance")[0];
+      cesiumContainer.style.height = (document.body.clientHeight - entrance.offsetHeight)+"px";
+     
+    </script> -->
+
+
+ </body>
+</html>

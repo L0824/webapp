@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>全球变化大数据云共享平台</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../js/commonjs/swiper/swiper-4.2.2.min.css">
+    <link rel="stylesheet" href="../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../js/commonjs/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../js/commonjs/slick/slick.css">
+    <link rel="stylesheet" href="../css/commoncss/common.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper" id="app" v-cloak>
+        <!-- 头部 start-->
+        <head-nav></head-nav>
+        <!-- 头部 end-->
+        <!-- 内容 start-->
+        <div class="main-container">
+            <div class="main-right">
+                <div class="main-right-box">
+                    <div class="first-row">
+                        <div class="g-container line-row">
+                            <div class="banner-box imgRadius">
+                                <div class="banner-title">
+                                    <!-- <div class="title-txt">全球变化数据体系</div> -->
+                                </div>
+                                <div class="bannner-wrapper  white">
+
+                                    <div class="banner-center-box">
+                                        <!--设置轮播器区域样式，设置轮播器滚动样式-->
+
+                                        <!-- <div class="carousel-inner"> -->
+                                            <!-- <div class="carousel-box"> -->
+                                                    <div class="model-title"><div class="text"><div class="title-text">全球变化数据体系</div><div class="des">图形方式去分类展示全球变化数据</div></div> <div class="dot-line"></div></div>
+                                                    <!-- <div class="echart-box"> -->
+                                                    <div id="container-data-relation" style="height: 420px; width:740px;margin:10px;"></div>
+                                                    <!-- </div> -->
+                                            <!-- </div> -->
+                                        <!-- </div> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="news-box">
+                                <div class="news-wrapper white">
+                                 <div class="model-title"><div class="text"><div class="title-text">新闻动态</div><div class="des">定时更新最新新闻动态及资讯</div> </div><div class="dot-line"></div></div>
+                                    <div class="news-lists-content clearfix" v-if="newsList" >
+                                        <ul class="news-ul" >
+                                            <li v-for="(item,index) in newsList">
+                                                <a target="_blank" :href="'scienceDynamic/newsDynamicDetail.html?id='+Math.random()" class="a-item" :title="item.title"  @click="saveParam(item.title)">
+                                                    <object data="" type="">
+                                                        <div class="first-news clearfix">
+                                                            <div class="pic" v-show="index==0?true:false">
+                                                                <img class="imgRadius" v-show="!item.topPic" src="../images/home/sy_pic_moren.png" alt="">
+                                                                <img class="imgRadius" v-show="item.topPic" :src="item.topPic" alt="" >
+                                                            </div>
+                                                            <div class="news-text" :class="{'cur':(index==0)}">
+                                                                <div class="first-news-box" >
+                                                                    <h4>
+                                                                        <div  class="a-hover"><span class="dot" v-show="index!=0?true:false"></span><div class="span-text"><span class="submtDate" v-show="index!=0?true:false">{{item.submtDate.split(' ')[0]}}</span><span   class="submtTitle">{{item.title}}</span></div></div>
+                                                                    </h4>
+                                                                    <p v-show="index==0?true:false">{{item.textContent}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </object>
+                                                <!-- <a :href="item.newsUrl" v-else><span class="dot"></span><span>{{item.title}}</span></a> -->
+                                            </a>
+                                            </li>
+                                        </ul>
+                                        <a href="scienceDynamic/newsDynamic.html" class="newslist-more">查看更多
+                                            <i class="iconfont icon-gengduo"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--在线云计算 start-->
+                    <div class="two-row">
+                        <div class="g-container">
+                            
+                            <div class="algorithm-cnt line-row">
+                                <div class="algorithm-boxes border">
+                                    <div class="algorithm-wrapper ">
+                                        <div class="model-title"><div class="text"><div class="title-text">在线云计算分析展示</div><div class="des">编译平台实时运行算法,完美展现云计算进程</div></div> <div class="dot-line"></div></div>
+                                        <div class="algorithm-intro" id="data-yun" style="width:698px;height:299px;">
+                                            <a href="http://47.94.130.255:8080/index/" class="canvas-a">
+                                                <!-- <img class="imgRadius" src="../images/home/sf.png" height="100%" alt=""> -->
+                                                <!-- 文字球  s-->
+                                                <!-- <canvas id="canvasOne" width="698" height="299" ></canvas> -->
+                                                <!-- 文字球  e-->
+                                                <!-- echarts散点图  s -->
+                                                <div id="map-container" style="height: 100%"></div>
+                                                <!-- echarts散点图  e -->
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="charts-box">
+                                    <div class="right-wrapper line-column">
+                                        <div class="top-wrapper border">
+                                            <!-- <img src="../images/组33.png" alt="" width="100%" height="200px"> -->
+                                            <!-- tab切换 start-->
+                                            <div class="algorithm-box white rows">
+                                                <div class="algorithm-wrapper ">
+                                                    <div class="tab-title">
+                                                        <ul class="tab-title-ul">
+                                                            <li class="cur">
+                                                                <span>数据下载量</span>
+                                                            </li>
+                                                            <li >
+                                                                <span>数据存储量</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane" id="div_count1" style="height: 250px; width:300px;margin:10px;">
+
+                                                        </div>
+                                                        <div class="tab-pane" id="div_count2" style="height: 250px; width:300px;margin:10px;">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- tab切换 end-->
+                                        </div>
+                                        <div class="server-wrapper border">
+                                            <div class="server-box">
+                                                <!-- <div class="server-title">专题服务列表</div> -->
+                                                <div class="model-title"><div class="text"><div class="title-text">专题服务列表</div><div class="des">详情介绍各大专题内容</div></div> <div class="dot-line"></div></div>
+                                                <div class="server-cnt">
+                                                    <div class="server-div border imgRadius">
+                                                        <img  src="../images/home/ztfwlb_1.png" alt="">
+                                                        <div class="mask">
+                                                            <!-- <div> -->
+                                                                <p>全球及中国气候变化情景预估专题</p>
+                                                                <div class="btn-box">
+                                                                    <a href="../html/topicService.html" class="hover_a">查看详情</a>
+                                                                </div>
+                                                            <!-- </div> -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="server-div border imgRadius">
+                                                        <img  src="../images/home/ztfwlb_2.png" alt="">
+                                                        <div class="mask">
+                                                                <p>全球及中国气候变化情景预估专题</p>
+                                                                <div class="btn-box">
+                                                                    <a href="../html/topicService.html" class="hover_a">查看详情</a>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 在线云计算  end-->
+                    <!-- 数据服务 start-->
+                    <div class="three-row" v-if="metaList">
+                        <div class="g-container">
+                            <div class="model-title">
+                                <div class="text">
+                                    <div class="title-text">数据服务</div>
+                                    <div class="des">服务于分类数据的检索与详情内容</div>
+                                </div>
+                                <div class="dot-line"></div>
+                            </div>
+                            <div class="data-server" >
+                                <ul class="data-server-ul">
+                                    <li v-for="item in metaList" >
+                                        <a href="javascript:void(0)">
+                                            <span class="pic-wrapper border">
+                                                <img v-show="item.mixImgUrl" class="imgRadius" :src="item.mixImgUrl" alt="">
+                                                <img v-show="!item.mixImgUrl" class="imgRadius" src="../images/home/sy_pic_moren.png" alt="">
+                                                <div class="hover">
+                                                    <p v-text="item.title"></p>
+                                                    <object>
+                                                        <a :href="'dataResource/dataResourceDetail.html?id='+item.id" class="hover_a" target="_blank">查看详情</a>
+                                                    </object>
+                                                </div>
+                                            </span>
+                                            <p class="description" v-text="item.title"  @click="linkToDetail(item.id)"></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 数据服务 end-->
+                     <!-- 最新进展 start -->
+                     <div class="five-row last-row" v-if="lastedData">
+                            <div class="g-container">
+                                <div class="model-title">
+                                    <div class="text">
+                                        <div class="title-text ">最新进展</div>
+                                        <div class="des">国际和国内气象方面最新动态</div>
+                                    </div>
+                                    <div class="dot-line"></div>
+                                </div>
+                                <div class="data-server" >
+                                    <!-- <ul class="data-server-ul">
+                                        <li v-for="item in lastedData" >
+                                            <a href="javascript:void(0)">
+                                                <span class="pic-wrapper border">
+                                                    <img v-show="item.topPic" class="imgRadius" :src="item.topPic" alt="">
+                                                    <img v-show="!item.topPic" class="imgRadius" src="../images/home/sy_pic_moren.png" alt="">
+                                                    <div class="hover">
+                                                        <p v-text="item.title"></p>
+                                                        <object>
+                                                            <a :href="'scienceDynamic/latestProgress_detail.html?id='+item.id" class="hover_a">查看详情</a>
+                                                        </object>
+                                                    </div>
+                                                </span>
+                                                <p class="description" v-text="item.title"  @click="linkToDetail(item.id)"></p>
+                                            </a>
+                                        </li>
+                                    </ul> -->
+                                    <div class="column">
+                                        <div class="single-blog-post">
+                                            <div class="post-img left-bimg">
+                                                <a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[0].id">
+                                                    <img v-show="lastedData[0].topPic" :src="lastedData[0].topPic" alt="blog-img">
+                                                    <img  v-show="!lastedData[0].topPic" src="../images/home/sy_pic_moren.png" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="post-content">
+                                                <ul>
+                                                    <li><i class="fa fa-user"></i> <a href="javascript:;" v-text="lastedData[0].author"></a></li>
+                                                    <li><i class="fa fa-calendar"></i>{{lastedData[0].submtDate}}</li>
+                                                </ul>
+                                                <h3><a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[0].id" v-text="lastedData[0].title"></a></h3>
+                                                <p v-text="lastedData[0].textContent"></p>
+                                                <a href="scienceDynamic/latestProgress.html" class="read-more-btn">
+                                                    <span class="left"><i class="fa fa-chevron-circle-right"></i></span>
+                                                    查看更多
+                                                    <span class="right"><i class="fa fa-chevron-circle-right"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="single-blog-post">
+                                            <div class="onerow">
+                                                    <div class="left p">
+                                                        <div class="post-img right-simg">
+                                                            <a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[1].id" class=""><img :src="lastedData[1].topPic" alt="blog-img"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right p">
+                                                        <div class="post-content blog-content">
+                                                            <ul>
+                                                                <li><i class="fa fa-user"></i><a href="javascript:;" v-text="lastedData[1].author"></a></li>
+                                                                <li><i class="fa fa-calendar"></i>{{lastedData[1].submtDate}}</li>
+                                                            </ul>
+                                                            <h3><a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[1].id" v-text="lastedData[1].title"></a></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bottom-line">
+                                                </div>
+                                                <div class="onerow">
+                                                    <div class="left p">
+                                                        <div class="post-img right-simg">
+                                                            <a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[2].id" class="right-simg"><img :src="lastedData[2].topPic" alt="blog-img"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right p">                                                              
+                                                        <div class="post-content blog-content">
+                                                            <ul>
+                                                                <li><i class="fa fa-user"></i> <a href="javascript:;" v-text="lastedData[2].author"></a></li>
+                                                                <li><i class="fa fa-calendar"></i>{{lastedData[2].submtDate}}</li>
+                                                            </ul>
+                                                            <h3><a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[2].id" v-text="lastedData[2].title"></a></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bottom-line">
+                                                </div>
+                                                <div class="onerow">
+                                                    <div class="left p">
+                                                        <div class="post-img right-simg">
+                                                            <a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[3].id" alt="blog-img"><img :src="lastedData[3].topPic" alt="blog-img"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right p">
+                                                        <div class="post-content blog-content">
+                                                            <ul>
+                                                                <li><i class="fa fa-user"></i><a href="javascript:;" v-text="lastedData[3].author"></a></li>
+                                                                <li><i class="fa fa-calendar"></i>{{lastedData[3].submtDate}}</li>
+                                                            </ul>
+                                                            <h3><a :href="'scienceDynamic/latestProgress_detail.html?id='+lastedData[3].id" v-text="lastedData[3].title"></a></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- 最新进展 end -->
+                    <!-- 国际焦点 start -->
+                    <div class="four-row" v-if="intelData">
+                            <div class="g-container" >
+                                <div class="model-title">
+                                    <div class="text">
+                                        <div class="title-text ">国际焦点</div>
+                                        <div class="des">定期分享国际要闻</div>
+                                    </div>
+                                    <div class="dot-line"></div>
+                                </div>
+                                <div class="slideGroup" id="slideGroup" >
+                                    <div class="parBd">
+                                        <div class="slideBox">
+                                            <a class="sPrev" href="javascript:void(0)"><i class="fa  fa-angle-left"></i></a>
+                                            <div id="links">
+                                            <ul class="autoplay">
+                                                <li v-for="item in intelData">
+                                                    <a class="product" :href="'scienceDynamic/intelspotlight_detail.html?id='+item.id"><div  class="product-image"><img :src="item.topPic" alt="" width="223" height="227"/></div>
+                                                        <div class="product-caption">
+                                                            <div class="divider divider-sm divider-primary"></div>
+                                                            <div class="product-title">
+                                                                <h5><div  v-text="item.title"></div></h5>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                            <a class="sNext" href="javascript:void(0)"><i class="fa  fa-angle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 查看更多 -->
+                                <div class="a-more"><a href="scienceDynamic/internationalSpotlight.html" class="btn">查看更多</a></div>
+                            </div>
+                        </div>
+                    <!-- 国际焦点 end -->                  
+                </div>
+            </div>
+
+        </div>
+        <!-- 内容 end-->
+        <!-- 流程图 start -->
+        <div class="lct-box ">
+        </div>
+        <!-- 流程图 end-->
+        <!-- 相关链接 start-->
+        <div class="relative-link-box">
+            <div class="g-container">
+                <div class="title">
+                    <span>相关链接</span>
+                </div>
+                <ul class="links-ul">
+                    <li>
+                        <a href="http://www.radi.ac.cn/" target="_blank">中科院遥感与数字地球研究所</a>
+                    </li>
+                    <li>
+                        <a href="http://www.cas.cn/"  target="_blank">中国科学院</a>
+                    </li>
+                    <li>
+                        <a href="http://www.cma.gov.cn/" target="_blank">国家气象信息中心</a>
+                    </li>
+                    <li>
+                        <a href="https://www.nju.edu.cn/" target="_blank">南京大学</a>
+                    </li>
+                    <li>
+                        <a href="http://www.ncc-cma.net/cn/" target="_blank">国家气候中心</a>
+                    </li>
+                    <li>
+                        <a href="http://www.nsmc.org.cn/NSMC/Home/Index.html" target="_blank">国家卫星气象中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 相关链接 end-->
+        <!-- 底部 start-->
+        <foot></foot>
+        <!-- 底部 end-->
+        <!-- 回到顶部 start-->
+        <div class="toTop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+    </div>
+
+    <script src="../js/commonjs/polyfill.min.js"></script>
+    <script src="../js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="../js/commonjs/vue.min.js"></script>
+    <script src="../js/commonjs/axios.min.js"></script>
+    <script src="../js/commonjs/layer/layer.js"></script>
+    <script src="../js/commonjs/header.js"></script>
+    <script src="../js/commonjs/footer.js"></script>
+    <script src="../js/commonjs/echarts.min.js"></script>
+    <!-- <script src="../js/commonjs/jquery.js"></script> -->
+   
+    <script src="../js/home/count.js"></script>
+    <script src="../js/home/count2.js"></script>
+    
+    <script src="../js/commonjs/toTop.js"></script>
+    <script src="../js/home/home.js"></script>
+    <script src="../js/home/slide.js"></script>
+    <!-- echarts 散点图引入js  s -->
+    <script src="../js/commonjs/echarts-gl.js"></script>
+    <script src="../js/commonjs/ecStat.min.js"></script>
+    <script src="../js/commonjs/dataTool.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script src="../js/commonjs/bmap.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <script src="../js/commonjs/dat.gui.min.js"></script>
+    <!-- <script src="../js/commonjs/run.js"></script> -->
+    <script src="../js/commonjs/data.relation.js"></script>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('map-container'));
+        myChart.showLoading();//加载数据前显示的动画效果
+        //读取微博JSON数据
+       axios.get('../js/home/weibo.json').then(function(res) {
+       var weiboData = res.data;
+       console.log(weiboData)
+       // axios.get('../js/home/weibo.json', function (weiboData) {   
+           myChart.hideLoading();//加载数据完成后隐藏动画  
+         //定义一个Data方法将读取的微博数据根据经纬度组合成新的JSON，用于显示   
+           Data = function (index) {
+   
+               data = weiboData[index];
+   
+               var px = data[0] / 1000;
+   
+               var py = data[1] / 1000;
+   
+               var res = [[px, py]];
+   
+               for (var i = 2; i < data.length; i += 2) {
+   
+                   var dx = data[i] / 1000;
+   
+                   var dy = data[i + 1] / 1000;
+   
+                   var x = px + dx;
+   
+                   var y = py + dy;
+   
+                   res.push([x, y, 1]);
+   
+                   px = x;
+   
+                   py = y;
+   
+               }
+   
+               return res;
+   
+           };
+   
+        
+   
+         //设置参数
+   
+           myChart.setOption(
+   
+   option = {
+   
+               backgroundColor: '#000',
+   
+               title: {         //标题组件
+   
+                   text: '',
+   
+                   subtext: 'From ThinkGIS',
+   
+                   sublink: 'http://www.thinkgis.cn/public/sina',
+   
+                   left: 'center',
+   
+                   top: 'top',
+   
+                   textStyle: {
+   
+                       color: '#fff'
+   
+                   }
+   
+               },
+   
+               legend: {        //图例组件
+   
+                   left: 'left',
+   
+                   data: ['强', '中', '弱'],
+   
+                   textStyle: {
+   
+                       color: '#ccc'
+   
+                   }
+   
+               },
+   
+               geo: {           //地理坐标系组件
+   
+                   name: '强',
+   
+                   type: 'scatter',
+   
+                   map: 'china',
+   
+                   label: {
+   
+                       emphasis: {
+   
+                           show: false
+   
+                       }
+   
+                   },
+   
+                   itemStyle: {
+   
+                       normal: {
+   
+                           areaColor: '#323c48',
+   
+                           borderColor: '#111'
+   
+                       },
+   
+                       emphasis: {
+   
+                           areaColor: '#2a333d'
+   
+                       }
+   
+                   }
+   
+               },
+   
+               series: [{              //系列列表
+   
+                   name: '弱',
+   
+                   type: 'scatter',
+   
+                   coordinateSystem: 'geo',
+   
+                   symbolSize: 1,
+   
+                   large: true,
+   
+                   itemStyle: {
+   
+                       normal: {
+   
+                           shadowBlur: 2,
+   
+                           shadowColor: 'rgba(37, 140, 249, 0.8)',
+   
+                           color: 'rgba(37, 140, 249, 0.8)'
+   
+                       }
+   
+                   },
+   
+                   data: Data(0)
+   
+               }, {
+   
+                   name: '中',
+   
+                   type: 'scatter',
+   
+                   coordinateSystem: 'geo',
+   
+                   symbolSize: 1,
+   
+                   large: true,
+   
+                   itemStyle: {
+   
+                       normal: {
+   
+                           shadowBlur: 2,
+   
+                           shadowColor: 'rgba(14, 241, 242, 0.8)',
+   
+                           color: 'rgba(14, 241, 242, 0.8)'
+   
+                       }
+   
+                   },
+   
+                   data: Data(1)
+   
+               }, {
+   
+                   name: '强',
+   
+                   type: 'scatter',
+   
+                   coordinateSystem: 'geo',
+   
+                   symbolSize: 1,
+   
+                   large: true,
+   
+                   itemStyle: {
+   
+                       normal: {
+   
+                           shadowBlur: 2,
+   
+                           shadowColor: 'rgba(255, 255, 255, 0.8)',
+   
+                           color: 'rgba(255, 255, 255, 0.8)'
+   
+                       }
+   
+                   },
+   
+                   data: Data(2)
+   
+               }]
+   
+           });
+   
+    //    });
+   })
+
+        myChart.resize();
+</script>
+    <!-- echarts 散点图引入js        e -->
+
+</body>
+
+</html>

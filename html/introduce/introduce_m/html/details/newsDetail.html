@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <!-- QQ浏览器 -->
+    <meta name="x5-fullscreen" content="no">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-page-mode" content="app">
+    <!-- UC -->
+    <meta name="full-screen" content="no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <script src="../../js/flexible.js"></script>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/introDetail.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+    <title>详情</title>
+</head>
+<body ontouchstart="">
+    <div class="body-wrapper" id="app" v-cloak>       
+            <!-- banner start -->
+            <div class="banner-box" v-if="newsDetail.topPic">
+               <!-- <img src="../../images/introduce/hb_piv_5@3x.png" alt=""> -->
+               <img :src="newsDetail.topPic" alt="">
+            </div>
+            <!-- banner end -->
+            <!-- 详情内容 start-->
+            <div class="a-container">
+                <div class="m-container">
+                    <!-- 详情标题 start -->
+                    <!-- <div class="xq-title">
+                        黑河生态水文遥感试验(HiWATER)英文版
+                        </div> -->
+                    <div class="xq-title">
+                        {{newsDetail.title}}
+                    </div>
+                    <!-- 详情标题 end-->
+                    <div class="xq-unit">
+                        <!-- <div class="left-xq"><i class="iconfont icon-head"></i><span class="unit-name xq-txt">遥感与数字地球研究所</span></div> -->
+                        <div class="left-xq"><i class="iconfont icon-head"></i><span class="unit-name xq-txt">{{newsDetail.author}}</span></div>
+                        <div class="right-xq"><span class="xq-time xq-txt">{{newsDetail.submtDate}}</span></div>
+                    </div>
+                    <!-- 文章内容 start-->
+                    <div class="xq-cnt full-justified" v-html="newsDetail.content">
+                            <!-- 国家重大研发计划“全球变化大数据的科学认知与云共享平台”项目拟通过整合中国优势数据资源,突破部门分割的限制，建成中国首个全球变化大数据云共享平台,为全球变化研提供好处究供可用的全球变化关键参数数据产品； 发展大数据集成分析技术体系，为全球变化研究的敏感因子与焦点问题认知提供数据与技术支撑，提升中国对全球变化的认知能力， 塑造中国在国际全球变化认知中的后发优势，是打破国立机构数据与信息“深藏闺中”的先行实践，也为跨部门、跨领域数据集成与共享提供样板，为我国的全球变化国际合作与话题引领提供有效的支撑。 项目建成的全球变化大数据云共享平台布局在国家气象信息中心，通过共享门户（GloBiD）提供和分享按主题、用户定制的全球变化大数据包，网站具备数据包的下载、可视化、在线近实时处理、统计、定制化等功能，实现一站式全球变化大数据共享网络服务。 -->
+                          
+                    </div>
+                    <!-- 文章内容 end-->
+                </div>
+            </div>
+            <!-- 详情内容 end-->
+
+            
+    </div> 
+    <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="../../js/commonjs/axios.min.js "></script>
+    <script src="../../js/commonjs/vue.min.js"></script>
+    <script src="../../js/details/newsDetail.js"></script>
+</body>
+</html>

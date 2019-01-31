@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>国际焦点详情</title>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../../css/commoncss/common.css">
+    <link rel="stylesheet" href="../../css/commoncss/dynamicScience.css">
+    <link rel="stylesheet" href="../../css/commoncss/newsDetail.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper" id="app" v-cloak>
+        <!-- 头部 start-->
+       <head-nav></head-nav>    
+       <!-- 头部 end-->
+       <div class="main-container">
+            <div class="g-container">
+                    <div class="page-nav"><span class="last-page">科技动态</span><span class="arrow-icon">&gt;</span><span class="last-page">国际焦点</span><span class="arrow-icon">&gt;</span><span>详情</span></div> 
+               <div class="white content-wrapper">
+                    <div class="title">
+                        <div class="model-title">
+                                <div class="title-text ">国际焦点</div> 
+                                <div class="line-dot ">
+                                   
+                                </div>
+                        </div>
+                    </div>
+                    <!-- 内容 start-->
+                    <div class="c-wrapper" v-if="intelDetail">
+                        <!-- 标题 start-->
+                            <div class="datas-title">
+                                <h4 class="article-title" >{{this.intelDetail.title}}</h4> 
+                                <div class="article-author">
+                                    <div class="author-box">
+                                        <span class="b-color">文章来源</span>
+                                        <span class="dot-e">:</span>
+                                        <span class="text-c">{{this.intelDetail.newsSource}}</span>
+                                        <span class="dot-d">•</span>
+                                    </div> 
+                                    <div class="data-origin">
+                                        <span class="b-color">发布时间</span>
+                                        <span class="dot-e">:</span>
+                                        <span class="text-c">{{this.intelDetail.submtDate.split(' ')[0]}}</span>
+                                        <!-- <span class="dot-d">•</span> -->
+                                    </div>
+                                    
+                                </div>
+                            </div> 
+                            <!-- 标题 end-->
+                            <!-- 正文 start-->
+                            <div class="page-cnt" v-html="intelDetail.content">
+                               
+
+                            </div>
+                            <!-- 正文 end-->
+
+                    </div>
+
+                    <!-- 内容 end-->
+               </div>
+                
+            </div>
+       </div>
+       <foot></foot>
+        <!-- 回到顶部 start-->
+        <div class="toTop" ref="totop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+    </div>
+    <script src="../../js/commonjs/polyfill.min.js"></script>
+    <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="../../js/commonjs/vue.min.js"></script>
+    <script src="../../js/commonjs/axios.min.js"></script>
+    <script src="../../js/commonjs/header.js"></script>
+    <script src="../../js/commonjs/footer.js"></script>
+    <script src="../../js/commonjs/toTop.js"></script>
+    <script src="../../js/scienceDynamic/intelspotlight_detail.js"></script>
+    
+</body>
+</html>

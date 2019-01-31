@@ -1,0 +1,22 @@
+.spPage ul li,
+.spActiveBg,
+.spPrev,
+.spFirst,
+.spLast,
+.spNext{display: inline-block; width: 30px; height: 28px; line-height: 28px; border: 1px solid #ddd; font-size: 12px; text-align: center; vertical-align: top; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; user-select: none; *display: block; *float: left;}
+.spPage ul li:active,
+.spActiveBg:active,
+.spPrev:active,
+.spFirst:active,
+.spLast:active,
+.spNext:active{color: #f90;}
+.spPrev,
+.spNext{font-size: 16px;}
+.spPage{display: inline-block; font-size: 0; height: 30px; vertical-align: top; *display: block; *float: left;}
+.spPage .spCover{position: relative; width: 150px; height: 30px; overflow: hidden;}
+.spActiveBg{position: absolute; top: 0; left: 0; border: 1px solid transparent; background-color: #367fa9; z-index: 2;}
+.spPage ul{position: absolute; top: 0; left: 0; width: 390px; font-size: 0; overflow: hidden;}
+.spPage ul li{list-style-type: none; overflow: hidden;}
+.spPage ul li p{position: relative; z-index: 3;}
+.spPage ul li.active{color: #fff;}
+.simplePaging{position: relative; left: 750px; top: 1px;}

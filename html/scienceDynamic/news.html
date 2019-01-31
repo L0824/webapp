@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Site made with Mobirise Website Builder v4.7.2, https://mobirise.com -->
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+<meta name="generator" content="Mobirise v4.7.2, mobirise.com">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"> -->
+<title>工作动态</title>
+<meta name="description" content="">
+
+<link rel="Shortcut Icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+<link rel="stylesheet" href="../../font/iconfont.css">
+<link rel="stylesheet" href="../../css/commoncss/normalize.css">
+<link rel="stylesheet" href="../../css/commoncss/common_header.css">
+<link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+<link rel="stylesheet" href="../../css/commoncss/common.css">
+<link rel="stylesheet" href="../../css/commoncss/dynamicScience.css">
+<link rel="stylesheet" href="../../css/commoncss/scienceTwo.css">
+<style>
+	[v-cloak] {
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<div class="page-wrapper" id="app" v-cloak>
+		<!-- 头部 start-->
+		<head-nav></head-nav>
+		<!-- 头部 end-->
+		<div class="main-container">
+			<div class="g-container">
+				<div class="page-nav">
+					<span class="last-page">科技动态</span><span class="arrow-icon">&gt;</span><span>工作动态</span>
+				</div>
+				 <!-- banner轮播图 start-->
+				 <div class="banner-lb ">
+						<div id="iview2" class="imgRadius">
+							<div data-iview:image="../../images/news/b01.png">
+								<div class="mask"></div>
+								<div class="iview-caption" data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+							</div>
+				
+							<div data-iview:image="../../images/news/b02.png">
+								<div class="mask"></div>
+								<div class="iview-caption " data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+							</div>
+				
+							<div data-iview:image="../../images/news/b03.png">
+								<div class="mask"></div>
+								<div class="iview-caption " data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+							</div>
+				
+							<div data-iview:image="../../images/news/b04.png">
+								<div class="mask"></div>
+								<div class="iview-caption " data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+							</div>
+						</div>
+							
+                </div>
+				<!-- banner轮播图 end-->
+				<!-- 工作动态 start-->
+                <div class="dynamicWork white c-border">
+						<!-- 标题 start-->
+						<div class="title">
+							<div class="model-title">
+								<div class="title-text ">工作动态</div> 
+								<div class="line-dot ">
+									
+								</div>
+							</div>
+						
+						</div>
+						<!-- 标题 end-->
+						<div class="news-cnt-box">
+							<!-- <div class="g-container"> -->
+							<div class="news-cnt" >
+								<ul>
+									<li class="news-li" v-for='item in list'>
+											<div class="li-div">
+												<!-- 左 start-->
+												<a v-if="(typeof item.topPic != 'undefined' && item.topPic != null && item.topPic != '')" :href="'news_detail.html?id='+item.id" class="news-left imgRadius" target="_blank"><img :src="item.topPic" alt=""></a>
+												<!-- 左 end-->
+												<!-- 右 start-->
+												<div class="news-right" :style="{'width':!item.topPic ? '100%':'691px'}" :class="!item.topPic?'nomargin':' '">
+													<a class="main-title-box" :href="'news_detail.html?id='+item.id" target="_blank">
+														<span class="main-title">{{item.title}}<span class="blue-line"></span></span> 
+														<span class="dot"></span>
+														
+													</a>
+													<div class="news-para dot-ellipsis">
+														<p class="clamp-ellipsis">
+															 {{item.textContent}}
+														</p>
+													</div>
+													<div class="news-time">
+															{{item.submtDate.split(' ')[0]}}
+													</div>
+												</div>
+												<!-- 右 end-->
+											</div>
+										</li>
+								  
+								 
+								</ul>
+							</div>
+							<!-- </div> -->
+						   
+						</div>
+					</div>
+					<!-- 工作动态 end-->
+			</div>
+		</div>
+		<!-- 底部 start-->
+		<foot></foot>
+		<!-- 底部 end-->
+		<!-- 回到顶部 start-->
+        <div class="toTop">
+                <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+	</div>
+	<!-- 内容 end-->
+	
+
+	<script src="../../js/commonjs/polyfill.min.js"></script>
+	<script src="../../js/commonjs/jquery-1.7.1.min.js"></script>
+    <script src="../../js/commonjs/axios.min.js"></script>
+	<script src="../../js/commonjs/vue.min.js"></script>
+    <script src="../../js/commonjs/header.js"></script>
+	<script src="../../js/commonjs/footer.js"></script>
+	<script src="../../js/commonjs/toTop.js"></script>
+	<script src="../../js/commonjs/lb/raphael-min.js"></script>
+	<script src="../../js/commonjs/lb/jquery.easing.js"></script>
+	<script src="../../js/commonjs/lb/iview.js"></script>
+	<script src="../../js/scienceDynamic/news.js"></script>
+	
+</body>
+</html>

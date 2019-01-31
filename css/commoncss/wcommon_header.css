@@ -1,0 +1,19 @@
+.welcome-title{
+	width: 100%;
+	font-size: 12px;
+	background: #000;
+	color: #fff;
+	min-width: 1200px;
+}
+.g-container{
+    width: 1200px;
+    margin: 0 auto;
+}
+.welcome-title .g-container{
+	height: 30px;
+	display: flex;
+	text-align: center;
+	justify-content: space-between;
+	line-height: 30px;
+
+}

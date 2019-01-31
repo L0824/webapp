@@ -1,0 +1,1357 @@
+/**************************************************************************************************
+ * 
+ * Release Note
+ * Modifid by Dora  Date:05/24/2013
+ * 1) 增加ecFunctions的ajax 请求返回后的回调函数  afterRequestCallback
+ * 
+ * 
+ * 
+ * 
+ * ***********************************************************************************************/
+// include jQuery first.
+var EcWeb = {
+    currentModalName : ""
+};
+
+jQuery.namespace = function() {
+    var a = arguments, o = null, i, j, d;
+    for (i = 0; i < a.length; i = i + 1)
+    {
+        d = a[i].split(".");
+        o = window;
+        for (j = 0; j < d.length; j = j + 1)
+        {
+            o[d[j]] = o[d[j]] || {};
+            o = o[d[j]];
+        }
+    }
+    return o;
+};
+$.ajaxSetup({
+    cache : false,
+    statusCode : {
+        401 : function(response) {
+            document.location.href =  "/login/";
+        },
+        422 : function(response) {
+            document.location.href =  "/warning/";
+        }
+    }
+});
+
+function printpreview() {
+    wb.execwb(7, 1);
+}
+var MESSAGE = {
+    EC_DELETE_CONFIRM : "您确定要删除这条记录吗?",
+    EC_DELETE_SUCCESS : "数据删除成功!",
+    EC_DELETE_FAILURE : "数据删除失败!",
+    EC_SAVE_SUCCESS : "数据保存成功!",
+    EC_SAVE_FAILURE : "数据保存失败!",
+    EC_NOT_NULL : "不能为空"
+};
+
+String.prototype.trim = function() {
+    // 用正则表达式将前后空格
+    // 用空字符串替代。
+    return this.replace(/(^\s*)|(\s*$)/g, "");
+};
+
+/**
+ * 表格规则化
+*/
+function initTableList(tableId, rows) {
+    if (!rows || rows == null)
+    {
+        rows = 15;
+    }
+    $('#' + tableId).addClass("none");
+    var obj = $('#' + tableId).dataTable({
+        "bJQueryUI" : false,
+        "sPaginationType" : "full_numbers",
+        "iDisplayLength" : rows,
+        "bRetrieve" : true,
+        "bSort" : false
+
+    });
+    $('#' + tableId).removeClass("none");
+    return obj;
+}
+/**
+ * 删除指定的行
+ * @param tableObj
+ * @param trid
+ */
+function dataTableDeleteRow(tableObj, trid) {
+    var rtr = $("#" + trid);
+    var iRow = tableObj.fnGetPosition(rtr[0]);
+    tableObj.fnDeleteRow(iRow);
+}
+/**
+ * 表格规则化 排序
+*/
+function initTableListSort(tableId, rows) {
+    if (!rows || rows == null)
+    {
+        rows = 15;
+    }
+    $('#' + tableId).addClass("none");
+    var obj = $('#' + tableId).dataTable({
+        "bJQueryUI" : false,
+        "sPaginationType" : "full_numbers",
+        "iDisplayLength" : rows,
+        "bRetrieve" : true,
+        "aaSorting" : [[0, "asc"]],
+        "bSort" : true
+
+    });
+    $('#' + tableId).removeClass("none");
+    return obj;
+}
+
+function switchTabA(id) {
+    $("li.cardTab").each(function(idx, domEle) {
+        $(domEle).addClass("CardOff");
+        if ($("#" + domEle.id + "Info"))
+        {
+            $("#" + domEle.id + "Info").addClass("none");
+        }
+
+    });
+    $("#" + id).addClass("CardOn");
+    $("#" + id).removeClass("CardOff");
+    $("#" + id + "Info").removeClass("none");
+}
+
+function displaySubMenu(li) {
+    var subMenu = li.getElementsByTagName("ul")[0];
+    subMenu.style.display = "block";
+}
+
+function hideSubMenu(li) {
+    var subMenu = li.getElementsByTagName("ul")[0];
+    subMenu.style.display = "none";
+}
+
+//*************************************************************************************************
+//validate fields
+//
+//*************************************************************************************************
+
+/*public validate function*/
+function validateNumber(el) {
+    var value = el.value;
+    value = value.replace(/[\d+]/ig, "");
+    if (value.length > 0)
+    {
+        $(el).focus();
+        return false;
+    }
+    return true;
+}
+/* 
+用途：检查输入字符串是否为空或者全部都是空格 
+输入：str 
+返回： 
+如果全是空返回true,否则返回false 
+*/
+function isNull(str) {
+    if (str == "")
+        return true;
+    var regu = "^[ |\\n|\\r]+$";
+    var re = new RegExp(regu);
+    return re.test(str);
+}
+
+function isNotNull(str) {
+    return !isNull(str);
+}
+function isTelOrPhone(s) {
+    return isTel(s) || checkMobile(s);
+}
+
+/* 
+用途：检查输入字符串是否符合国内固话或者传真格式 
+输入： 
+s：字符串  格式例如：020-87110252
+返回： 
+如果通过验证返回true,否则返回false 
+*/
+
+function isTel(s) {
+    if (isNull(s))
+        return true;
+    var regu = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+    var re = new RegExp(regu);
+    if (re.test(s))
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
+
+/* 
+用途：判断是否是日期 
+输入：date：日期；匹配的格式: 2010-5-16
+
+返回：如果通过验证返回true,否则返回false 
+*/
+
+function isDate(str) {
+    if (isNull(str))
+        return true;
+    var r = str.match(/^(\d{4})(-|\/)(\d{1,2})(-|\/)(\d{1,2})$/);
+    if (r == null)
+        return false;
+    var d = new Date(r[1], r[3] - 1, r[5]);
+    return (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d
+            .getDate() == r[5]);
+}
+//验证网址
+function is_url(val){
+	return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
+};
+
+//函数名：CheckDateTime     
+//功能介绍：检查是否为日期时间   
+function isDatetime(str) {
+    if (isNull(str))
+        return true;
+    if (str.length == 16)
+    {
+        str = str + ":00";
+    }
+    var reg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/;
+    var r = str.match(reg);
+    if (r == null)
+        return false;
+    var d = new Date(r[1], r[3] - 1, r[4], r[5], r[6], r[7]);
+    return (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3]
+            && d.getDate() == r[4] && d.getHours() == r[5]
+            && d.getMinutes() == r[6] && d.getSeconds() == r[7]);
+}
+
+String.prototype.IsDate = function() {
+    var r = this.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+    if (r == null)
+        return false;
+    var d = new Date(r[1], r[3] - 1, r[4]);
+    return (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d
+            .getDate() == r[4]);
+};
+
+String.prototype.IsTime = function() {
+    var a = this.match(/^(\d{1,2})(:)?(\d{1,2})\2(\d{1,2})$/);
+    if (a == null)
+        return false;
+    if (a[1] > 24 || a[3] > 60 || a[4] > 60)
+    {
+        return false;
+    }
+    return true;
+};
+/* 
+用途：检查输入字符串是否符合正整数格式 
+输入： 
+s：字符串 
+返回： 
+如果通过验证返回true,否则返回false 
+*/
+function isNumber(s) {
+    var regu = "^[0-9]+$";
+    var re = new RegExp(regu);
+    if (s.search(re) != -1)
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
+
+/***/
+function isPassWord(s) {
+    var len = s.length;
+    if (len < 8 || len > 32)
+    {
+        return false;
+    }
+    var hasNumber = false, hasChar = false;
+    for ( var i = 0, total = len; i < total; i++)
+    {
+        var ch = s.charCodeAt(i);
+        if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
+        {
+            hasChar = true;
+        }
+        var chr = s.substr(i, 1);
+        if (isNumber(chr))
+        {
+            hasNumber = true;
+        }
+    }
+    return hasNumber && hasChar;
+}
+/* 
+用途：检查输入手机号码是否正确 
+输入： 
+s：字符串 
+返回： 
+如果通过验证返回true,否则返回false 
+*/
+function checkMobile(s) {
+    if (isNull(s))
+        return true;
+    var regu = /^[1][0-9][0-9]{9}$/;
+    var re = new RegExp(regu);
+    if (re.test(s))
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
+
+/* 
+用途：检查输入字符串是否符合金额格式 
+格式定义为带小数的正数，小数点后最多三位 
+输入： 
+s：字符串 
+返回： 
+如果通过验证返回true,否则返回false 
+*/
+function isMoney(s) {
+    if (isNull(s))
+        return true;
+    var regu = "^[0-9]+[\.][0-9]{0,3}$";
+    var re = new RegExp(regu);
+    if (re.test(s))
+    {
+        return true;
+    } else
+    {
+        $(domEle)[0].focus();
+        return false;
+    }
+}
+
+/* 
+用途：检查输入字符串是否符合国内邮政编码
+输入： 
+s：字符串  格式例如：410000
+返回： 
+如果通过验证返回true,否则返回false 
+*/
+function isZipCode(s) {
+    if (isNull(s))
+        return true;
+    var rez = new RegExp(/^\d{6}$/);
+    if (rez.test(s))
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
+
+function isEmail(email) {
+    if (isNull(email))
+        return true;
+    // var reg =/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    var reg = /^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    if (!reg.test(email))
+    {
+        return false;
+    }
+    return true;
+
+}
+function isFloat(s) {
+    if (isNull(s))
+        return true;
+    var reg = /^[0-9]*\.?[0-9]*$/;
+    if (!reg.test(s))
+    {
+        return false;
+    } else if (parseFloat(s) != s)
+    {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * 根据身份证号取出生日期
+ */
+function getBirthDateFromIdno(strIDno) {
+    if (isNull(strIDno))
+        return "";
+    var idCardLength = strIDno.length;
+    var sBirthday = "";
+    if (idCardLength == 18)
+    {
+        sBirthday = strIDno.substr(6, 4) + "-" + (strIDno.substr(10, 2)) + "-"
+                + (strIDno.substr(12, 2));
+
+    } else if (idCardLength == 15)
+    {
+        sBirthday = "19" + strIDno.substr(6, 2) + "-" + (strIDno.substr(8, 2))
+                + "-" + (strIDno.substr(10, 2));
+    }
+    return sBirthday;
+}
+
+/* 
+用途：检查输入字符串是否符合身份证格式 
+输入： 
+s：字符串 
+返回： 
+如果通过验证返回true,否则返回false 
+*/
+function isIDno(strIDno) {
+    if (isNull(strIDno))
+        return true;
+    var aCity = {
+        11 : "北京",
+        12 : "天津",
+        13 : "河北",
+        14 : "山西",
+        15 : '内蒙 古 ',
+        21 : "辽宁",
+        22 : "吉林",
+        23 : '黑龙 江 ',
+        31 : "上海",
+        32 : "江苏",
+        33 : "浙江",
+        34 : "安徽",
+        35 : "福建",
+        36 : "江西",
+        37 : "山东",
+        41 : "河南",
+        42 : "湖北",
+        43 : "湖南",
+        44 : "广东",
+        45 : "广西",
+        46 : "海南",
+        50 : "重庆",
+        51 : "四川",
+        52 : "贵州",
+        53 : "云南",
+        54 : "西藏",
+        61 : "陕西",
+        62 : "甘肃",
+        63 : "青海",
+        64 : "宁夏",
+        65 : "新疆",
+        71 : "台湾",
+        81 : "香港",
+        82 : "澳门",
+        91 : "国外"
+    };
+
+    var iSum = 0;
+    //var strIDno = obj.value;  
+    var idCardLength = strIDno.length;
+    if (!/^\d{17}(\d|x)$/i.test(strIDno) && !/^\d{15}$/i.test(strIDno))
+    {
+        //alert("非法身份证号");  
+        return false;
+    }
+
+    //在后面的运算中x相当于数字10,所以转换成a  
+    strIDno = strIDno.replace(/x$/i, "a");
+
+    if (aCity[parseInt(strIDno.substr(0, 2))] == null)
+    {
+        //alert("非法地区");  
+        return false;
+    }
+
+    if (idCardLength == 18)
+    {
+        sBirthday = strIDno.substr(6, 4) + "-" + Number(strIDno.substr(10, 2))
+                + "-" + Number(strIDno.substr(12, 2));
+        var d = new Date(sBirthday.replace(/-/g, "/"));
+        if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d
+                .getDate()))
+        {
+            //alert("非法生日");  
+            return false;
+        }
+
+        for ( var i = 17; i >= 0; i--)
+            iSum += (Math.pow(2, i) % 11)
+                    * parseInt(strIDno.charAt(17 - i), 11);
+
+        if (iSum % 11 != 1)
+        {
+            //alert("非法身份证号");  
+            return false;
+        }
+    } else if (idCardLength == 15)
+    {
+        sBirthday = "19" + strIDno.substr(6, 2) + "-"
+                + Number(strIDno.substr(8, 2)) + "-"
+                + Number(strIDno.substr(10, 2));
+        var d = new Date(sBirthday.replace(/-/g, "/"));
+        var dd = d.getFullYear().toString() + "-" + (d.getMonth() + 1) + "-"
+                + d.getDate();
+        if (sBirthday != dd)
+        {
+            //alert("非法生日");  
+            return false;
+        }
+    }
+    return true;
+}
+
+function validateInputKeyIn(domEle) {
+    $(domEle).bind("focus", function() {
+        inBlur = $(domEle);
+    });
+    $(domEle).bind("keyup", function() {
+        var state = validateNumber(domEle.value);
+        domEle.value = domEle.value.replace(/\D/g, '');
+        return state;
+    });
+}
+function onCFocus(domEle) {
+    inBlur = $(domEle);
+}
+function onCKeyup_number(domEle) {
+    var state = validateNumber(domEle);
+    //domEle.value=domEle.value.replace(/\D/g,'');
+    domEle.value = domEle.value.replace(/[^-\d]/g, '');//兼容负整数
+    return state;
+}
+
+function onCKeyup_unsign_number(domEle) {
+    var state = validateNumber(domEle);
+    domEle.value = domEle.value.replace(/\D/g, '');
+    return state;
+}
+function onCKeyup_float(domEle, num) {
+    var state = isFloat(domEle.value);
+    if (!state)
+    {
+        domEle.value = "";
+        return false;
+    }
+
+    //domEle.value=domEle.value.replace(/\D/g,'');//(/[^\d.]/g,"")
+    domEle.value = domEle.value.replace(/[^\d.]/g, "");
+
+    var value = domEle.value;
+    var len = value.indexOf(".");
+    if (value != "" && len>0)
+    {
+        var subValue = value.substr(len+1);
+        if (num && num > 0 && subValue!='' && subValue.length>=2)
+        {
+//            value = parseFloat(value).toFixed(num);
+            value = roundFun(parseFloat(value), num);
+        }
+    }
+    domEle.value = value;
+    return state;
+}
+
+
+function showErrorWin(el) {
+
+    alert("您输入的'" + el[0].title + "'数据格式错误!");
+    return false;
+}
+
+
+function detectCapsLock(e) {
+    var capsLockKey = e.keyCode ? e.keyCode : e.which;
+    var shifKey = e.shiftKey ? e.shiftKey
+            : ((capsLockKey == 16) ? true : false);
+    if (((capsLockKey >= 65 && capsLockKey <= 90) && !shifKey)
+            || ((capsLockKey >= 97 && capsLockKey <= 122) && shifKey))
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
+/* 
+用途：检查开始日期是否小于等于结束日期
+输入： 
+s：字符串 开始日期 格式：2001-5-4
+
+e：字符串 结束日期 格式：2002-5-4
+返回： 
+如果通过开始日期小于等于结束日期返回true,否则返回false 
+*/
+
+function date_compare(s, e) {
+    if (s == null)
+    {
+        var d = new Date(); // 获取日。
+        s = d.getFullYear() + "-"; // 创建 Date 对象。
+        s += (d.getMonth() + 1) + "-"; // 获取月份。
+        s += d.getDate();
+    }
+    var arr = s.split("-");
+    var starttime = new Date(arr[0], arr[1], arr[2]);
+    var starttimes = starttime.getTime();
+
+    var arrs = e.split("-");
+    var endtime = new Date(arrs[0], arrs[1], arrs[2]);
+    var endtimes = endtime.getTime();
+
+    if (starttimes >= endtimes)
+    {
+        return false;
+    } else
+        return true;
+}
+/* 
+用途：检查开始日期是否小于等于结束日期
+输入： 
+s：字符串 开始日期 格式：2001-5-4 12:00:00
+
+e：字符串 结束日期 格式：2002-5-4 12:00:00
+返回： 
+如果通过开始日期小于等于结束日期返回true,否则返回false 
+*/
+
+function datetime_compare(s, e) {
+    if (s == null)
+    {
+        var d = new Date(); // 获取日。
+        s = d.getFullYear() + "-"; // 创建 Date 对象。
+        s += (d.getMonth() + 1) + "-"; // 获取月份。
+        s += d.getDate() + " "; // 获取日。
+        s += d.getHours() + ":";
+        s += (d.getMinutes() + 1) + ":";
+        s += d.getSeconds();
+    }
+    var arr = s.split(" ")[0].split("-");
+    var arr1 = s.split(" ")[1].split(":");
+    var starttime = new Date(arr[0], arr[1], arr[2], arr1[0], arr1[1], arr1[2]);
+    var starttimes = starttime.getTime();
+
+    var arrs = e.split(" ")[0].split("-");
+    var arrs1 = e.split(" ")[1].split(":");
+    var endtime = new Date(arrs[0], arrs[1], arrs[2], arrs1[0], arrs1[1],
+            arrs1[2]);
+    var endtimes = endtime.getTime();
+
+    if (starttimes >= endtimes)
+    {
+        return false;
+    } else
+        return true;
+}
+/*
+function onSubmitForm(){
+    //value="确定" onclick="javascript:return 
+//  if(!validateForm("editFrm")){
+//      return ;
+//  }
+    $.ajax({
+           type: "POST",
+           url: "update",
+           data: $("#editFrm").serialize(),
+           success: function(response){
+               $("#resultDiv").html(response);
+               var sHtml = $($(".messageError")[1]).html();
+               if(sHtml==""){
+                   alert("数据保存成功!");
+                   document.location.href="./search";
+               }else{
+                   sHtml = $( $("div.messageError li")).html();
+                   alert(sHtml);
+
+                   $("#resultDiv").html("");
+               }
+           },
+           error:function(res){
+               alert("数据保存失败!");
+           }
+    });
+}
+*/
+
+function getCurDateTime() {
+    var month, date = new Date();
+    month = date.getMonth() + 1;
+    if (month < 10)
+    {
+        month = "0" + month;
+    }
+    var s = "";
+    s += date.getFullYear() + "-";
+    s += month + "-"; // 获取月份。
+    s += date.getDate() + " "; // 获取日。
+    s += date.getHours() + ":";
+    s += (date.getMinutes() + 5) + ":";
+    s += date.getSeconds();
+    return s;
+}
+
+function getCurDate() {
+    var month, date = new Date();
+    month = date.getMonth() + 1;
+    if (month < 10)
+    {
+        month = "0" + month;
+    }
+    var s = "";
+    s += date.getFullYear() + "-";
+    s += month + "-"; // 获取月份。
+    s += date.getDate() + " "; // 获取日。
+    return s;
+}
+
+function getCurDateTime() {
+    var month, date = new Date(), min = date.getMinutes(), hour = date
+            .getHours(), curDate = date.getDate(), second = date.getSeconds();
+    month = date.getMonth() + 1;
+    if (month < 10)
+    {
+        month = "0" + month;
+    }
+    var s = "";
+    s += date.getFullYear() + "-";
+    s += month + "-"; // 获取月份。
+    if (hour < 10)
+    {
+        hour = "0" + hour;
+    }
+    if (curDate < 10)
+    {
+        curDate = "0" + curDate;
+    }
+    if (min < 10)
+    {
+        min = "0" + min;
+    }
+    s += curDate + " "; // 获取日。
+    s += hour + ":";
+    s += (min) + ":";
+    if (second < 10)
+    {
+        second = "0" + second;
+    }
+    s += second;
+    return s;
+}
+
+function initDialogEditForm(trId, destContainerId) {
+
+    var src = $("tr#" + trId + " .srcClass");
+    for (i = 0, total = src.length; i < total; i++)
+    {
+        var srcDom = $(src[i])[0];
+        var destDom = $("#" + destContainerId).find(
+                "[name=" + srcDom.name + "]");
+        $(destDom[0]).val(srcDom.value);
+    }
+    $("#grad_tr").val(trId); //资质行id
+    $("#manager_tr").val(trId); //负责人行id
+}
+
+function importFile(fileType) {
+
+}
+function closeDialog(id) {
+    $("#" + id).dialog("close");
+}
+/**
+ * 绑定快捷菜单
+ */
+function bindShortMenu() {
+    $("#shortMu").bind("click", function() {
+        showShortMenu();
+    });
+    $("#shortMu").addClass("none");
+
+    $("#sideBarTab").bind("click", function() {
+        showShortMenu();
+    });
+}
+/*文件导出
+ * 对应的action里应该已经实现了导出方法
+ * */
+function exportFile(frmid) {
+    var frm = $("#" + frmid)[0];
+    var url = frm.action;
+    frm.action = url + "exportFile";
+    //frm.target = "_blank";
+    frm.submit();
+    frm.action = url;
+    //frm.target = "_self";
+
+    //document.location.href="exportFile";
+}
+function onTabClick(id, event) {
+}
+function onBeforeSwitchTab(id) {
+    return true;
+};
+
+//////////////////////////////////////////////////////////////
+
+//全选
+function checkboxall() {
+    $("input[name='dd']").each(function() {
+        $(this).attr("checked", true).each(function() {
+
+        });
+    });
+}
+
+//反选
+function rcheckboxall() {
+
+    $("input[name='dd']").each(function() {
+        if ($(this).attr("checked"))
+        {
+            $(this).removeAttr('checked');
+        }
+    });
+}
+function modAllCheckBoxStatus(id) {
+    var count = $("input[name='dd']").length;
+
+    var ckCount = $("input[name='dd']:checked").size();
+    if (ckCount >= 0)
+    {
+        $("#allcheckbox").removeAttr('checked');
+    }
+    if (count == ckCount)
+    {
+        $("#allcheckbox").attr('checked', 'checked');
+    }
+}
+function changecheckbox() {
+    if ($("#allcheckbox")[0].checked == true)
+    {
+        checkboxall();
+    } else
+    {
+        rcheckboxall();
+    }
+}
+
+function isfilledAll(id) {
+
+    var tableObject = document.getElementById(id);
+    if (tableObject == null)
+        return true;
+
+    var selects = tableObject.getElementsByTagName("select");
+    for ( var i = 0; i < selects.length; i++)
+    {
+        var selectI = selects[i];
+        if (selectI.value == null || selectI.value == "")
+        {
+            alert(selectI.title + "不能为空!");
+            return false;
+        }
+    }
+    return true;
+}
+
+//全选
+function selectAll(attr, attrValue) {
+    $("input[" + attr + "=" + attrValue + "]").each(function() {
+        $(this).attr("checked", "checked").each(function() {
+
+        });
+    });
+}
+//不选
+function selectNone(attr, attrValue) {
+    $("input[" + attr + "=" + attrValue + "]").each(function() {
+        $(this).attr("checked", false).each(function() {
+
+        });
+    });
+}
+//反选
+function selectExchange(attr, attrValue) {
+    $("input[" + attr + "=" + attrValue + "]").each(function() {
+        $(this).attr("checked", $(this)[0].checked ? false : true);
+    });
+}
+
+//-------------------------------------------------------------------------------------------------
+// public method 
+//-------------------------------------------------------------------------------------------------
+
+//
+
+function onDelete(idx) {
+    ecFunctions.deleteByIdx(idx);
+}
+
+function onChange(idx) {
+    $("#frm" + idx)[0].action = "edit"; // 修改表单form的action地址
+    $("#frm" + idx)[0].submit();
+}
+
+function afterDeleteCallBack() {
+    document.location.reload();
+}
+
+//---private method--------------------------------------------------------------
+
+var ecFunctions = new function() {
+    return {
+        init : function() {
+        },
+        options : {
+            deleteUrl : "delete",
+            selectUrl : "edit",
+            searchUrl : "searchResult",
+            updateUrl : "save",
+            ajaxRequestType : "POST",
+            paramStr : null,
+            callbackFun : afterDeleteCallBack,
+            afterSaveCallback : null,
+            validateBeforeSaveCallback : null,
+            delMsg : MESSAGE.EC_DELETE_CONFIRM
+        },
+        setValidateBeforeSave : function(validateBeforeSaveCallback) {
+            this.options.validateBeforeSaveCallback = validateBeforeSaveCallback;
+        },
+        searchResult : function(opt) {
+            var _this = this;
+            $.extend(_this.options, opt);
+            var frmId = "#key_" + EcWeb.currentModalName + "_qryFrm";
+            $.ajax({
+                url : _this.options.searchUrl,
+                type : _this.options.ajaxRequestType,
+                data : $(frmId).serialize(),
+                success : function(response) {
+                    var resultDivId = "#key_" + EcWeb.currentModalName
+                            + "_list";
+                    $(resultDivId).html(response);
+                }
+            });
+        },
+        deleteByIdx : function(idx, afterDeleteCallBack) {
+            var _this = this;
+            var frm = document.getElementById("frm" + idx);
+            _this.deleteRecord({
+                paramStr : $(frm).serialize(),
+                callbackFun : afterDeleteCallBack
+            });
+        },
+        deleteRecord : function(opt) {
+            var _this = this;
+            $.extend(_this.options, opt);
+            if (!confirm(_this.options.delMsg))
+            {
+                return;
+            }
+            $.ajax({
+                url : _this.options.deleteUrl,
+                type : _this.options.ajaxRequestType,
+                data : _this.options.paramStr,
+                success : function(response) {
+                    _this.options.callbackFun();
+                }
+            });
+        },
+        /**
+         * 该方法仅用于 增删改查 传统页面
+         */
+        normalPageOnReady : function() {
+            var _this = this;
+            $("#key_" + EcWeb.currentModalName + "_qry").bind("click",
+                    function(evt) {
+                        _this.searchResult();
+                    });
+            $(".key_" + EcWeb.currentModalName + "_edit").live("click",
+                    function(evt) {
+                        var idx = $(evt.target).attr("idx");
+                        onChange(idx);
+                    });
+            $(".key_" + EcWeb.currentModalName + "_del").live("click",
+                    function(evt) {
+                        var idx = $(evt.target).attr("idx");
+                        onDelete(idx);
+                    });
+            $("#key_" + EcWeb.currentModalName + "_clear")
+                    .bind(
+                            "click",
+                            function(evt) {
+                                var input = $("#key_" + EcWeb.currentModalName
+                                        + "_qryFrm input");
+                                input
+                                        .each(function(i, obj) {
+                                            var curRadioName = "";
+                                            if (obj.type == "radio")
+                                            {
+                                                if (curRadioName != obj.name)
+                                                {
+                                                    curRadioName = obj.name;
+                                                    $("input[name='" + obj.name
+                                                            + "']")[0].checked = "checked";
+                                                }
+                                            } else
+                                            {
+                                                $(obj).val("");
+                                            }
+                                        });
+
+                                var select = $("#key_" + EcWeb.currentModalName
+                                        + "_qryFrm select");
+                                select.each(function(i, obj) {
+                                    $(obj).val("");
+                                });
+                            });
+            $("#key_" + EcWeb.currentModalName + "_inputClear")
+                    .bind(
+                            "click",
+                            function(evt) {
+                                var input = $("#key_" + EcWeb.currentModalName
+                                        + "_qryFrm input");
+                                input
+                                        .each(function(i, obj) {
+                                            var curRadioName = "";
+                                            if (obj.type == "radio")
+                                            {
+                                                if (curRadioName != obj.name)
+                                                {
+                                                    curRadioName = obj.name;
+                                                    $("input[name='" + obj.name
+                                                            + "']")[0].checked = "checked";
+                                                }
+                                            } else if (obj.type == "text")
+                                            {
+                                                $(obj).val("");
+                                            }
+                                        });
+                                var select = $("#key_" + EcWeb.currentModalName
+                                        + "_qryFrm select");
+                                select.each(function(i, obj) {
+                                    $(obj).val("");
+                                });
+                            });
+        },
+        ajaxRequest : function(funFlag, options) {
+            var frm = $("#key_" + funFlag + "_editFrm");
+            var _this = this;
+            var action = frm[0].action;
+            if (!action || action == '')
+            {
+                action = "save";
+            }
+            $.ajax({
+                url : action,
+                type : frm[0].method,
+                data : frm.serialize(),
+                success : function(response) {
+                    _this.handleResponse(funFlag, response, options);
+                },
+                failure : function(response) {
+                    linkon.web.showMsg('失败了，请联系管理员！');
+                }
+            });
+        },
+        handleResponse : function(funFlag, response, options) {
+            if (options && options.afterSaveCallback != null)
+            {
+                options.afterSaveCallback(funFlag, response);
+            } else
+            {
+                _this.showAjaxReturn(response);
+            }
+        },
+        initForm : function(funFlag, options) {
+            var _this = this;
+            $("#key_" + funFlag + "_save").bind("click", function() {
+                if (options && options.beforeSaveCallback)
+                {
+                    if (!options.beforeSaveCallback())
+                    {
+                        return false;
+                    }
+                }
+                _this.ajaxRequest(funFlag, options);
+                return false;
+            });
+        },
+        showAjaxReturn : function(response) {
+            var firstChar = response.charAt(0);
+            if (firstChar == "{")
+            { // Json type message
+                var result = $.parseJSON(response);
+                if (result.message != '')
+                {
+                    linkon.web.showMsg(result.message);
+                }
+                return;
+            }
+
+            var ret = response.split(":");
+            if (ret.length > 1)
+            {
+                alert(ret[1]);
+            } else
+            {
+                alert(response);
+                document.location.href = "./";
+            }
+            ;
+        },
+        editPageOnReady : function(option) {
+            if (option && option.beforeSaveCallback)
+            {
+                if (!option.beforeSaveCallback())
+                {
+                    return false;
+                }
+            }
+            var _this = this;
+            $.extend(this.options, option);
+            $("#key_" + EcWeb.currentModalName + "_save").bind(
+                    "click",
+                    function(evt) {
+                        if (!validateForm("key_" + EcWeb.currentModalName
+                                + "_editFrm"))
+                        {
+                            return false;
+                            ;
+                        }
+                        if (_this.options.validateBeforeSaveCallback != null
+                                && !_this.options.validateBeforeSaveCallback())
+                        {
+                            return false;
+                            ;
+                        }
+                        ;
+
+                        $.ajax({
+                            url : _this.options.updateUrl,
+                            type : _this.options.ajaxRequestType,
+                            data : $(
+                                    "#key_" + EcWeb.currentModalName
+                                            + "_editFrm").serialize(),
+                            success : function(response) {
+                                if (_this.options.afterSaveCallback != null)
+                                {
+                                    _this.options.afterSaveCallback(response);
+                                } else
+                                {
+                                    _this.showAjaxReturn(response);
+                                }
+                            }
+                        });
+                        return false;
+                    });
+        }
+    };
+};
+
+//-----------------------------------------------------------------
+/**
+ * 比较时间
+ */
+function timeScope(start, end) {
+    var i1 = $("#" + start).val();
+    var i2 = $("#" + end).val();
+    if (i1 == "" || i2 == "")
+    {
+        return false;
+    } else
+    {
+        if (i1 >= i2)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+}
+
+function checkSessionMessage(response) {
+    var str = response.indexOf("<html>");
+    if (str != 0)
+    {
+        alert(response);
+    }
+    ;
+}
+
+var inBlur = null;
+function loadModalPageReady() {
+    //do something
+    ;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------tab event area
+
+function getCurrentTabIndex(target) {
+    var id = target.id;
+    var pos = id.lastIndexOf("_");
+    var tabContainerId = "#" + id.substr(0, pos);
+    return $(tabContainerId).attr("defaultidx");
+}
+function switchTab(id) {
+    if (!onBeforeSwitchTab())
+    {
+        return;
+    }
+    $("a.cardTab").removeClass("on");
+    $("a.cardTab").each(function(idx, domEle) {
+        if ($("#" + domEle.id + "Info"))
+        {
+            $("#" + domEle.id + "Info").addClass("none");
+        }
+    });
+    $("#" + id).addClass("on");
+    $("#" + id + "Info").removeClass("none");
+}
+function loadTabInfo(target) {
+    var id = "#" + target.id;
+    var tabContentId = id + "Info";
+    if ($(id).hasClass('staticTab'))
+    {
+        return;
+    }
+    /*if($(tabContentId).html().trim()!=''){
+        return;
+    }  */
+    var action = $(id).attr('act');
+    $.ajax({
+        url : action,
+        data : null,
+        type : "GET",
+        success : function(response) {
+            $(tabContentId).html(response);
+        }
+    });
+    return false;
+}
+function initTabs() {
+    $("a.cardTab").bind("click", function(evt) {
+        loadTabInfo(evt.target);
+        switchTab(evt.target.id);
+    });
+    $("a.cardTab").each(function(idx, domEle) {
+        var tabIndex = getCurrentTabIndex(domEle);
+        if (idx == tabIndex)
+        {
+            if (idx == 0)
+            {
+                return;
+            }
+            switchTab(domEle.id);
+            loadTabInfo(domEle);
+        }
+    });
+}
+function orderView(orderViewURL) {
+    $.ajax({
+        type : "POST",
+        url : "../orderView/getorderViewUrl",
+        data : "orderViewURL=" + orderViewURL,
+        success : function(data) {
+            if (data == null || data == "")
+            {
+                alert("订单链接地址错误！");
+            } else
+            {
+                var tempwindow = window.open("_blank");
+                tempwindow.location = data;
+                //                window.open(data);
+            }
+        }
+    });
+}
+
+function fncKeyStop(evt) {
+    if (!window.event)
+    {
+        var keycode = evt.keyCode;
+        var key = String.fromCharCode(keycode).toLowerCase();
+        if (evt.ctrlKey && key == "v")
+        {
+            evt.preventDefault();
+            evt.stopPropagation();
+        }
+    }
+}
+
+//保留小数位
+function roundFun(val,roundDigit){
+    /* var digit=1;
+     digit =Math.pow(10,roundDigit);
+     return (Math.round(val*digit)/digit);
+     var re = new RegExp("\\d+\\.\\d{"+roundDigit+"}","gm");
+     return re.match(val);*/
+    var temp,idx,len,i;
+    temp =val.toString();
+    idx= temp.indexOf(".");
+    len =temp.length;
+    if(val==0){
+        if(idx !=-1){
+            temp =temp.substring(0,idx);
+        }
+    }else{
+        if(idx ==-1){
+            temp = temp+".";
+            for(i=1;i<=roundDigit;i++){
+                temp =temp+"0";
+            }
+        }else{
+            temp =temp.substring(0,idx+roundDigit+1);
+            for(i=len;i<idx+roundDigit;i++){
+                temp =temp+"0";
+            }
+        }
+    }
+    return temp;
+}
+
+function execScriptFromAjax(ajaxLoadedData){
+	// 第一步：匹配加载的页面中是否含有js
+	var regDetectJs = /<script(.|\n)*?>(.|\n|\r\n)*?<\/script>/ig;
+	var jsContained = ajaxLoadedData.match(regDetectJs);
+
+	// 第二步：如果包含js，则一段一段的取出js再加载执行
+	if(jsContained) {
+	    // 分段取出js正则
+	    var regGetJS = /<script(.|\n)*?>((.|\n|\r\n)*)?<\/script>/im;
+
+	    // 按顺序分段执行js
+	    var jsNums = jsContained.length;
+	    for (var i=0; i<jsNums; i++) {
+	        var jsSection = jsContained[i].match(regGetJS);
+
+	        if(jsSection[2]) {
+	            if(window.execScript) {
+	                // 给IE的特殊待遇
+	                window.execScript(jsSection[2]);
+	            } else {
+	                // 给其他大部分浏览器用的
+	                window.eval(jsSection[2]);
+	            }
+	        }
+	    }
+	}
+}
+
+
+//-----------------------------------------------------------------------------------------------------tab event area End
+
+$(document).ready(function() {
+
+   
+});

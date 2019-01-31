@@ -1,0 +1,117 @@
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<script>
+	/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/
+</script>
+<title>数据检索-地图选择</title>
+<link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+<link rel="stylesheet" href="../../css/commoncss/normalize.css">
+<link rel="stylesheet" href="../../css/commoncss/common.css">
+<link rel="stylesheet" href="../../css/dataR-map.css">
+<script src="../js/ol.js"></script>
+<link rel="stylesheet" href="../../css/ol.css" type="text/css">
+<script src="../../scripts/jquery/jquery.min.js"></script>
+</head>
+<body>
+	<div class="map-box">
+		<div class="sel-option">
+<!-- 	<div class="option">选择方式：</div> -->
+		<a class="clearbtn" href="javascript:;" onclick="clearPolygon()" >清空绘制</a>
+<!-- 	<div class="option"> -->
+<!-- 	<span class="title">矩形：</span><span class="pic"><img -->
+<!-- 	src="../../images/dataResource/rect_icon.png" alt=""></span> -->
+<!-- 	</div> -->
+		</div>
+		<!-- 地图 s-->
+		<div class="map-container">
+			<div id="map-sel" style="height: 100%; position: relative;"></div>
+		</div>
+		<!-- 地图 e-->
+	</div>
+	<script type="text/javascript">
+		// $(function() {
+			// map();
+			// function map(){
+			var mapsel;
+			var draw;
+			var source;
+			var coordinate;
+				
+			source = new ol.source.Vector({
+				wrapX : false
+			});
+	
+			var tian_di_tu_satellite_layer = new ol.layer.Tile(
+					{
+						title : "天地图卫星影像",
+						visible : false,
+						source : new ol.source.XYZ(
+								{
+									url : 'http://t4.tianditu.com/DataServer?T=img_w&x={x}&y={y}&l={z}'
+								})
+					});
+			var tian_di_tu_road_layer = new ol.layer.Tile(
+					{
+						title : "天地图路网",
+						source : new ol.source.XYZ(
+								{
+									url : "http://t4.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}"
+								})
+					});
+			var tian_di_tu_annotation = new ol.layer.Tile(
+					{
+						title : "天地图文字标注",
+						source : new ol.source.XYZ(
+								{
+									url : 'http://t4.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}'
+								})
+					});
+	
+			var vector = new ol.layer.Vector({
+				source : source
+			});
+	
+			mapsel = new ol.Map({
+				layers : [ tian_di_tu_satellite_layer, tian_di_tu_road_layer,
+						tian_di_tu_annotation, vector ],
+				target : 'map-sel',
+	
+				view : new ol.View({
+					projection : 'EPSG:4326',
+					center : [ 106.52714, 29.62487 ],
+					zoom : 4,
+					extent:[-180,-90,180,90]
+				})
+			});
+	
+			addInteraction();
+	
+	
+		function addInteraction() {
+	
+			draw = new ol.interaction.Draw({
+				source : source,
+				type : 'Polygon'
+			});
+			draw.on('drawend', function(evt) {
+				var feature = evt.feature;
+				var geometry = feature.getGeometry();
+				coordinate = geometry.getCoordinates();
+				parent.$("#location").html(coordinate);
+				// alert(coordinate);
+			})
+			mapsel.addInteraction(draw);
+		}
+		
+		function clearPolygon(){
+			parent.$("#location").html('');
+			source.clear();
+		}
+		
+	// }	
+	// });
+	</script>
+</body>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>专题服务</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link rel="stylesheet" href="../font/iconfont.css">
+    <link rel="stylesheet" href="../css/commoncss/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../css/commoncss/common.css">
+    <link rel="stylesheet" href="../css/commoncss/tab.css">
+    <link rel="stylesheet" href="../css/topicService.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper" id="app" v-cloak>
+        <!-- 头部 start-->
+        <head-nav></head-nav>
+        <!-- 头部 end-->
+        <!-- 内容 start-->
+        <div class="main-container">
+            <div class="g-container">
+                <div class="page-nav"><span class="last-page">数据服务</span><span class="arrow-icon">&gt;</span><span>专题服务</span></div> 
+                <div class="cnt-box">
+                    <div class="main-left  white c-border">
+                        <div class="category-wrapper">
+                            <div class="main-title-box">
+                                <div class="bg"></div>
+                                <span class="main-title">
+                                    <span class="title">专题服务</span>
+                                    <span class="border-line"></span>
+                                </span>
+                            </div>
+                            <div class="category-content-box" v-for="item in categoryArr">
+                                <div class="category-content">
+                                    <a href="javascript:;" class="menu-title"><i class=" icon-category iconfont" :class="item.className"></i><span>{{item.menuTitle}}</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="main-right">
+                        <div class="main-right-box flex-right">
+                            <!-- 第一部分 start-->
+                            <div class="c-border server-box">
+                                <img class="imgW" src="../images/topicServer/ztfw_pic.png" alt="">
+                            </div>
+                            <!-- 第一部分 end-->
+                            <!-- 第二部分 start-->
+                            <div class="c-border server-box white">
+                                <div class="directory-title">
+                                    <i class="iconfont icon-mljs icon-margin"></i><span>全球及中国气候变化情景预估专题介绍</span>
+                                </div>
+                                <div class="intro-text">
+                                    国家重大研发计划“全球变化大数据的科学认知与云共享平台”项目拟通过整合中国优势数据资源，突破部门分割的限制，建成中国首个全球变化大数据云共享平台，为全球变化研究提供直接可用的全球变化关键参数数据产品； 发展大数据集成分析技术体系，为全球变化研究的敏感因子与焦点问题认知提供数据与技术支撑，提升中国对全球变化的认知能力， 塑造中国在国际全球变化认知中的后发优势，是打破国立机构数据与信息“深藏闺中”的先行实践，也为跨部门、跨领域数据集成与共享提供样板，为我国的全球变化国际合作与话题引领提供有效的支撑。 项目建成的全球变化大数据云共享平台布局在国家气象信息中心，通过共享门户（GloBiD）提供和分享按主题、用户定制的全球变化大数据包，网站具备数据包的下载、可视化、在线近实时处理、统计、定制化等功能，实现一站式全球变化大数据共享网络服务。
+                                </div>
+                            </div>
+                            <!-- 第二部分 end-->
+                            <!-- 第三部分 start-->
+                            <div class="c-border server-box white">
+                                <div class="tabs-server tabs">
+                                        <div class="related-title-box">
+                                                <ul class="related-ul clearfix">
+                                                    <li class="cur"><i class="iconfont icon-m icon-fzzt"></i><span class="title-text">发展状况</span><i class="triangle"></i></li>
+                                                    <li><i class="iconfont icon-m icon-ygmnsj"></i><span class="title-text">预估模拟数据</span><i class="triangle"></i></li>
+                                                    <li><i class="iconfont icon-m icon-qjyg"></i><span class="title-text">情景预估</span><i class="triangle"></i></li>
+                                                    <li><i class="iconfont icon-m icon-xgwx"></i><span class="title-text">相关文献</span><i class="triangle"></i></li>
+                                                </ul>
+                                        </div>
+                                        <div class="related-panel">
+                                                <div class="panel-box">
+                                                    <div class="padding pra">
+                                                            <h3 style="text-align:center">全球及中国气候变化预估调研报告</h3>
+                                                            <div style="text-align:center">张颖娴，王国复</div>
+                                                            <h5 style="text-align:center">国家气候中心</h5>
+                                                            <p style="text-align: justify;
+                                                            text-justify: inter-ideograph;/*IE*/">摘要：IPCC评估报告发表以来，气候模式对未来气候变化的预估成了全球关注的问题。因此本报告调研了（Intergovernmental Panel on Climate Change，IPCC）和CMIP（Coupled Model Intercomparison Project Phase）的发展历史，以及IPC关键词：IPCC，CMIP，全球气候变化预估，中国气候变化预C第五次评估报告对全球未来气候变化预估的主要结论，并对一些学者基于耦合模式比较计划第五阶段（CMIP5）全球气候模式对中国未来气候变化预估做了分类总结。
+                                                            估</p>
+                                                            <br>
+                                                            <h4>1.引言</h4>
+                                                            <br>
+                                                            <p style="text-align: justify;
+                                                            text-justify: inter-ideograph;/*IE*/">全球气候变化预估是当前气候变化研究的热点和核心问题之一, 在2005年召开的“气候模式模拟分析研讨会”( CMSAW 2005 ) 和“国际气象与大气科学协会年会”( IAMAS 2005 ) 上有许多新的成果。之所以成为热点, 是因为它不仅涉及到科学家和公众关心的未来十年、百年到千年时间尺度的气候变化的可能情景, 特别是与人类生活密切相关的极端气候事件未来的可能变化趋势, 而且它还涉及到各国政府间关于全球气候变化的协商、公约谈判、减排以及军事和安全等诸多方面。
+                                                            </p>
+                                                            <br>
+                                                            <h4>2.IPCC和CMIP计划</h4>
+                                                            <br>
+                                                            <p style="text-align: justify;
+                                                            text-justify: inter-ideograph;/*IE*/">2.1Intergovernmental Panel on Climate Change
+                                                            认识到潜在的全球气候变化问题，世界气象组织（WMO）和联合国环境规划署（UNEP）于1988年建立了政府间气候变化专门委员会（Intergovernmental Panel on Climate Change，IPCC）。它对联合国和WMO的全体会员开放。 考虑到人类活动的规模已开始对复杂的自然系统，如全球气候产生了很大的干扰。许多科学家认为，气候变化会造成严重的或不可逆转的破坏风险，并认为缺乏充分的科学确定性不应成为推迟采取行动的借口。而决策者们需要有关气候变化成因、其潜在环境和社会经济影响以及可能的对策等客观信息来源。而IPCC这样一个机构的地位能够在全球范围内为决策层以及其他科研等领域提供科学依据和数据等。IPCC的作用是在全面、客观、公开和透明的基础上，对世界上有关全球气候变化的现有最好科学、技术和社会经济信息进行评估。这些评估吸收了世界上所有地区的数百位专家的工作成果。IPCC的报告力求确保全面地反映现有各种观点，并使之具有政策相关性，但不具有政策指示性。
+                                                            IPCC下设三个工作组和一个专题组：第一工作组，评估气候系统和气候变化的科学问题。第二工作组，评估社会经济体系和自然系统对气候变化的脆弱性、气候变化正负两方面的后果和适应气候变化的选择方案。第三工作组，评估限制温室气体排放并减缓气候变化的选择方案。主要产品是：评估报告、特别报告、方法报告和技术报告。每份评估报告都包括决策者摘要。摘要反映了对主题的最新认识，并以非专业人士易于理解的方式编写。
+                                                            气候变化情景在全球和区域气候变化预估中得到广泛应用，温室气体排放情景是气候模拟的基础，影响温室气体排放的社会经济驱动因素，如人口增长、经济发展、技术进步、环境条件、社会管理等假设组成了社会经济情景。IPCC 先后发展了SA90、IS92、SRES 等情景，应用于历次评估报告。随着气候变化影响评估的发展，SRES 情景的不足逐步显现，为此，IPCC调整了情景的发展方法和过程，发展了新的情景框架[1-2]，于2007 年发布典型浓度路径（representative concentration pathways,RCPs）来描述温室气体浓度，并在RCPs 的基础上发展共享社会经济路径（shared socio-economicpathways, SSPs）来构建社会经济新情景。
+                                                            <p>
+                                                                表1 IPCC气候变化情景的发展阶段与应用情况（曹格丽，2012）
+                                                            </p>
+                                                            <p>
+                                                                <img src="" alt="">
+                                                            </p>
+                                                            <p>
+                                                                IPCC气候变化情景从简单的CO2 加倍及递增试验，到SA90、IS92 情景，再到SRES情景和RCPs情景，对温室气体排放量的估算方法越来越先进和全面，相应的社会经济假设也从简单描述走向定量化，并纳入人为减排等政策的影响，对过去和未来温室气体排放状况、未来技术进步和新型能源的开发与使用对温室气体排放量的影响不确定也有了进一步的考虑和假设，政府管理和气候政策对排放量的影响逐步纳入评估范围（表1，曹丽格，2012）。社会经济新情景SSPs不仅可用于全球、区域，还可以应用在具体部门（如能源、农业等），为分析不同的气候政策（人为减排）、社会经济发展模式的成本和风险提供了可能。2012年IPCC发布用于IPCC AR5的一部分社会经济数据，为模拟气候变化, 评估其影响、减缓及适应能力服务，目前，情景组已经为IPCC AR5第二工作组作者提供了有关SRES情景、RCPs和SSPs间的对应信息（图1）, 其中SRES A2情景相当于RCP8.5 气候情景和SSP3或SSP4社会经济情景；B2情景相当于RCP6.0气候情景和SSP2 社会经济情景；Bl情景相当于RCP4.5气候情景和SSP1社会经济情景；A1F1情景相当于RCP8.5气候情景和SSP5社会经济情景；没有具体的SRES情景与RCP2.6 相对应（张杰等，2013）。
+                                                            </p>
+                                                            <p>
+                                                                <img src="" alt="">
+                                                            </p>
+                                                            <p>
+                                                                图1. RCPs、SERES和SSPs的相互关系与映射（张杰等，2013）
+                                                            </p>
+                                                            <p>
+                                                                2.2 Coupled Model Intercomparison Project Phase计划
+                                                            </p>
+                                                            <p>
+                                                                气候系统由大气圈、水圈、冰冻圈、岩石圈和生物圈等5个圈层组成，地球气候的变化包括由气候系统各圈层相互作用过程引起的内部变率、自然因子变化（包括地球轨道参数、太阳活动、火山活动）引起的自然变率与人类活动相关的因子变化（温室气体和气溶胶等大气成分变化、土地利用变化等）造成的人为变化3部分组成，能够模拟上述过程的是考虑了大气-海洋-陆面-海冰之间复杂的相互作用的气候系统模式（周天军，2014）。气候系统模式室莉姐气候系统的变化规律、再现其过去演变过程、预测和预估其未来变化的重要工具。
+世界气候研究计划（WCRP）在推动大气模式（GCM）、气候系统模式（CSM）乃至地球系统模式（ESM）的发展中发挥了重要作用。WCRP相继组织了从“大气模式比较计划”（AMIP）（Gates，et al., 1992）到“耦合模式比较计划”（Coupled Model Intercomparison Project Phase 6，CMIP）（Meehl et al., 1997,2000）等一系列国际模式比较计划。利用CMIP计划的气候模拟和预估结果所发表的大量论文，构成了大致每5年颁布一次的IPCC科学评估报告的重要组成部分，目前第六阶段耦合模式比较计划（CMIP6）正在进行中。
+CMIP6的核心是生物地球化学强迫和反馈，主要包括：云，环流和气候敏感性；冰冻圈的变化；气候极值；区域气候信息；区域的海平面上升；水的有效性；生物地球化学强迫和反馈。另外，CMIP6还有特别实验设计，即：地球系统如何响应强迫；模式的系统偏差的来源和后果是什么？我们如何评估未来的气候变化，以及如何给出气候变率，可预报性和情景的不确定性。CMIP6的模拟和预估不同于以往的对比试验，这次的试验留出许多空白的多模式对比试验，由各国专家自行设计和组合来做对比试验。
+                                                            </p>
+                                                            <h4>3.全球气候变化预估研究</h4>
+                                                            <p>
+
+                                                            </p>
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-box">
+                                                    <div class="padding">
+                                                        <div style="text-indent:2em;">
+                                                            <p>本研究使用的气候模式数据来自于ISI-MIP项目（Inter-Sectoral Impact Model Intercomparison Project）。数据以WATCH（0.5°×0.5°）为参数数据，采用保留趋势变化的偏差订正方法，对CMIP5中GFDL-ESM2M（GFDL），HaDGem2-ES（HadGem），IPSL_CM5A_LR（IPSL），MIROC-ESM-CHEM（MIROC）和NorESM1-M（NorESM）5个全球气候模式数据进行订正。本研究使用的气象要素为日平均气温和日降水量，时间序列为1961－2050。
+                                                            </p>
+                                                            <div style="text-align:center">
+                                                                <p>图一</p>
+                                                                <p><img src="../images/topicServer/Fig6a.png" alt=""></p>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <div style="text-align:center">
+                                                                <p>图二</p>
+                                                                <p><img src="../images/topicServer/Fig6b.png" alt=""></p>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <div style="text-align:center">
+                                                                <p>图三</p>
+                                                                <p><img src="../images/topicServer/Fig6c.png" alt=""></p>
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                            <div style="text-align:center">
+                                                                <p>图四</p>
+                                                                <p><img src="../images/topicServer/Fig6d.png" alt=""></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-box">
+                                                    <div class="padding">
+                                                            Potential Threats from Variations of Hydrological
+                                                            Parameters to the Yellow River and Pearl River Basins
+                                                            in China over the Next 30 Years
+                                                            Lüliu Liu
+                                                            1, *, Tong Jiang 1,2 , Hongmei Xu 1
+                                                            and Yong Wang
+                                                            3
+                                                            1
+                                                            National Climate Center, China Meteorological Administration, Beijing 100081, China;
+                                                            jiangtong@cma.gov.cn (T.J.); xuhm@cma.gov.cn (H.X.)
+                                                            2
+                                                            Collaborative Innovation Center on Forecast and Evaluation of Meteorological Disasters,
+                                                            School of Geography and Remote Sensing, Nanjing University of Information Science & Technology,
+                                                            Nanjing 210044, China
+                                                            3
+                                                            Chongqing Climate Center, Chongqing 401147, China; wngyng023@126.com
+                                                            * Correspondence: liull@cma.gov.cn; Tel.: +86-10-58995906
+                                                            Received: 23 May 2018; Accepted: 27 June 2018; Published: 2 July 2018
+                                                            Abstract: An assessment of the impact of climate change on regional hydrological processes is vital
+for effective water resources management and planning. This study investigated the potential effects
+of climate change on water availability, seasonal runoff, flooding, and water stress in the Yellow River
+and Pearl River basins in China over the next 30 years, using a semi-distributed hydrological model
+based on a combination of five general circulation models with four Representative Concentration
+Pathway scenarios and five Shared Socioeconomic Pathways. The results indicated annual mean
+temperature could rise higher in the Yellow River Basin than the Xijiang River Basin during 2021–2050.
+Higher risks of small floods and some big floods, but lower risks of rare big floods are projected
+for both basins. Water scarcity will continually threaten the Yellow River Basin, especially during
+the dry season and around 2025. In comparison with the effects of climate change, population
+variation was expected to have a greater impact on water scarcity. A longer and drier dry season is
+projected for the Pearl River Basin, which could aggravate water stress and saltwater intrusion into the
+Pearl River delta. Although the present findings have implications for water resource management
+planning, caution should be observed because of the neglect of reservoir/dam operations and inherent
+projection uncertainty.
+Keywords: water stress; floods; Yellow River; Xijiang River
+1. Introduction
+Warming of the lower atmosphere increases its capacity to hold water vapor, which consequently
+strengthens the hydrological cycle on a global scale [ 1 ]. Changes in the hydrological cycle can
+lead to diverse impacts and risks [ 2 ]. Alterations of annual water availability, seasonal discharge,
+and extreme flows, with variations among river basins, have been detected and projected by many
+previous studies. For example, significant trends of increase or decrease in river discharge during
+1948–2004 were detected for about one third of the main rivers in a global analysis [ 3 ]. In China,
+trends of decrease in annual runoff have been observed in most rivers in the northern areas since
+the 1950s [ 4 ]. Another recent study projected an increase in runoff in a catchment within the Yellow
+River Basin, but slight decreases were projected in the Yangtze River and Pearl River Basins under
+1.5 and 2
+◦ C global warming [ 5 , 6 ]. In addition, alterations of seasonal discharge have also been
+projected [2,6,7]. In some basins, wet seasons are expected to become wetter and dry seasons drier in
+a world changing from 2
+◦ C warming to 4 ◦ C warming [ 8 ]. River basins dominated by a monsoonal
+                                                    </div>
+                                                </div>
+                                                <div class="panel-box">
+                                                    <div class="padding">
+                                                            <!-- <ul class="literature-ul">
+                                                                    <li><a target="_blank" href="http://www.wanfangdata.com.cn/details/detail.do?_type=perio&id=qhbhyjjz201204003"><span>1</span><span>、</span><span>8个CMIP5模式对中国极端气温的模拟和预估</span></a></li>
+                                                                    <li ><a target="_blank" href="dataResourceDetail2.html"><span>2</span><span>、</span><span>cmip5_data_reference_syntax</span></a></li>
+                                                                    <li><a target="_blank" href="http://www.wanfangdata.com.cn/details/detail.do?_type=perio&id=qhbhyjjz201603012dataResourceDetail3.html"><span>3</span><span>、</span><span>CMIP6的设计</span></a></li>
+                                                                </ul> -->
+                                                                <ul class="panel-recommand">
+                                                                    <li>
+                                                                        <div class="left-div">
+                                                                            <a target="_blank" href="http://www.cnki.com.cn/Article/CJFDTotal-QHBH201204005.htm">8个CMIP5模式对中国极端气温的模拟和预估</a>
+                                                                            <p>《气候变化研究进展》 2012年04期</p>
+                                                                        </div>
+                                                                        <div class="right-div">
+                                                                            <a target="_blank" href="http://www.cnki.com.cn/Article/CJFDTotal-QHBH201204005.htm">浏览</a>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="left-div">
+                                                                            <a target="_blank" href="javascript:;">CMIP5 Data Reference Syntax (DRS) and
+                                                                                Controlled Vocabularies</a>
+                                                                            <p style="display:none">《气候变化研究进展》 2012年04期</p>
+                                                                        </div>
+                                                                        <div class="right-div">
+                                                                            <a target="_blank" href="javascript:;">浏览</a>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="left-div">
+                                                                            <a target="_blank" href="http://www.cnki.com.cn/Article/CJFDTotal-QHBH201603013.htm">CMIP6的设计</a>
+                                                                            <p>《气候变化研究进展》 2016年03期</p>
+                                                                        </div>
+                                                                        <div class="right-div">
+                                                                            <a  target="_blank" href="http://www.cnki.com.cn/Article/CJFDTotal-QHBH201603013.htm">浏览</a>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                                <p class="about">以上文献链接来源于中国知网CNKI知识搜索，所有权益归©中国知网所有</p>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <!-- 第三部分 end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 内容 end-->
+
+        <!-- 底部 start-->
+        <foot></foot>
+        <!-- 底部 end-->
+        <!-- 回到顶部 start-->
+        <div class="toTop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+    </div>
+    <script src="../js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="../js/commonjs/polyfill.min.js"></script>
+    <script src="../js/commonjs/bootstrap.min.js"></script>
+    <script src="../js/commonjs/vue.min.js"></script>
+    <script src="../js/commonjs/header.js"></script>
+    <script src="../js/commonjs/footer.js"></script>
+    <script src="../js/topicService.js"></script>
+    <script src="../js/commonjs/toTop.js"></script>
+
+</body>

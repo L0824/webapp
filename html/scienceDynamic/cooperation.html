@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>合作交流</title>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../../css/commoncss/common.css">
+    <link rel="stylesheet" href="../../css/commoncss/dynamicScience.css">
+    <link rel="stylesheet" href="../../css/commoncss/scienceTwo.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper" id="app" v-cloak>
+        <!-- 头部 start-->
+       <head-nav></head-nav>    
+       <!-- 头部 end-->
+       <div class="main-container">
+            <div class="g-container">
+                    <div class="page-nav"><span class="last-page">科技动态</span><span class="arrow-icon">&gt;</span><span>合作交流</span></div> 
+                <!-- banner轮播图 start-->
+                <div class="banner-lb">
+						<div id="iview2" class="imgRadius">
+                        <div data-iview:image="../../images/news/b05.png">
+                            <div class="mask"></div>
+                            <div class="iview-caption" data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+                            
+                        </div>
+            
+                        <div data-iview:image="../../images/news/b06.png">
+                            <div class="mask"></div>
+                            <div class="iview-caption " data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+                        </div>
+            
+                        <div data-iview:image="../../images/news/b07.png">
+                            <div class="mask"></div>
+                            <div class="iview-caption " data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+                        </div>
+            
+                        <div data-iview:image="../../images/news/b08.png">
+                            <div class="mask"></div>
+                            <div class="iview-caption " data-x="0" data-y="0" data-transition="wipeLeft">“全球变化大数据的科学认知与云共享平台”项目正式启动</div>
+                        </div>
+                    </div>   
+             
+                </div>
+                <!-- banner轮播图 end-->
+                <!-- 合作交流 start-->
+                <div class="dynamicWork white c-border">
+                    <!-- 标题 start-->
+                    <div class="title">
+                        <div class="model-title">
+                            <div class="title-text ">合作交流</div> 
+                            <div class="line-dot ">
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <!-- 标题 end-->
+                    <div class="news-cnt-box">
+                        <!-- <div class="g-container"> -->
+                        <div class="news-cnt">
+                            <ul>
+                                <li class="news-li" v-for="coop in cooperation">
+                                        <div class="li-div">
+                                            <!-- 左 start-->
+                                            <a v-if="coop.topPic" :href="'cooperation_detail.html?id='+coop.id" class="news-left imgRadius" target="_blank"><img :src="coop.topPic" alt=""></a>
+                                            <!-- 左 end-->
+                                            <!-- 右 start-->
+                                            <div class="news-right" :style="{'width':!coop.topPic ? '100%':'691px'}" :class="!coop.topPic?'nomargin':' '">
+                                                <a class="main-title-box" :href="'cooperation_detail.html?id='+coop.id" target="_blank">
+                                                    <span class="main-title">{{coop.title}}<span class="blue-line"></span></span> 
+                                                    
+                                                    
+                                                </a>
+                                                <div class="news-para">
+                                                    <p>
+                                                         {{coop.textContent}}
+                                                    </p>
+                                                </div>
+                                                <div class="news-time">
+                                                        {{coop.submtDate.split(' ')[0]}}
+                                                </div>
+                                            </div>
+                                            <!-- 右 end-->
+                                        </div>
+                                    </li>
+                              
+                             
+                            </ul>
+                        </div>
+                        <!-- </div> -->
+                       
+                    </div>
+                </div>
+                <!-- 合作交流 end-->
+            </div>
+       </div>
+       <foot></foot>
+        <!-- 回到顶部 start-->
+        <div class="toTop">
+                <i class="iconfont icon-gengduo"></i>
+            </div>
+            <!-- 回到顶部 end-->
+    </div>
+    <script src="../../js/commonjs/polyfill.min.js"></script>
+    <script src="../../js/commonjs/jquery-1.7.1.min.js"></script>
+    <script src="../../js/commonjs/axios.min.js"></script>
+    <script src="../../js/commonjs/vue.min.js"></script>
+    <script src="../../js/commonjs/header.js"></script>
+    <script src="../../js/commonjs/footer.js"></script>
+    <script src="../../js/commonjs/toTop.js"></script>
+    <script src="../../js/commonjs/lb/raphael-min.js"></script>
+	<script src="../../js/commonjs/lb/jquery.easing.js"></script>
+	<script src="../../js/commonjs/lb/iview.js"></script>
+    <script src="../../js/scienceDynamic/cooperation.js"></script>
+  
+</body>
+</html>

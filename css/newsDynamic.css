@@ -1,0 +1,45 @@
+.fixed-table-container{
+    border: none;
+}
+#news-table thead{
+    display: none !important;
+}
+ tbody tr{
+    cursor: pointer;
+}
+#news-table tbody tr td{
+    padding: 20px ;
+}
+#news-table tbody tr:hover .news-title{
+    color: #6566f4;
+}
+.fixed-table-container tbody td{
+    border-left: none !important;
+}
+.news-time{
+    text-align: right;
+}
+.bootstrap-table .pagination-detail{
+    display: block;
+}
+.fixed-table-pagination .page-list{
+    display: none;
+}
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td{
+    border-top: 1px dashed #E4E4E4;
+}
+.bootstrap-table .table{
+    border: none;
+}
+.fixed-table-pagination{
+    padding: 0 30px;
+}
+.pagination-detail{
+    color: #9a9a9a;
+}
+.pagination{
+    text-align: right;
+}
+.news-content .fixed-table-pagination div.pagination .pagination{
+    margin-right: 0 !important;
+}

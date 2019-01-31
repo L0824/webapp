@@ -1,0 +1,51 @@
+var ctx = "${ctx}";
+
+//<!--切换-- >
+$(function () {
+	$(".sub_nav ul li").click(function () {
+	    $(this).addClass("on").siblings().removeClass("on");
+	    $(".bd >div").eq($(this).index()).show().siblings().hide();
+	});
+});
+//数据切换
+$(function () {
+	$(".list_date ul li").click(function () {
+	    $(this).addClass("cur").siblings().removeClass("cur");
+	    $(".txtbox >div").eq($(this).index()).show().siblings().hide();
+	});
+});
+//算法切换
+$(function () {
+	$(".list_Algorithm ul li").click(function () {
+	    $(this).addClass("cur").siblings().removeClass("cur");
+	    $(".algorithmbox >div").eq($(this).index()).show().siblings().hide();
+	});
+});
+
+function checkOne(num) {    
+	$($(".sub_nav ul li")[num]).addClass("on").siblings().removeClass("on");
+	$(".bd >div").eq($($(".sub_nav ul li")[num]).index()).show().siblings().hide();   
+}
+
+function commitComment(){
+	var frm = $("#CommentForm");
+	var params=frm.serialize();
+	$.ajax({
+	    type : "POST",
+	    url : '/comment',
+	    data : params,
+	    success : function(data) {
+	    	data=eval("("+data+")");
+				alert(data.msg);
+				if(data.code==0){
+					//window.location.href="../resource/main?tableId="+$("#tableId").val(); 
+					refreshPage();
+					checkOne(4);
+					$("#comment").val("");
+				}else if(data.code==2){
+					window.location.href="/login"; 
+				}
+	    }
+	});
+}
+

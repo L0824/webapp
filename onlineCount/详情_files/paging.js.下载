@@ -1,0 +1,70 @@
+var changePageSize = function(){
+	var currentPage = 1;
+	goPage(eval(currentPage));
+}
+var refreshPage = function(){
+	var currentPage = $("#pagingPlugin li.active font").html();
+	goPage(eval(currentPage));
+}
+var toTZ = function(){
+	var page = $("#pagingPlugin_txinput").val();
+	var type="^[0-9]*[1-9][0-9]*$"; 
+    var re = new RegExp(type); 
+    
+   	if(page.match(re) != null){
+   		var pageInt = eval(page);
+   		var max = $("#pagingPlugin_totalPage").html();
+   		if(pageInt > eval(max)){
+   			pageInt = max;
+   		}
+   		goPage(pageInt);
+   	}
+}
+var firstPage = function(){
+	goPage(1);
+}
+var lastPage = function(){
+	var page = $("#pagingPlugin_totalPage").html();
+	goPage(eval(page));
+}
+var prevPage = function(){
+	var currentPage = $("#pagingPlugin li.active font").html();
+	var nextPage = eval(currentPage) - 1;
+	goPage(nextPage);
+}
+var nextPage = function(){
+	var currentPage = $("#pagingPlugin li.active font").html();
+	var nextPage = eval(currentPage) + 1;
+	goPage(nextPage);
+}
+var prevCondition = "";
+var goPage = function(page){
+	var thisCondition = $("#"+formId).serialize();
+	
+	if(!page){
+		page = 1;
+	}
+	var pageSize = $("#pagingPageSizeSelect").val();
+	if(!dataUrl){
+		alert("没有指定dataUrl全局js变量");
+	}
+	if(!contextId){
+		alert("没有指定contextId全局js变量");
+	}
+	
+	if(prevCondition != "" && thisCondition != prevCondition){
+		page = 1;
+	}
+	
+	prevCondition = thisCondition;
+	
+	$.ajax({
+		type:"POST",
+		url:dataUrl,
+		data:$("#"+formId).serialize()+"&page="+page+"&pageSize="+pageSize,
+		cache:false,
+		success:function(data){
+			$("#"+contextId).html(data);
+		}
+	});
+}

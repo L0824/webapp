@@ -1,0 +1,21 @@
+.content-wrapper{padding-bottom: 30px;}
+.datas-title{padding-bottom: 25px; border-bottom: 1px solid #E8F0FF;margin-bottom:25px;}
+.article-title{color: #000; font-size: 24px; text-align: center; font-weight: bold;}
+.c-wrapper{padding: 0 173px; margin: 0 auto; overflow: hidden;}
+.model-title{ padding-right: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;}
+.model-padding{padding: 20px;}
+.line-dot{-webkit-box-flex: 1; -ms-flex: 1; flex: 1; background: url(../../images/home/jiange_chang.png) left center no-repeat; background-size: contain;}
+.article-author{margin-top: 5px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; font-size: 14px;}
+.b-color{color: #000;}
+.dot-d{margin: 0 5px;}
+.dot-e{color: #000; margin: 0 5px;}
+.text-c{color: #7b7b7b;}
+i.fontsizeBtn{margin-right: 15px; font-style: normal; cursor: pointer; color: #6464F4; text-decoration: underline;}
+/* 正文 start*/
+.page-cnt{color:#333;font-size: 16px;line-height: 36px;min-height: 450px;}
+.page-cnt .page-img{padding:20px 0;}
+.page-cnt .page-img>img{width: 100%; height: 355px;}
+.page-cnt img{border-radius: 3px;}
+.page-cnt a:hover{color: #000;}
+.p-para{text-indent:2em;}
+/* 正文 end*/

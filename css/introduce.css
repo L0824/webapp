@@ -1,0 +1,30 @@
+.bannerBox{width: 100%; overflow: hidden;}
+.bannerBox>img{width: 100%; height: 482px;}
+.main-container{padding-bottom: 20px; background: #ebebeb; width: 100%; min-width:1200px;}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img{width:100%; min-width: 1200px;}
+/* title start*/
+.model-title{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; padding: 30px 40px; padding-right: 0;}
+.model-title .title-text{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; font-size: 18px; color: #333; margin-right: 20px;}
+.model-title .line-dot{-webkit-box-flex: 1; -ms-flex: 1; flex: 1; background: url(../images/home/jiange_chang.png) left center no-repeat; background-size: contain;}
+.model-title .dot{display: inline-block; width: 4px; height: 4px; background: #2F75F5; border-radius: 50%;}
+.model-title .line-dot .hr-line{width: 100%; height: 1px; background: #E8F0FF;}
+.model-title .line-dot .blue-line{position: absolute; top: 50%; left: 4px; -webkit-transform: translate(0,-50%); -ms-transform: translate(0,-50%); transform: translate(0,-50%); width: 100px; height: 1px; background: #2F75F5;}
+/* title end*/
+.white{background: #fff;}
+.project-jj{margin-bottom: 10px; padding-bottom: 30px;}
+.project-jj .model-title{-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;}
+.content-move{margin-top: 20px; /*font-family: '黑体';*/ text-align: justify; text-justify: inter-ideograph;/*IE*/}
+.cnt-box{padding:0 65px; display: -webkit-box; display: -ms-flexbox; display: flex;}
+.content{line-height:25px;font-size: 14px; color: #333; text-indent: 2em;}
+.project-person{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding-bottom: 30px;}
+.project-person .model-title{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;}
+.person-intro{padding-left:18px;}
+.jj-content{margin-left: 18px;}
+.project-img>img{width: 192px; height: 130px;}
+.person-img>img{width: 192px; height: 271px;}
+/* 轮播图箭头 start */
+.carousel-control{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center;}
+.carousel-control.left{-webkit-transform: rotate(-180deg); -ms-transform: rotate(-180deg); transform: rotate(-180deg);}
+.carousel-control .icon-gengduo{font-size: 73px;}
+.carousel-control.left{background-image:none; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);} .carousel-control.right{left: auto; right: 0; background-image:none; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);}
+/* 轮播图箭头 end */

@@ -1,0 +1,171 @@
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit"/>
+<meta name="force-rendering" content="webkit"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+<title>数据检索</title>
+<link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+<link rel="stylesheet" href="../../css/commoncss/bootstrap.min.css">
+<link rel="stylesheet" href="../../js/commonjs/bootstraptable/bootstrap-table.css">
+<link rel="stylesheet" href="../../js/commonjs/layui-v2.4.3/layui/css/layui.css">
+<link rel="stylesheet" href="../../font/iconfont.css">
+<link rel="stylesheet" href="../../css/commoncss/normalize.css">
+<link rel="stylesheet" href="../../css/commoncss/common_header.css">
+<link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+<link rel="stylesheet" href="../../css/commoncss/common.css">
+<link rel="stylesheet" href="../../css/dataResource.css">
+<link rel="stylesheet" href="../../css/commoncss/table.css">
+<link rel="stylesheet" href="../../css/result.css">
+<style>
+        [v-cloak] {
+            display: none;
+        }
+</style>
+</head>
+<body>
+    <template type="text/x-template" id="result">
+        <div class="main-right-box flex-right">
+              <!-- 标题 s -->
+              <div class="right-title">
+                    <div class="title">
+                       结果列表
+                        
+                    </div>
+                    <div class="line">
+                        <div class="info">
+                        </div>
+                    </div>
+                </div>
+                <!-- 标题 e -->  
+                <!-- 内容  s  -->
+                <div class="result-box">
+                    <ul class="res-ul">
+                        <li>
+                            <span class="res-title">数据名称：</span>
+                            <ul class="sub-ul">
+                                <li>
+                                    <a class="item">{{dataName}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="res-title">日期选择：</span>
+                            <ul class="sub-ul">
+                                <li>
+                                    <a class="item">{{selectedInfo.starttime}}</a>
+                                </li>
+                                <li>
+                                    <a class="item nobg">-</a>
+                                </li>
+                                <li>
+                                    <a class="item">{{selectedInfo.endtime}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li>
+                            <span class="res-title">台站列表：</span>
+                            <ul class="sub-ul">
+                                <li>
+                                    <a class="item">北京</a>
+                                </li>
+                                <li>
+                                    <a class="item">[54406]延庆</a>
+                                </li>
+                                <li>
+                                    <a class="item">[54413]通州</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <li>
+                            <span class="res-title">要素选择：</span>
+                            <ul class="sub-ul">
+                                <li v-for="item in selectedInfo.yaosu"> 
+                                    <a class="item">{{item.v1}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="res-table">
+                    <table id="i-table" class="table-box table-hover">
+
+                    </table>
+                </div>
+                <div class="order-btn">
+                    <a href="javascript:history.back(-1)" class="a-btn a-back">
+                        <i class="iconfont icon-fanhui"></i>
+                        <span>返回</span>
+                    </a>
+                    <a href="javascript:;" class="a-btn o" @click="addOrder">
+                        <i class="iconfont icon-buy"></i>
+                        <span>加入订单</span>
+                    </a>
+                </div>
+              
+                <!-- 内容  e  -->
+        </div>
+    </template>
+   <div class="page-wrapper" id="app" v-cloak >
+        <!-- 头部 start-->
+        <head-nav></head-nav>
+        <!-- 头部 end-->
+        <!-- 内容 start-->
+        <div class="main-container">
+                <div class="g-container"> 
+                    <div class="page-nav"><span class="last-page">数据服务</span><span class="arrow-icon">&gt;</span><span>数据检索</span></div> 
+                    <div class="cnt-box">           
+                        <div class="main-left  white radius">
+                            <div class="category-wrapper">
+                                <div class="main-title-box">
+                                    <div class="bg"></div>
+                                    <span class="main-title">
+                                        <span class="title">数据分类</span>
+                                        <span class="border-line"></span>
+                                        <span class="all" @click="showAllData">(全部)</span>
+                                    </span>
+                                </div>
+                                 <div class="category-content-box" v-for="(item,index) in categoryArr">
+                                    <div class="category-content">
+                                        <h4 class="menu-title"><i class=" icon-category iconfont" :class="item.icon"></i>{{item.name}}</h4>
+                                        <ul class="submenu-ul">
+                                            <li v-for="(x,subindex) in item.list" :class="{'cur':(x.id==dataGroupId)}" ><a href="javascript:void(0)"  class="a-hover"  @click="changeRight(x.id)">{{x.name}}</a></li>
+                                        </ul>
+                                    </div>
+                                 </div>
+                            </div> 
+                         </div>
+                        <div id="rightTypeDiv" class="main-right">
+                            <!-- 右侧组件 start-->
+                            <!-- <data-resource-box  ref="rightTable" :top-row="topRow"   :base = "baseUrl"></data-resource-box> -->
+                            <result ref="result"></result>
+                            <!-- 右侧组件 end-->
+                        </div>
+                  </div> 
+                </div>
+            </div>
+            <!-- 内容 end-->
+            <!-- 底部 start-->
+            <foot></foot>
+            <!-- 底部 end-->
+            <!-- 回到顶部 start-->
+            <div class="toTop">
+                <i class="iconfont icon-gengduo"></i>
+            </div>
+            <!-- 回到顶部 end-->
+    </div>
+   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+   <script src="../../js/commonjs/polyfill.min.js"></script>
+   <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+   <script src="../../js/commonjs/layui-v2.4.3/layui/layui.js"></script>
+   <script src="../../js/commonjs/vue.min.js"></script>
+   <script src="../../js/commonjs/axios.min.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap.min.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap-table.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap-table-zh-CN.js"></script>
+   <script src="../../js/commonjs/header.js"></script>    
+   <script src="../../js/commonjs/footer.js"></script>
+   <script src="../../js/commonjs/toTop.js"></script>
+   <script src="../../js/dataResource/result.js"></script>
+</body>

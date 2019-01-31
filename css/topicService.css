@@ -1,0 +1,49 @@
+.header-nav .nav-ul>li:nth-child(2) .a0{-webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2);}
+.header-nav .nav-ul>li:nth-child(2) .line{width:100%;}
+.main-container{background: #ebebeb; /* padding-top: 20px; */ padding-bottom: 60px; min-width:1200px;}
+.main-container .cnt-box{display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row;}
+.g-container{width: 1200px; margin: 0 auto;}
+.page-wrapper{width:100%; height: auto; background: #faf7f5;}
+.container{padding: 0;}
+.white{background: #fff;}
+/* 左边菜单 start*/
+.main-container .main-left{width:300px;}
+.main-container .main-left .category-wrapper .category-content-box{margin-top: 16px; padding-left: 20px; padding-right: 20px;}
+.main-container .main-left .category-content:not(:last-child){border-bottom: 1px solid #E8F0FF;}
+.main-container .main-left .category-content-box .menu-title{display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;font-weight:normal;padding-top:5px;padding-bottom: 5px;background: #e7edf7 ; font-size: 16px; color: #000;}
+.category-wrapper{padding-bottom: 10px;}
+.category-content-box .submenu-ul{margin-top: 7px; margin-bottom: 25px;}
+.category-content-box .submenu-ul li{margin: 5px 0;}
+.category-content-box .submenu-ul li>a{display: inline-block; padding-left: 7px; height: 100%; color: #949494;}
+.category-content-box .submenu-ul .a-hover:hover{color: #2F75F5; text-decoration: underline;}
+.icon-category{margin-left: 7px;margin-right: 7px;color: #2F75F5;font-weight: normal;}
+.main-container .main-title-box{position: relative;border-bottom:2px solid #E8F0FF; padding-top: 20px; background: #f5f9ff;}
+.main-container .main-title-box .bg{position: absolute;top: 0;left: 0;border-radius:3px;background:url(../images/topicServer/ztfw_bj.png) right 2px no-repeat;border:1px solid #fff;border-bottom-color:transparent;background-size: contain;width: 100%;height: 100%;}
+.main-container .data-tabs>li:not(:first-child) .dot{left: 10px;}
+.main-container .main-title{position:relative;display: inline-block; height: 29px; /*font-family: '黑体'; */color: #000; font-weight: bold; font-size: 16px;}
+.main-container .main-title .title{padding-left:20px;padding-bottom: 8px;}
+.main-container .main-title .border-line{position: absolute;bottom: -2px;left: 0;width: 100%;height: 2px;background: #6dd4fa;}
+/* 左边菜单 end*/
+/* 右边 start*/
+.main-container .main-right{padding-left: 10px;-webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
+.c-border{border:1px solid #dadada;}
+.main-right .main-right-box .server-box:not(:last-child){margin-bottom: 10px;}
+.server-box .directory-title{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:0 30px;color:#000;font-size:16px;padding:12px 0;border-bottom: 1px dashed #E8E8E8;}
+.main-right .main-right-box .server-box .imgW{width:100%;height:200px;border-radius: 3px;}
+.main-right .main-right-box .server-box .intro-text{padding:30px 50px; font-size: 14px; line-height: 25px; color: #000; text-indent: 2em;}
+.main-right .main-right-box .server-box .tabs-server{width: 100%;padding-top: 10px;}
+.main-right .main-right-box .server-box .related-panel{height: 400px;overflow: auto;}
+.panel-box .padding{padding:20px 40px;width: 100%;}
+.panel-box .padding.pra{line-height: 25px;text-indent: 2em;}
+/* 右边 end*/
+.icon-margin{margin-right: 10px;}
+.icon-m{margin-right: 5px;color:#8e8e8e;font-size: 20px;vertical-align: middle;}
+.icon-mljs{color: #2F75F5; font-size: 24px; margin-right: 10px;}
+/* 相关文献 */
+.panel-recommand{width: 100%;}
+.panel-recommand>li{width: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; margin-bottom: 25px;}
+.panel-recommand>li .left-div a{display: inline-block; color:#000; text-decoration: underline; margin-bottom: 10px;}
+.panel-recommand>li .left-div p{color:#B0B0B0;}
+.panel-recommand>li .right-div a{color:#2F75F5;}
+.panel-recommand>li a:hover{color:#2F75F5;}
+.about{font-size: 12px;color: #787878;}

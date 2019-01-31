@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+<title>数据汇聚管理</title>
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="../css/commoncss/bootstrap.min.css">
+<link rel="stylesheet" href="../font/iconfont.css">
+<link rel="stylesheet" href="../css/dataHuju.css">
+<link rel="stylesheet" href="../css/commoncss/common_header.css">
+<link rel="stylesheet" href="../css/commoncss/common_footer.css">
+<link rel="stylesheet" href="../css/commoncss/common.css">
+<link rel="stylesheet" href="../css/commoncss/normalize.css">
+<style>
+		[v-cloak] {
+			display: none;
+		}
+</style>
+
+</head>
+<body>
+	<div class="page-wrapper" id="app" v-cloak>
+		<!-- header开始 -->
+		<head-nav></head-nav>
+		<!-- header 结束 -->
+		<!-- content start -->
+		<div class="main-container">
+			<div class="g-container">
+			<div class="page-nav">
+					<span class="last-page">全球变化数据</span><span class="arrow-icon">&gt;</span><span>数据汇聚</span><span class="arrow-icon">&gt;</span><span>数据汇聚管理</span>
+			</div>
+			<div class="cnt-box">
+			<div class="sjhj_left">
+				<div class="left_nav_title">数据汇聚管理</div>
+				<ul class="sjhj_leftul">
+					<li class="sjhj_leftli addData active">
+						<div class="sjhj_li_hui"></div> <a class="sjhj_li_item xzhjsj">新增数据汇聚</a>
+					</li>
+					<li class="sjhj_leftli dataList" @click='getData'>
+						<div class="sjhj_li_hui"></div> <a class="sjhj_li_item xzhjsj">数据清单</a>
+					</li>
+					<li class="sjhj_leftli liucheng" @click=''>
+						<div class="sjhj_li_hui"></div> <a class="sjhj_li_item xzhjsj">汇聚流程</a>
+					</li>
+				</ul>
+			</div>
+			<div class="sjhj_right">
+				<div class="sjhj_head">
+					<img src='../images/notepad.png' class="sh_img">
+					<div class='sh_title'>新增数据汇聚</div>
+				</div>
+				<div class='sh_line1'></div>
+				<div class='sh_line2'></div>
+				<div class="sjhj_conbg shuju">
+					<div class="col-sm-12 addTitle">
+						<span class="addData1">新增数据</span>
+					</div>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="input1" class="col-sm-4 control-label">数据集名称：</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="input1"
+									placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="input2" class="col-sm-4 control-label">资料类型：</label>
+							<div class="col-sm-4">
+								<select class="form-control">
+									<option>--请选择--</option>
+									<option>气象灾害</option>
+									<option>气象灾害</option>
+									<option>气象灾害</option>
+									<option>气象灾害</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="input2" class="col-sm-4 control-label">上传方式：</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="input2"
+									placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="input2" class="col-sm-4 control-label">日期：</label>
+							<div class="col-sm-4">
+								<input type="date" class="form-control" id="input2"
+									placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="input2" class="col-sm-4 control-label">状态：</label>
+							<div class="col-sm-4">
+								<select class="form-control">
+									<option>--请选择--</option>
+									<option>已审核</option>
+									<option>未审核</option>
+									<option>待通过</option>
+									<option>通过</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="input2" class="col-sm-4 control-label">说明：</label>
+							<div class="col-sm-4">
+								<textarea name="" id="" cols="35" rows="10"></textarea>
+							</div>
+						</div>
+						<div class="form-group"></div>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-10">
+								<button type="submit" class="btn  btn-info">文件上传</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		  </div>
+		</div> 
+		</div>
+		<!-- 底部 start-->
+		<foot></foot>
+		<!-- 底部 end-->
+		<!-- 回到顶部 start-->
+        <div class="toTop">
+                <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+	</div>
+	<script src="../js/commonjs/polyfill.min.js"></script>
+	<script src="../js/commonjs/jquery-3.2.1.min.js"></script>
+	<script src="../js/commonjs/bootstrap.min.js"></script>
+	<script src="../js/commonjs/vue.min.js"></script>
+	<script src="../js/commonjs/header.js"></script>
+	<script src="../js/commonjs/footer.js"></script>
+	<script src="../js/commonjs/toTop.js"></script>
+	<script src="../js/dataHuju.js"></script>
+</body>
+</html>

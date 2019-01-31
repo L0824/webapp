@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>数据检索详情页</title>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+    <link rel="stylesheet" href="../../css/commoncss/bootstrap.min.css">
+    <link rel="stylesheet" href="../../js/commonjs/bootstraptable/bootstrap-table.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../../js/commonjs/layui-v2.4.3/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../../css/commoncss/common.css">
+    <link rel="stylesheet" href="../../css/commoncss/tab.css">
+    <link rel="stylesheet" href="../../css/dataResourceDetail.css">
+    <link rel="stylesheet" href="../../css/dataResource.css">
+    <link rel="stylesheet" href="../../css/commoncss/table.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 详情页组件 start-->
+    <template  type="text/x-template" id="dataResourceDetail">
+        <div class="main-right-box flex-right"  ref="detail" v-if="details">
+            <div class="detail-box">
+                <div class="datas-detail white c-border">
+                    <!-- 标题栏 -->
+                    <div class="datas-title">
+                    <h4 class="article-title">{{details.title}}</h4>
+                 </div>
+                 <div class="article-cnt">
+                    <!-- 访问量 start-->
+                    <div class="visitor-volume margin" >
+                        <img v-show="details.imgUrl" class="articleImg imgRadius" :src="details.imgUrl" alt="">
+                        <img v-show="!details.imgUrl" class="articleImg imgRadius" src="../../images/dataResource/dataresource.png" alt="">
+                        <div class="article-datas">
+                            <div class="feature article-d1">
+                                <span class="icon-box new-shijian"><i class="iconfont icon-shijian"></i></span>
+                                <span>最新时间：</span>
+                                <span>2017-08-20 04:46</span>
+                            </div>
+                            <div class="feature article-d1">
+                                    <span class="icon-box new-data"><i class="iconfont icon-shujuliang"></i></span>
+                                    <span>数据量：</span>
+                                    <span>3.85G</span>
+                            </div>
+                            <div class="feature article-d1">
+                                    <span class="icon-box new-fw"><i class="iconfont icon-fangwenliang"></i></span>
+                                    <span>访问量：</span>
+                                    <span>1,563次</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 访问量 end-->
+                    <div class="article-description margin">
+                        <span class="des-title">数据摘要</span><span>:</span>
+                        <span class="des-cnt">{{details.summary}}</span>
+                    </div>
+                    <div class="info-box">
+                        <div class="single-info margin" v-for="(a1,k1,i1) in details.metadata">
+                            <h4><i class="iconfont icon-tubiao"></i><span>{{k1}}：</span></h4>
+                            <div class="single-info-box ">
+                                <div class="onelevel lastC" v-show="typeof a1 != 'object'">{{a1}}</div>
+                                <div v-show="typeof a1 == 'object'" class="twolevel" v-for="(a2,k2,i2) in a1">
+                                    <div v-show="!parentstyle[i1]&&typeof a2 != 'object'" class="onlyTwo start">
+                                        <div class="t-title t-box">
+                                            <div class="twoTitle colorone">{{k2}}</div>
+                                            <div class="maohao">:</div>
+                                        </div>
+                                        <div class="twoContent lastC flex-one">{{a2}}</div>
+                                    </div>
+                                    <div class="twobox" v-show="(!parentstyle[i1]&&typeof a2 == 'object')||(parentstyle[i1])" >
+                                        <div class="two">
+                                          {{k2}}
+                                        </div>
+                                        <div v-show="typeof a2 != 'object'" class="lastC marginT">
+                                            {{a2}}
+                                        </div>
+                                        <div v-show="typeof a2 == 'object'" class="three start marginT" v-for="(a3,k3,i3) in a2">
+                                            <div class="t-title t-box">
+                                                <div class="threeTitle colorone">{{k3}}</div>
+                                                <div class="maohao">:</div>
+                                            </div>
+                                            <div class="flex-one">
+                                                <div v-show="typeof a3 != 'object'" class="lastC" :style='{"color":k3=="Tip"?"#DC7700":"#7b7b7b"}'>{{a3}}</div>
+                                                <div v-show="typeof a3 == 'object'" v-for="(a4,k4,i4) in a3" class="inline">
+                                                    <div class="th-title">
+                                                        {{k4}}
+                                                    </div>
+                                                    <div class="maohao">:</div>
+                                                    <div class="th-c">{{a4}}</div>
+                                                    <div class="fenhao">;</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!-- 二维、三维 start-->
+                    <div class="enter-gis">
+                        <!-- <a href="javascript:void(0)" class="enter-btn" @click='getRData()'>数据检索</a> -->
+                        <a href="dataRetrieval.jsp" class="enter-btn" v-show="isshow">数据检索</a>
+                        <a href="javascript:void(0)" class="enter-btn" @click='getRetrievalData()' v-show="!isshow">文件数据</a>
+                        <a target="_blank" href="/gcGate/html/2D.html"  class="enter-btn" @click="getParam(details)">二维展示</a>
+                        <a  target="_blank" href="/gcGate/html/cesium3D.html" class="enter-btn" @click="getParam(details)">三维展示</a>
+                    </div>
+                    <!-- 二维、三维 end-->
+                    <!-- 数据检索 start -->
+                    <div class="layer-box" id="layer-box">
+                        <div  class="retrievalTable" >
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">日期：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" class="layui-input" id="dateS" placeholder=" 开始时间  -  结束时间 " >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <button class="layui-btn layui-btn-sm" @click="exportExcel">导出excel</button>
+                                        <button class="layui-btn layui-btn-normal layui-btn-sm"><i class="layui-icon layui-icon-search"></i>查询</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="retrieval" data-height="400" class="table-box table-hover table">
+            
+                            </table>
+                        </div>
+                    </div> 
+
+                    <div class="layer-box" id="layer-box2">
+                        <div  class="retrievalTable" >
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">年份：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" v-model="date" class="layui-input" id="dateS2" placeholder="请选择年份" >
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">经度：</label>
+                                        <div class="layui-input-inline">
+                                                <input type="text" v-model="jd" class="layui-input" placeholder="">
+                                                <div class="layui-form-mid to">至</div>
+                                                <input type="text" class="layui-input" placeholder="">
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">玮度：</label>
+                                        <div class="layui-input-inline">
+                                            <input  v-model="wd" type="text" class="layui-input" placeholder="">
+                                            <div class="layui-formx-mid to">至</div>
+                                            <input type="text" class="layui-input" placeholder="">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <button class="layui-btn layui-btn-sm" @click="exportExcel2">导出excel</button>
+                                        <button class="layui-btn layui-btn-normal layui-btn-sm" @click="refreshD"><i class="layui-icon layui-icon-search"></i><span>查询</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="retrieval2" data-height="400" class="table-box table-hover table">
+            
+                            </table>
+                        </div>
+                    </div> 
+                    <!-- <search-table v-show='ishow' ref="sTable"></search-table> -->
+                    <!-- <transition name="fade">
+                        <div v-show="ishow" class="retrievalTable" >
+                            <table id="retrieval">
+
+                            </table>
+                        </div>
+                    </transition> -->
+                    <!-- 数据检索 end -->
+                 </div>
+                    
+                </div>
+                <!-- 与我相关 start-->
+                <div class="related-box white c-border">
+                    <h4><i class="iconfont icon-yuwoxiangguan"></i><span>与我相关</span></h4>          
+                    <div class="tabs related">
+                        <div class="related-title-box">
+                            <ul class="related-ul clearfix">
+                                <li @click="tabChange(d,i)" :class="{'cur':i==s}" v-for="(d,i) in relatedData"><span class="title-text">{{d.name}}</span><i class="triangle"></i></li>
+                            </ul>
+                        </div>
+                        <transition name="panel-fade" mode="out-in">
+                        <div class="related-panel">
+                                <div class="panel-box dataresource-panel" v-html="tabcontent">
+                                                                                
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                </div>
+                <!-- 与我相关 end-->
+            </div>
+        </div>
+    </template>
+    <!-- 详情页组件 end-->
+    <!-- 数据检索的弹窗组件 start -->
+    <!-- <template  type="text/x-template" id="searchTable">
+        
+    </template> -->
+    <!-- 数据检索的弹窗组件 end -->
+    <div class="page-wrapper" id="dataR" v-cloak>
+        <!-- 头部 start-->
+       <head-nav></head-nav>
+        <!-- 头部 end-->
+        <!-- 内容 start-->
+        <div class="main-container">
+            <div class="g-container"> 
+                <div class="page-nav"><span class="last-page">数据服务</span><span class="arrow-icon">&gt;</span><span class="last-page">数据检索</span><template v-show="!tableshow"><span class="arrow-icon">&gt;</span><span>数据检索详情</span></template></div> 
+                <div class="cnt-box">           
+                  <div class="main-left  white radius">
+                    <div class="category-wrapper">
+                        <div class="main-title-box">
+                            <div class="bg"></div>
+                            <span class="main-title">
+                                <span class="title">数据分类</span>
+                                <span class="border-line"></span>
+                                <span class="all" @click="showAllData">(全部)</span>
+                            </span>
+                        </div>
+                         <div class="category-content-box" v-for="(item,index) in categoryArr">
+                            <div class="category-content">
+                                <h4 class="menu-title"><i class=" icon-category iconfont" :class="item.icon"></i>{{item.name}}</h4>
+                                <ul class="submenu-ul">
+                                    <li v-for="(x,subindex) in item.list" :class="{'cur':(x.id==dataGroupId)}" ><a href="javascript:void(0)"  class="a-hover"  @click="changeRight(x.id)">{{x.name}}</a></li>
+                                </ul>
+                            </div>
+                         </div>
+                    </div> 
+                 </div>
+                <div id="rightTypeDiv" class="main-right">
+                    <!-- 详情组件 start-->
+                    <data-resource-detail  :details="detail" :parentstyle="style" :isshow = "isshow"></data-resource-detail>
+                    <!-- 详情组件 end-->
+                </div>
+              </div> 
+            </div>
+        </div>
+        <!-- 内容 end-->
+        <!-- 底部 start-->
+        <foot></foot>
+        <!-- 底部 end-->
+        <!-- 回到顶部 start-->
+        <div class="toTop">
+            <i class="iconfont icon-gengduo"></i>
+        </div>
+        <!-- 回到顶部 end-->
+    </div>   
+   <!-- <script src="../../js/commonjs/bootstraptable/jquery.min.js"></script> -->
+   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+   <script src="../../js/commonjs/polyfill.min.js"></script>
+   <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap.min.js"></script>
+   <script src="../../js/commonjs/layui-v2.4.3/layui/layui.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap-table.js"></script>
+   <script src="../../js/commonjs/bootstraptable/bootstrap-table-zh-CN.js"></script>
+   <script src="../../js/commonjs/tableExport.min.js"></script>
+   <script src="../../js/commonjs/vue.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="../../js/commonjs/axios.min.js"></script>
+  <script src="../../js/commonjs/header.js"></script>    
+  <script src="../../js/commonjs/footer.js"></script>
+  <script src="../../js/commonjs/toTop.js"></script>
+  <script src="../../js/dataResource/dataResourceDetail.js"></script> 
+  <!-- <script src="../../js/dataResource/dataResourceTable.js"></script>   -->
+</body>
+
+</html>

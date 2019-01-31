@@ -1,0 +1,95 @@
+var tabCount = 0;
+jQuery(function($) {
+
+	var timer=null;
+    timer=setInterval(function(){
+        //var oSys = document.getElementById('systime');
+        var oDate=new Date();
+        var oY=oDate.getFullYear();
+        var oM=oDate.getMonth();
+        var oD=oDate.getDate();
+    
+        var oH=oDate.getHours();
+        var oMinutes=oDate.getMinutes();
+        var oS=oDate.getSeconds();
+     
+        $("#systime").text(tt(oY)+'.'+tt(oM+1)+'.'+tt(oD)+'   '+tt(oH)+':'+tt(oMinutes)+':'+tt(oS))
+    },1000)
+    
+    
+	$("#mainMenu a[href]").click(function(){
+		var title = $(this).find("span").html();
+		var existSpan = null;
+		$("#myTab span").each(function(){
+			if($(this).html() == title){
+				existSpan = $(this);
+			}
+		});
+		if(existSpan){
+			existSpan.parent().click();
+			return;
+		}
+		Index.addTab(this.href,$(this).find("span").html());
+		return false;
+	});
+});
+function tt(n){
+    if(n<10){
+        return '0'+n
+    }else{
+        return n+''
+    }
+        
+}
+var Index = {
+		dialog:function(option){
+			$("#dialog-confirm").html(option.context);
+			$("#dialog-confirm" ).removeClass('hide').dialog(option);
+		},
+		addTab:function(href,name){
+			var tabList = $(myTab);
+			var id = new Date().getTime()+"_"+tabCount++;
+			tabList.append('<li class="">'+
+						   '	<a data-toggle="tab" href="#'+id+'" aria-expanded="false">'+
+						   '		<span>'+name+'</span>'+
+						   '		<i onclick="Index.closeTab(this)" style="cursor: pointer;" class="black ace-icon fa fa-close bigger-120"></i>'+
+						   '	</a>'+
+						   '</li>')
+			var tabContentList = $(myTabContent);
+			tabContentList.append('<div style="width:100%" id="'+id+'" class="tab-pane fade active in">'+
+								  '      <iframe id="frame_'+id+'" type="myiframe" style="overflow-x: hidden; display: inline;" '+
+								  '      allowtransparency="true" frameborder="0" width="100%" height="100%" '+
+								  '      src="'+href+'" onload="cmainFrame()"></iframe>'+
+								  '</div>');
+			tabList.find("a[href=#"+id+"]").click();
+			//手机屏幕下，点击菜单后主菜单缩回去
+			$("#menu-toggler.display").click()
+		},
+		closeTab:function(obj){
+			var id=$(obj.parentNode).attr("href");
+			$(obj.parentNode.parentNode).remove();
+			$(id).remove();
+			$(myTab).find("a:last").click();
+		},
+		
+}
+
+function cmainFrame(){
+	
+    //var hmain = document.getElementById("myiframe");
+	var hmain = $("iframe[type=myiframe]");
+	if(hmain){
+        var bheight = document.documentElement.clientHeight;
+        hmain.each(function(){
+        	this.style.width = '100%';
+        	this.style.height = (bheight  - 130) + 'px';
+        })
+        //hmain.style.width = '100%';
+        //hmain.style.height = (bheight  - 130) + 'px';
+	}
+
+}
+//cmainFrame();
+window.onresize=function(){
+    cmainFrame();
+};

@@ -1,0 +1,349 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+}
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/* icon start*/
+.icon-g{
+    display: inline-block;
+    background: aqua;
+    width: 16px;
+    height: 16px; 
+    vertical-align: middle;  
+}
+
+/* icon end*/
+/* logo */
+.gis-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -2;
+}
+.gis-wrapper .header-child{
+    height: 65px;
+    line-height: 65px;   
+     border-radius: 33px;
+}
+.gis-wrapper .gis-head{
+    height: 65px;
+    line-height: 65px;
+    background: rgba(255,255,255,.95);
+    -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.36);
+            box-shadow: 0 3px 4px rgba(0,0,0,.36);
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.gis-wrapper .gis-head .gis-logo{
+    float: left;      
+}
+
+.gis-wrapper .gis-head .gis-title{
+    font-size: 24px;
+    color: #333;
+    font-family: '榛戜綋';
+}
+.gis-wrapper .gis-head .header-ul>li{
+    float: left;
+    position: relative;
+    padding-left: 17px;
+    padding-right: 17px;
+    height: 65px;
+    line-height:65px; 
+    -webkit-box-sizing: border-box; 
+            box-sizing: border-box;
+    
+}
+.gis-wrapper .gis-head .header-ul>li:first-child{
+    position: relative;
+    padding-left: 34px;
+}
+.gis-wrapper .gis-head .header-ul li:not(:last-child):after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right:0;
+    -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+    display: inline-block;
+    width: 2px;
+    height: 33px;
+    background: #c2c4c9;
+}
+.gis-wrapper .gis-head .gis-title{
+   margin-left: 7px; 
+}
+.area-select-box{
+    position: relative;
+    display: inline-block;
+    height: 33px;
+    line-height: 33px;
+    background: #2AC1F2;
+    border-radius: 16px;
+    font-size: 18px;
+    padding-left:10px;
+    padding-right: 26px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #fff;
+}
+.selected-area{
+    font-family: 'SimHei';
+    margin-right: 7px;
+}
+/* 鍙宠竟鑿滃崟 */
+.gis-wrapper .gis-head .menu-box{
+    float: right;
+    height: 65px;
+    line-height: 65px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-family: '寰蒋闆呴粦';
+    font-size: 16px;
+    
+}
+.gis-wrapper .gis-head .menu-box .menu-ul>li{
+    position: relative;
+    float: left;
+    color: #b1b1b1;
+    padding-left: 15px;
+    padding-right:15px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    cursor: pointer;
+}
+.gis-wrapper .gis-head .menu-box .menu-ul>li:not(:last-child):after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+    height: 17px;
+    width: 1px;
+    background: #c2c4c9;
+}
+.gis-wrapper .gis-head .menu-box .menu-ul>li .icon-gis{
+   display: inline-block;
+    width: 16px;
+    height: 16px;   
+}
+.gis-wrapper .gis-head .menu-box .menu-ul>li.cur{
+    color: #0BBAF4;
+}
+.gis-wrapper .gis-head .menu-box .menu-ul>li.cur .icon-gis{
+    background: none;
+}
+.gis-wrapper .gis-head .menu-box .menu-ul>li .menu-title{
+    margin-left: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+/* 鎾斁鍣� start */
+.player-box{
+    position: absolute;
+    left: 50%;
+    bottom: 80px;
+    -webkit-transform: translate(-50%,0);
+        -ms-transform: translate(-50%,0);
+            transform: translate(-50%,0);
+    width: 665px; 
+    height: 55px;
+    line-height: 55px;
+    background:rgba(240,247,249,0.95);
+    border-radius: 30px;
+    padding:0 18px;
+    font-family: 'Arial';
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #232F34;
+}
+.player-box .player-ul>li{
+    position: relative;
+    float: left;
+    height: 61px;
+    line-height: 61px;
+}
+.player-box .player-ul>li:last-child{
+    float: right;
+}
+.icon-play{
+    margin-left: 6px;
+    color: #333333;
+}
+.progress-playing{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    background: #7EDBE7;
+    width: 20%;
+    height: 100%;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.play-btn{
+    cursor: pointer;
+}
+.progress-playing:after{
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+    width: 10px;
+    height:15px; 
+    background: #fff;
+    border-radius: 7px;
+
+}
+.icon-zanting{
+    font-size: 44px;
+    margin-left: 24px;
+    color: #15BDF4;
+}
+.icon-shangyige{
+    font-size: 25px;   
+}
+.icon-xiayige{
+    font-size: 25px;
+}
+.progress{
+    position: absolute;
+    top: 50%;
+    width: 281px;
+    left: 0;
+    height: 5px;
+    margin-left: 19px;
+    -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+    background: #fff;
+    border-radius: 2px;
+}
+/* 鎾斁鍣� end */
+/* 鍙充笅瑙掑伐鍏�  start*/
+.tool-box{
+    position: absolute;
+    right: 52px;
+    bottom:53px; 
+    background: #fff;
+    color: #5F6477;
+    border-radius: 3px;
+    text-align: center;
+    -webkit-box-shadow: -5px 4px 8px rgba(0, 0, 0, 0.51);
+            box-shadow: -5px 4px 8px rgba(0, 0, 0, 0.51);
+    font-family: 'SimHei';
+}
+.tool-box .tool-ul>li{
+    position: relative;
+    width: 226px;
+    height: 41px;
+    line-height: 41px;
+    text-align: center;
+
+}
+.tool-box .tool-ul>li.cur{
+    color: #15BDF4;
+}
+
+.tool-box .line{
+    width: 35px;
+    height: 1px;
+    margin: 0 auto;
+    background: #c2c4c9;
+}
+.tool-box .tool-text{
+    display: inline-block;
+    width: 100%;
+    height: 41px;
+}
+.tool-box .tool-ul  .tool-submenu{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 236px;
+    width: 400px;
+    border-radius: 4px;
+    background: #fff;
+    -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.51);
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.51);
+}
+.tool-box .tool-ul .tool-li .tool-submenu{
+   
+    width:364px;
+    
+}
+.triangle{
+    content: '';
+    display: inline-block;
+    border:8px solid transparent;
+    border-left-color: #fff;
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+}
+.tool-box .tool-ul li{
+    cursor: pointer;
+}
+.tool-box .tool-ul .tool-submenu>li{
+    float: left;
+    position: relative;
+    color: #5F6477;
+    height: 41px;
+    padding: 0 15px;
+    border-radius: 4px;
+   
+}
+.tool-box .tool-ul .tool-submenu>li:not(:last-child):after{
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    -webkit-transform: translate(0,-50%);
+        -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+    width: 0.5px;
+    height:18px;
+    border-left: 0.5px dashed #c2c4c9;
+    /* color: #c2c4c9; */
+}
+.tool-box .tool-ul .tool-submenu>li.cur{
+    color: #fff;
+    background: #15BDF4;
+}
+.tool-box .tool-ul .tool-submenu>li.cur:after{
+   display: none;
+}
+.tool-box .tool-ul .tool-submenu .tool-sub-text{
+    margin-left: 5px;
+}
+/* 鍙充笅瑙掑伐鍏�  end*/
+/* gis鍦板浘 start*/
+.gis-map-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #9fd9ec;
+}
+/* gis鍦板浘 end*/

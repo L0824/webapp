@@ -1,0 +1,187 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Microsoft Yahei', '微软雅黑', Helvetica, 'Hiragino Sans GB', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    /*chrome、safari*/
+    -moz-osx-font-smoothing: grayscale;
+    /*firefox*/
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.page-nav {
+    height: 40px;
+    line-height: 40px;
+    color: #909090;
+    font-size: 14px;
+}
+
+.last-page {
+    /* font-weight: 600; */
+    color: #000;
+}
+
+i {
+    font-style: normal;
+}
+
+.page-wrapper {
+    position: relative;
+    height: 100%;
+    height: auto;
+}
+
+label {
+    font-weight: normal;
+}
+
+
+/* 回到顶部 start*/
+
+.toTop {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 75px;
+    padding: 15px;
+    background: rgba(0, 0, 0, .3);
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    cursor: pointer;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+    z-index: 1000;
+}
+
+.toTop:hover {
+    background: rgba(0, 0, 0, .6);
+}
+
+.toTop .icon-gengduo {
+    font-size: 22px;
+    color: #fff;
+}
+
+
+/* 回到顶部 end*/
+
+.border {
+    border: 1px solid #e5e5e5;
+}
+
+input[type="text"] {
+    -webkit-appearance: none;
+    line-height: normal;
+}
+
+textarea {
+    -webkit-appearance: none;
+}
+
+
+/* 图片圆角 */
+
+.imgRadius {
+    border-radius: 3px;
+}
+
+.bootstrap-table .pagination-detail {
+    display: none;
+}
+
+.fixed-table-pagination div.pagination,
+.fixed-table-pagination .pagination-detail {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fixed-table-pagination div.pagination .pagination {
+    margin-right: 20px;
+}
+
+.fixed-table-pagination .pagination a {
+    margin: 0 3px;
+    color: #000;
+    border-radius: 3px;
+}
+
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    background-color: #2F75F5;
+    border-color: #2F75F5;
+    color: #fff;
+}
+
+.c-border {
+    border-radius: 3px;
+}
+
+.radius {
+    border-radius: 3px;
+}
+
+.border {
+    border-radius: 3px;
+}
+
+.layui-layer-btn .layui-layer-btn0 {
+    border-color: #2F75F5;
+    background-color: #2F75F5;
+}
+
+.bg .layui-layer-btn .layui-layer-btn0 {
+    border-color: #2F75F5;
+    background: #2F75F5;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.layui-laydate-content td.laydate-selected {
+    background-color: #e2f7fb !important;
+}
+
+.layui-laydate-content td.laydate-selected {
+    background-color: #e2f7fb !important;
+}
+
+.layui-laydate-footer span:hover {
+    color: #656df5 !important;
+}
+
+.layui-laydate .layui-this {
+    background-color: #656df5!important;
+}
+
+.layui-form-select dl dd.layui-this {
+    background-color: #656df5!important;
+}

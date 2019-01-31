@@ -1,0 +1,370 @@
+.main-right-box{
+    padding-top: 20px;
+    padding-left: 22px;
+    background: #fff;
+    border: 1px solid #dedede;
+    padding-bottom: 40px;
+}
+.right-title{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.right-title .title{
+    position: relative;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    background: #e7edf7;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.right-title .line{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    color: #aa580f;
+    font-size: 14px;
+    padding-left: 10px;
+    height: 40px;
+    border-bottom: 2px solid #e7edf7;
+}
+/* 表单 s */
+/* 修改layui复选框 */
+.layui-form-checkbox[lay-skin=primary]:hover i{
+    border-color: #656df5!important;
+}
+.layui-form-checked[lay-skin=primary] i{
+    background-color: #656df5;
+}
+.icon-yichang{
+    margin-right: 5px;
+}
+.js-form{
+    margin-top: 20px;
+}
+.js-form .flex-row{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.js-form .flex-row.date{
+    margin-bottom: 30px;
+}
+.js-form .flex-row label{
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    color: #000;
+}
+.js-form .flex-row .label-n{
+    /* width: 80px; */
+}
+.js-form .flex-row .label-n .red{
+    vertical-align: middle;
+    color: red;
+    margin-right: 4px;
+}
+.date-s{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.date-s .m-line{
+    margin: 0 5px;
+    color: #333;
+}
+.date-s .date-box{
+    position: relative;
+}
+.date-s .date-box>input{
+    border-radius: 3px;
+    cursor: pointer;
+}
+.date-s .date-box .s-box{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height:100%;
+}
+
+/* 站台选择 */
+
+.js-form .flex-row.zhantai{
+    margin-right: 18px;
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 20px;
+    padding-bottom: 36px;
+}
+.zhantai .ztbox{
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+}
+.zhantai .ztbox .a-btn{
+    display: inline-block;
+    padding: 8px 10px;
+    color: #fff;
+    background: #2F75F5;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.flex-row dt{
+    float: left;
+    margin: 0 0 16px 5px;
+    font-weight: normal;   
+    height: 24px;
+       
+}
+.zhantai .ztbox .zt-select dt{
+    width: 62px;
+}
+.flex-row dt>a{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #000;  
+    white-space: nowrap; 
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    border-radius: 2px;  
+    -webkit-transition: all .3s;  
+    -o-transition: all .3s;  
+    transition: all .3s; 
+}
+
+.flex-row  dt>a:hover{
+    color: #000;
+}
+.zhantai .ztbox  dt>a.cur{
+    background: #cfd1fd;
+}
+/* 叉叉 */
+.icon-cancel{
+    position: absolute;
+    right: -9px;
+    top: -9px;
+    width: 18px;
+    height: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-radius: 50%;
+    background: #ff0000;
+    display: none;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    opacity: 0.7;
+}
+.icon-cancel:hover{
+    opacity: 1;
+}
+.icon_false{
+    display: inline-block;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: middle;
+    -webkit-transform: rotate(45deg);
+}
+.icon_false:after {
+    content: '/';
+    display: block;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    -webkit-transform: rotate(-90deg);
+}  
+.icon-cancel.icon-cancel-red {
+    background: #888;
+}
+.flex-row dt>a.cur .icon-cancel{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.zt-select{
+    margin-bottom: 20px;
+    padding-right: 74px;
+}
+.zt-selected{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding:12px 30px 12px 12px;
+    border: 1px solid #ededff;
+    border-radius: 3px;
+    background: #f9f9fe;
+    margin-bottom: 15px;
+    height: 84px;
+    overflow: hidden;
+    -webkit-transition:  all .3s;
+    -o-transition:  all .3s;
+    transition:  all .3s;
+    
+}
+.zt-selected>label{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 60px;
+    cursor: pointer;
+}
+#location{
+    display: none;
+}
+.zt-selected>label input{
+    margin: 0;
+}
+.zt-selected .items-box{
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+}
+.zt-selected .items-box dt{
+    width: 200px;
+}
+.toggle-btn{
+    position: absolute;
+    width: 16px;
+    height:16px;
+    right:15px;
+    cursor: pointer;
+    -webkit-transform-origin: center center;
+        -ms-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-transform:rotate(0deg);
+        -ms-transform:rotate(0deg);
+            transform:rotate(0deg);
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+}
+.toggle-btn.cur {
+    -webkit-transform:rotate(180deg);
+        -ms-transform:rotate(180deg);
+            transform:rotate(180deg);
+}
+/* 要素选择 s */
+.js-form .flex-row.yaosu{
+    margin-right: 18px;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 30px;
+}
+.yaosubox{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-bottom: 20px;
+}
+.yaosubox >label{
+    width: 60px;
+}
+.yaosubox .ys-selected{
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+}
+.ys-selected dt .a0{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.ys-selected dt .a0 input{
+    margin: 0;
+}
+.yaosubox .ys-selected dt{
+    width: 200px;
+}
+.yaosubox .ys-selected dt a.cur{
+    background:#d0e5fd; 
+}
+/* 要素选择 e */
+/* 数据检索按钮 s*/
+.search-btn{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.search-btn .a-btn{
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #6466f4;
+    color: #fff;
+    font-size: 16px;
+    border: 1px solid #6466f4;
+}
+.search-btn .a-btn:not(:last-child){
+    margin-right:20px;
+}
+.search-btn .a-btn.a-back{
+    background: none;
+    color: #6466f4;
+}
+.icon-sousuo{
+    margin-right:5px;
+}
+.icon-fanhui{
+    margin-right: 5px;
+}
+.layui-input{
+    background: url('../images/dataResource/date.png') right center no-repeat;
+}
+.layui-input:focus{
+    background-image:url('../images/dataResource/date-active.png') ;
+    border-color: #656df5 !important;
+}
+
+/* 数据检索按钮 e*/
+/* 表单 e*/

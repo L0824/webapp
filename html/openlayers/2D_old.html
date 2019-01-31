@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>二维可视化</title>
+<meta name="renderer" content="webkit" />
+<meta name="force-rendering" content="webkit" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+<link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+<link rel="stylesheet" href="../../css/daq.css">
+<link rel="stylesheet" href="../../font/iconfont.css">
+<link rel="stylesheet" href="../../css/commoncss/common_header.css">
+<link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+<link rel="stylesheet" href="../../css/commoncss/common.css">
+<link rel="stylesheet" href="../../css/commoncss/normalize.css">
+<link rel="stylesheet" href="../../css/bootstrap.min.css"  type="text/css">
+<link rel="stylesheet" href="../../css/ol.css" type="text/css">
+<script src="../js/ol.js"></script>
+<script src="../../scripts/jquery/jquery.min.js"></script>
+<script src="../../scripts/bootstrap/bootstrap.min.js"></script>
+<script src="../../scripts/bootstrap/popper.min.js"></script>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="font/iconfont.css">
+<link rel="stylesheet" href="css/index.css">
+<script src="./js/config.js"></script>
+<script src="./js/kriging.js"></script>
+<script src="./js/point.js"></script>
+<script src="./js/world.js"></script>
+<script src="./js/commonTools.js"></script>
+<script src="./js/read2DNetCDF.js"></script>
+<script src="./js/fy3.js"></script>
+<script src="./js/fire.js"></script>
+<script src="./js/isoSurface/ncIsoScpdsi.js"></script>
+<script type="text/javascript">
+var map;
+$(function() {
+	var tian_di_tu_satellite_layer = new ol.layer.Tile({
+	    title: "天地图卫星影像",
+	    visible:false,
+	    source: new ol.source.XYZ({
+	        url: 'http://t4.tianditu.com/DataServer?T=img_w&x={x}&y={y}&l={z}'
+	    })
+	});
+	var tian_di_tu_road_layer = new ol.layer.Tile({
+	    title: "天地图路网",
+	    source: new ol.source.XYZ({
+	        url: "http://t4.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}"
+	    })
+	});
+	var tian_di_tu_annotation = new ol.layer.Tile({
+	    title: "天地图文字标注",
+	    source: new ol.source.XYZ({
+	        url: 'http://t4.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}'
+	    })
+	});
+	
+	map = new ol.Map({
+		layers: [tian_di_tu_satellite_layer, tian_di_tu_road_layer, tian_di_tu_annotation],
+		target : 'map',
+		
+		view : new ol.View({
+			projection:'EPSG:4326',
+			center : [ 106.52714, 29.62487 ],
+			zoom : 4,
+			extent:[-180,-90,180,90],
+			minZoom: 2,
+			maxZoom: 16
+		})
+	});
+
+	 //右下角工具
+    var tool_text = $(".tool-box .tool-ul .tool-text");
+    tool_text.click(function(){
+        $(this).parent().toggleClass("cur");
+        if($(this).parent().hasClass("cur")){
+            $(this).parent().find(".tool-submenu").fadeIn('500');
+            $(this).parent().siblings().removeClass("cur");
+            $(this).parent().siblings().find(".tool-submenu").fadeOut('500');
+
+        }else{
+            $(this).parent().find(".tool-submenu").fadeOut('500');
+
+        }
+    });
+    var tool_subli = $(".tool-box .tool-submenu>li");
+    tool_subli.click(function(){
+        $(this).toggleClass("cur");
+        if($(this).hasClass("cur")){
+            $(this).siblings().removeClass("cur");
+        }
+
+    })
+	
+});
+</script>
+<style>
+[v-cloak] {
+	display: none;
+}
+</style>
+
+</head>
+<body>
+	<div class="page-wrapper" id="app" v-cloak>
+		<!-- 头部 start-->
+		<head-nav></head-nav>
+		<div class="mapBox" style="background-color: #ddd;">
+			<div id="map" style="height: 100%; position: relative;"></div>
+			<div id="weatherHeatmap" class="card "
+				style="width: 20rem; position: fixed; top: 550px; right: 10px;">
+				<div class="tool-box">
+					<ul class="tool-ul">
+						<li><span class="tool-text map">气象基础观测</span>
+							<ul class="tool-submenu clearfix">
+								<li><i class="iconfont icon-xingzhengtu"></i><span
+									class="tool-sub-text">气温</span></li>
+								<li><i class="iconfont icon-weixingtu"></i><span
+									class="tool-sub-text">降水</span></li>
+								<li><i class="iconfont icon-dixingtu"></i><span
+									class="tool-sub-text">云覆盖率</span></li>
+								<div class="triangle"></div>
+							</ul></li>
+						<div class="line"></div>
+						<li class="tool-li"><span class="tool-text tool">全球30m分辨率</span>
+							<ul class="tool-submenu">
+								<li><i class="iconfont icon-dixingtu"></i><span
+									class="tool-sub-text" onclick="GlobleFireSlash.addFireLayer()">火烧迹地</span></li>
+								<div class="triangle"></div>
+							</ul></li>
+						<div class="line"></div>
+						<li class="tool-li"><span class="tool-text tool">风云卫星遥感</span>
+							<ul class="tool-submenu">
+								<li><i class="iconfont icon-dixingtu"></i><span
+									class="tool-sub-text" onclick="GlobleFy3Data.addFy3Layer()">fy3Data</span></li>
+								<div class="triangle"></div>
+							</ul></li>
+						<div class="line"></div>
+						<li class="tool-li"><span class="tool-text tool">星地融合</span>
+							<ul class="tool-submenu">
+								<li><i class="iconfont icon-chongzhi"></i><span
+									class="tool-sub-text">重置</span></li>
+								<li><i class="iconfont icon-km"></i><span
+									class="tool-sub-text">80KM</span></li>
+								<li><i class="iconfont icon-zhandiantu"></i><span
+									class="tool-sub-text">站点图</span></li>
+								<li><i class="iconfont icon-sebantu"></i><span
+									class="tool-sub-text">色斑图</span></li>
+								<div class="triangle"></div>
+							</ul></li>
+						<div class="line"></div>
+						<li class="tool-li"><span class="tool-text tool">全球气候变化情景预估</span>
+							<ul class="tool-submenu">
+								<li><i class="iconfont icon-dixingtu"></i><span
+									class="tool-sub-text" onclick="GlobleNcIsoScpdsi.show()">情景预估</span></li>
+								<div class="triangle"></div>
+							</ul></li>
+						<li class="tool-li"><span class="tool-text tool"
+							onclick="CommonTool.clearMap()">清除</span></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<script src="./js/loadData.js"></script>
+		<script src="../../js/commonjs/vue.min.js"></script>
+		<script src="../../js/commonjs/header.js"></script>
+		<script src="../../js/commonjs/footer.js"></script>
+		<script src="../../js/daq.js"></script>
+		<script src="../../js/commonjs/toTop.js"></script>
+</body>
+</html>

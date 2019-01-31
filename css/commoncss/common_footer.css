@@ -1,0 +1,7 @@
+/* 底部 start*/
+footer{width: 100%; padding: 15px 0;font-size: 12px; background: #333333; min-width: 1200px;}
+footer p{color: #9a9a9a; text-align: center;}
+footer p>a{color: #9a9a9a;}
+footer .footer-p1{font-family: 'Arial';font-size: 14px;}
+footer .footer-p2{margin-top: 5px;}
+/* 底部 end*/

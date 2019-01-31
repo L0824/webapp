@@ -1,0 +1,198 @@
+/* 标题 */
+.main-right-box{
+    padding-top: 20px;
+    padding-left: 22px;
+    background: #fff;
+    border: 1px solid #dedede;
+    padding-bottom: 40px;
+}
+.flex-right{
+    height: auto;
+}
+.right-title{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.right-title .title{
+    position: relative;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    background: #e7edf7;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.right-title .line{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    font-size: 14px;
+    padding-left: 10px;
+    height: 40px;
+    border-bottom: 2px solid #e7edf7;
+}
+.result-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 22px;
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.result-box .s{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: 42px;
+}
+.result-box .s .s-title{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #000;
+}
+.result-box .s .select-box{
+    background: #fff;
+    height: 36px;
+    border-radius: 3px;
+}
+.select-box .layui-edge{
+    border: none;
+    top: 0;
+    right:0;
+    margin-top: 1.5px;
+    width: 35px;
+    height: 35px;
+    background: url('../images/dataResource/drop.png') center no-repeat;
+}
+.result-box .s select{
+    width: 180px;
+    height:36px ;
+    padding-left: 10px;
+    border-radius: 3px;
+    border-color: #e6e6e6;
+}
+.date-s .layui-input{
+    background: url('../images/dataResource/date.png') right center no-repeat;
+    cursor: pointer;
+}
+.date-s .layui-input:focus{
+    background-image:url('../images/dataResource/date-active.png') ;
+    border-color: #656df5 !important;
+}
+
+.result-box .s-form{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 10px;
+}
+.s .date-s{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.date-s .date-box{
+    background: #fff;
+}
+.date-s .m-line {
+    margin: 0 5px;
+    color: #333;
+}
+.s-btn{
+    padding: 9px 30px;
+    color: #fff;
+    background: #6466f4;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.icon-sousuo{
+    margin-right: 5px;
+    font-size: 14px;
+}
+#s-select{
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    text-indent:0.01px;
+　　text-overflow:"";
+    background: url('../images/dataResource/drop.png') right center no-repeat;
+    border: 1px solid #e6e6e6;
+    cursor: pointer;
+}
+#s-select:focus{
+    border-color: #656df5;
+}
+.layui-input:focus{
+    border-color: #656df5!important;
+}
+select::-ms-expand { display: none; }
+.layui-input, .layui-select, .layui-textarea{
+    border-radius: 3px;
+}
+.table-box{
+    padding-right: 22px;
+}
+.d-btn{
+    padding: 4px 12px;
+    color: #c4c4c4;
+    font-family: 'Microsoft YaHei';
+    border-radius: 3px;
+}
+.d-btn.cur{
+    background: #6466f4;
+    color: #fff;
+}
+.d-btn.cur:hover{
+    opacity: 0.7;
+}
+.noload:hover,.noload:focus{
+    color: #c4c4c4;
+}
+.order-btn{
+    padding: 0 22px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+.a-btn{
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #6466f4;
+    color: #fff;
+    font-size: 16px;
+    border: 1px solid #6466f4;
+}
+.a-btn.a-back{
+    background: none;
+    color: #6466f4;
+}

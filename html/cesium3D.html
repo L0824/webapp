@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>三维可视化</title>
+<meta name="renderer" content="webkit"/>
+<meta name="force-rendering" content="webkit"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="../font/iconfont.css">
+<link rel="stylesheet" href="../js/commonjs/layui-v2.4.5/layui/css/layui.css">
+<link rel="stylesheet" href="../css/commoncss/bootstrap.min.css">
+<link rel="stylesheet" href="../js/commonjs/bootstraptable/bootstrap-table.css">
+<link rel="stylesheet" href="../css/commoncss/common_header.css">
+<link rel="stylesheet" href="../css/commoncss/common_footer.css">
+<link rel="stylesheet" href="../css/commoncss/common.css">
+<link rel="stylesheet" href="../css/commoncss/normalize.css">
+<!-- Custom styles for this template -->	
+<link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<link href="../css/bucket.css" rel="stylesheet">
+<!-- <link href="../css/pretty.css" rel="stylesheet"> -->
+<link href="../css/font-awesome1.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/commoncss/table.css">
+<link rel="stylesheet" href="../css/commoncss/AdminLTE.min.css">
+<link rel="stylesheet" href="../css/commoncss/_all-skins.min.css">
+<link rel="stylesheet" href="../css/commoncss/vince.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/themes/default/easyui.css"> -->
+<link rel="stylesheet" type="text/css" href="../css/themes/icon.css">
+<link href="../css/cesium3D.css" rel="stylesheet">
+<style>
+		[v-cloak] {
+			display: none;
+		}
+		.main-b{
+			box-shadow: rgb(72, 71, 71) 3px 3px 19px;
+		}
+</style>
+</head>
+<body class="skin-blue sidebar-mini sidebar-collapse">
+	<template type="text/x-template" id="mainPanel">
+		<div class="main-form" >
+			<!-- 1/站点数据 -->
+			<div class="form1" v-show="imark==1">
+				<!-- 全球高空定时值基础数据集（V2.0） -->
+				<div class="t1" v-show="zdshow">
+					<div class="button">
+						<button type="button" class="layui-btn zd-loading">加载地图站点</button>
+	<!-- 					<button type="button" class="layui-btn zd-loading site-demo-active load" data-type="loading" @click="loadMapZD($event)">加载地图站点</button> -->
+						<button type="button"  class="layui-btn layui-btn-primary layClear-btn" >清除</button>
+					</div>
+					<div class="a-alert"><i class="layui-icon layui-icon-about"></i>请点击右侧地图上站点查看站点信息</div>	
+					<div class="info">
+						<form action="" class="layui-form">
+							<div class="layui-form-item">
+								<label for="" class="layui-form-label "><i class="lay layui-icon layui-icon-component"></i>站点名称：</label>
+								<div class="layui-input-block">
+									<div class="zdName"></div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label for="" class="layui-form-label"><i class="lay layui-icon layui-icon-date"></i>日期：</label>
+								<div class="layui-input-block">
+									<div class="date-s">
+									<!-- <input type="text" readonly name="title" required  lay-verify="required" placeholder="点击选择年月" class="layui-input date-one" > -->
+										<div class="date-box">
+											<input type="text" placeholder="请选择开始时间" lay-verType="tips" lay-verify="starttime" readonly  class="layui-input d-from">
+										</div>
+										<span class="m-line">-</span>
+										<div class="date-box">
+											<input type="text" placeholder="请选择结束时间" lay-verType="tips" lay-verify="endtime" readonly  class="layui-input d-to" >
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label for="" class="layui-form-label "><i class="lay layui-icon layui-icon-engine"></i>时次：</label>
+								<div class="layui-input-block">
+										<select name="times" lay-filter="times" id="times">
+											<option value="">请选择时次</option>
+											<option value="0">0</option>
+											<option value="12">12</option>
+										</select>
+									</div>
+							</div>
+							<div class="layui-form-item">
+								<button id="zd-btn" class="layui-btn" lay-submit lay-filter="zdfind" data-type="loading" @click="zdfind">查询</button>
+								<button type="reset" class="layui-btn layui-btn-primary reset" >重置</button>
+							</div>
+						</form>
+						<div class="t-box">
+							<table id="zdTable" ref="zdData" class="zdTable table text-nowrap table-box table-hover" style="width:100%;" ></table>
+						</div>
+					</div>		
+				</div>
+				<!-- 全球气温历史数据 -->
+				<div class="t2" v-show="!zdshow">
+					<form action="" class="layui-form">
+						<div class="layui-form-item" >
+								<label class="layui-form-label"><i class="lay layui-icon layui-icon-date"></i>日期：</label>
+								<div class="layui-input-block">
+									<input type="text" readonly lay-verType="tips" name="title"   lay-verify="date" placeholder="点击选择日期(2005-01-01至2014-12-31之间)" class="layui-input qiwendate" >
+								</div>
+						</div>
+						<div class="layui-form-item" >
+								<label class="layui-form-label"><i class="lay layui-icon layui-icon-engine"></i>时次：</label>
+								<div class="layui-input-block">
+									<select class="" name="" lay-verType="tips"  lay-filter="qiwen"  lay-verify="times">
+										<option value="">请选择时次</option>
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+									</select>
+								</div>
+						</div>
+						<div class="layui-input-block">
+								<button class="layui-btn site-demo-active load" lay-submit lay-filter="qiwenloading" data-type="loading" @click="qwsubmit($event)">加载地图站点</button>
+								<button type="reset" class="layui-btn layui-btn-primary reset">重置</button>
+								<button type=button class="layui-btn layui-btn-primary layClear-btn">清除</button>
+						</div>
+						<div class="a-alert"><i class="layui-icon layui-icon-about"></i>请点击右侧地图上站点查看站点信息</div>	
+					</form>
+					<div class="stationBox">
+						<!-- 本站信息 -->
+						<div class="station">
+							<div class="site-title">
+								<fieldset class="layui-elem-field">
+										<legend>本站信息</legend>
+										<div class="layui-field-box">
+											<div class="site-block">
+													<div class="layui-fluid">
+													<div class="layui-row">
+														<div class="layui-col-md6" v-for="item in stationInfo">
+															<label >{{item.name}}：</label>
+															<span class="zd-content">{{item.value}}</span>
+														</div>
+													</div>
+													</div>
+												</div>
+										</div>
+								</fieldset>
+								<fieldset class="layui-elem-field">
+										<legend>本站观测要素</legend>
+										<div class="layui-field-box">
+											<div class="site-block">
+												<div class="layui-fluid">
+													<div class="layui-row">
+														<div :class="item.class" v-for="item in stationElements">	
+															<label>{{item.name}}：</label>
+															<span class="zd-content">{{item.value}}</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+								</fieldset>
+							</div>
+						</div>
+						<!-- 本站观测要素 -->
+					</div>
+				</div>
+			</div>
+			<!-- 2/nc数据 -->
+			<div class="form2" v-show="imark==2">
+				<form action="" class="layui-form">
+					<div class="layui-form-item" id="qiya">
+							<label class="layui-form-label"><i class="lay layui-icon layui-icon-console"></i>气压：</label>
+							<div class="layui-input-block">
+								<select class="selectQiya" name="qiya" lay-verType="tips"  lay-filter="qiya"  lay-verify="qiya">
+									<option value="">请选择气压</option>
+									<option value="100000.0">100000.0 (Pa)</option>
+									<option value="92500.0">92500.0 (Pa)</option>
+									<option value="85000.0">85000.0 (Pa)</option>
+									<option value="70000.0">70000.0 (Pa)</option>
+									<option value="60000.0">60000.0 (Pa)</option>
+									<option value="50000.0">50000.0 (Pa)</option>
+									<option value="40000.0">40000.0 (Pa)</option>
+									<option value="30000.0">30000.0 (Pa)</option>
+									<option value="25000.0">25000.0 (Pa)</option>
+									<option value="20000.0">20000.0 (Pa)</option>
+									<option value="15000.0">15000.0 (Pa)</option>
+									<option value="10000.0">10000.0 (Pa)</option>
+									<option value="7000.0">7000.0 (Pa)</option>
+									<option value="5000.0">5000.0 (Pa)</option>
+									<option value="3000.0">3000.0 (Pa)</option>
+									<option value="2000.0">2000.0 (Pa)</option>
+									<option value="1000.0">1000.0 (Pa)</option>
+								</select>
+							</div>
+					</div> 
+					<div class="layui-form-item table-responsive item-table" >
+							<table lay-verType="tips" lay-filter="nctable" lay-verify="table" id="ncTable"  class="dataTable table text-nowrap table-box table-hover" style="width:100%;" ></table>
+							<!-- <table class="dataTable layui-table layui-hide" lay-filter=""></table> -->
+					</div>
+					<div class="layui-form-item" id="date-layui">
+						<label class="layui-form-label"><i class="lay layui-icon layui-icon-date"></i>日期：</label>
+						<div class="layui-input-block" id="div-laydate">
+							<input type="text" readonly lay-verType="tips" name="title"   lay-verify="date" placeholder="点击选择年月" class="layui-input date-two" >
+						</div>
+					</div>
+					<div class="layui-input-block">
+						<button id="nc-btn" class="layui-btn site-demo-active load" lay-submit lay-filter="zdloading" data-type="loading" @click="ncsubmit($event)">加载</button>
+						<button type="reset" class="layui-btn layui-btn-primary reset" >重置</button>
+						<button type=button class="layui-btn layui-btn-primary layClear-btn">清除</button>
+					</div>
+				
+				</form>
+			</div>
+			<!-- 3/文件数据 -->
+			<div class="form3" v-show="imark==3">
+			</div>
+			<!-- 4/图片数据 -->
+			<div class="form4" v-show="imark==4" >
+			</div>
+			<!-- 5/卫星遥感数据 -->
+			<div class="form5" v-show="imark==5">
+					<form action="" class="layui-form">
+				<div class="layui-form-item table-responsive item-table">
+						<table lay-verType="tips" lay-verify="table" id="ygTable" class="dataTable table text-nowrap table-box table-hover" style="width:100%;"  ></table>
+				</div>
+				<div class="layui-input-block">
+						<button id="yg-btn" class="layui-btn site-demo-active load" lay-submit lay-filter="ygloading" data-type="loading" @click="ygsubmit($event)">加载</button>
+						<button type="reset" class="layui-btn layui-btn-primary reset" >重置</button>
+						<button  type=button class="layui-btn layui-btn-primary layClear-btn">清除</button>
+				</div>
+			</div>
+			<!-- 6/火烧迹地数据 -->
+			<div class="form6" v-show="imark==6">
+				<div class="layui-input-block">
+						<button id="hs-btn" class="layui-btn site-demo-active load" lay-submit lay-filter="loading" data-type="loading" @click="hssubmit($event)">加载</button>
+						<button  type=button class="layui-btn layui-btn-primary layClear-btn">清除</button>
+				</div>
+			</div>
+			<!-- 7/星地融合数据 -->
+			<div class="form7"  v-show="imark==7">
+
+			</div>
+
+		</div>
+	</template>	
+<div class="body-wrapper page-wrapper" id="app" v-cloak>
+	<!-- 进度条 -->
+	<div class="mask">
+		<!-- <div class="layui-progress layui-progress-big" id="progress" lay-showpercent="true" lay-filter="demo">
+			<div class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>
+		</div> -->
+    </div>
+	<!-- 标题 start-->
+	<header class="header">
+			<a href="/gcGate/html/home.html"><i class="logo entr-r"><img src="../images/logo.png" alt=""></i>
+				<div class="title-text entr">
+					<span class="chinese-text">全球变化大数据云共享平台</span>
+					<span class="english-text"></span>
+				</div>
+			</a>  
+	</header>
+	<!-- 标题 end-->
+	<!-- 数据集菜单面板切换  s -->
+<!-- <div class="m-box"> -->
+	<aside class="main-sidebar" v-show="menutree">
+		<section class="sidebar" >
+			<div class="dataTitle">
+				<span>数据集</span>
+				<i class="sidebar-toggle fa fa-reorder" data-toggle="offcanvas" role="button"></i>
+			</div>
+			<ul class="sidebar-menu">
+				<li :class="{'treeview':menutree,'active':index == i1}" v-for="(item,index) in menutree">
+					<a href="javascript:;">
+					<i class="iconfont" :class="item.icon"></i>
+					<span v-text="item.label"></span>
+					<div class="pull-right-container" v-show="item.children.length>0">
+						<i class="fa fa-angle-left pull- right"></i>
+					</div>
+					</a>
+					<ul :class="{'treeview-menu':item.children.length>0}" v-show="item.children.length>0">
+						<li v-for ="(item2,index2) in item.children" >
+							<a href="javascript:;">
+								<span v-text="item2.label"></span>
+								<div class="pull-right-container" v-show="item2.children.length>0">
+									<i class="fa fa-angle-left pull-right"></i>
+								</div>
+							</a>
+							<ul :class="{'treeview-menu':item2.children.length>0}" v-show="item2.children.length>0">
+								<li v-for="(item3,index3) in item2.children" @click="changePanel(item3,index3,index2,index)" class="treeview" :class="{'cur':(index3==i3)&&(index2==i2)&&(index==i1)}">
+									<a href="javascript:;" class="last-a"><span v-text="item3.label"></span></a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	</aside>
+	<div class="right-box">
+		<div class="main-b">
+			<div class="blank" >
+				<span v-text="dataType"></span>
+			</div>
+			<div class="main-tab">
+				<div class="datalist"><span class="selected">已选择数据：</span><span class="dataContent" v-text="dataName"></span><span><a target="_blank" :href="'dataResource/dataResourceDetail.html?id='+dataId">（跳转至详情页）</a></span></div>
+				<panel ref="mp" :imark = "mark"  :sign="curDataInfo"></panel>
+			</div>
+		</div>
+		<div class="arrow-box">
+			<div class="arrow-r">
+				<i class="fa fa-angle-double-left"></i>
+			</div>
+		</div>
+	</div>
+<!-- <div> -->
+	<!-- 数据集菜单面板切换  e -->
+	<!-- 面板 -->
+	<!-- <div class="gis-panel "> -->
+			<!-- <div class="main-panel ">
+				<form class="layui-form" action="">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="layui-icon layui-icon-component"></i>数据集：</label>
+							<div class="layui-input-block">
+							<input type="text" readonly name="title" required  lay-verify="required" placeholder="点击选择数据集" autocomplete="off" class="layui-input" id="data-ipt">
+							</div>
+						</div>
+						<div class="layui-form-item" id="qiya">
+							<label class="layui-form-label"><i class="layui-icon layui-icon-date"></i>气压：</label>
+							<div class="layui-input-block">
+								<select class="selectQiya" name="qiya" lay-filter="qiya">
+									<option value=""></option>
+									<option value="100000.0">100000.0 (Pa)</option>
+									<option value="92500.0">92500.0 (Pa)</option>
+									<option value="85000.0">85000.0 (Pa)</option>
+									<option value="70000.0">70000.0 (Pa)</option>
+									<option value="60000.0">60000.0 (Pa)</option>
+									<option value="50000.0">50000.0 (Pa)</option>
+									<option value="40000.0">40000.0 (Pa)</option>
+									<option value="30000.0">30000.0 (Pa)</option>
+									<option value="25000.0">25000.0 (Pa)</option>
+									<option value="20000.0">20000.0 (Pa)</option>
+									<option value="15000.0">15000.0 (Pa)</option>
+									<option value="10000.0">10000.0 (Pa)</option>
+									<option value="7000.0">7000.0 (Pa)</option>
+									<option value="5000.0">5000.0 (Pa)</option>
+									<option value="3000.0">3000.0 (Pa)</option>
+									<option value="2000.0">2000.0 (Pa)</option>
+									<option value="1000.0">1000.0 (Pa)</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item table-responsive" id="item-table">
+							<table id="dataTable" style="width:100%;"  class="table text-nowrap table-box table-hover table"></table>
+						</div>
+						<div class="layui-form-item" id="date-layui">
+							<label class="layui-form-label"><i class="layui-icon layui-icon-date"></i>日期：</label>
+							<div class="layui-input-block">
+								<input type="text" readonly name="title" placeholder="点击选择年月" class="layui-input" id="time">
+							</div>
+						</div>
+						<div class="layui-input-block">
+							<button id="layLoad-btn" class="layui-btn site-demo-active" lay-submit lay-filter="loading" data-type="loading">加载</button>
+							<button type="reset" class="layui-btn layui-btn-primary reset" >重置</button>
+							<div id="layClear-btn" class="layui-btn layui-btn-primary">清除</div>
+						</div>
+						
+				</form>
+				
+			</div> -->
+			<!-- <div class="arrow" title="收缩面板">
+					<i class="layui-icon layui-icon-shrink-right"></i>
+			</div> -->
+		<!-- </div> -->
+		<!-- 弹窗数据集 -->
+		<!--<div id="data-layer">
+				<div class="select-info"><span class="title">已选择：</span><span class="checked">无</span></div>
+				<div class="menu-list">
+					<ul id="data-tree">
+		
+					</ul>
+				</div>
+		</div> -->
+		<!-- <div class="gis-panel ">
+	<div class="layui-tab layui-tab-card">
+		<ul class="layui-tab-title">
+			<li class="layui-this">nc</li>
+			<li>站点</li>
+			<li>shp</li>
+		</ul>
+		<div class="layui-tab-content" style="height: 210px;">
+			<div class="main-panel layui-tab-item layui-show">
+				<form class="layui-form" action="">
+						<div class="layui-form-item">
+							
+							<label class="layui-form-label"><i class="layui-icon layui-icon-component"></i>数据集：</label>
+							<div class="layui-input-block">
+							<input type="text" readonly name="title" required  lay-verify="required" placeholder="点击选择数据集" autocomplete="off" class="layui-input" id="data-ipt">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="layui-icon layui-icon-date"></i>日期：</label>
+							<div class="layui-input-block">
+								<input type="text" readonly name="title" required  lay-verify="required" placeholder="点击选择年月" class="layui-input" id="time">
+							</div>
+						</div>
+						
+						<div class="layui-input-block">
+							<button id="layLoad-btn" class="layui-btn" lay-submit lay-filter="loading">加载</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<div id="layClear-btn" class="layui-btn layui-btn-primary">清除</div>
+						</div>
+				</form>
+			</div>
+			<div class="layui-tab-item">内容2</div>
+			<div class="layui-tab-item">内容3</div>
+	  </div>
+	</div>
+	<div class="arrow" title="收缩面板">
+			<i class="layui-icon layui-icon-shrink-right"></i>
+	</div>
+</div> -->
+		
+    <!-- cesium -->
+	<div id="cesiumContainer">
+	</div>
+	<!-- 	nc图例 -->
+	<div id="ncLegend"></div>
+	<div id="ncTaLegend"></div>
+	<div id="ncEles" style="padding: 3px">
+		<span>要素：</span> <select id="elements" class="easyui-combobox"
+			name="elements" style="width: 70px;">
+			<option value="dry">干旱</option>
+			<option value="#">温度</option>
+		</select> 
+		<span>时间：</span>
+		<input id="attYearMonth" type="text" name="attYearMonth"
+				class="easyui-datebox">
+		<a href="#" class="easyui-linkbutton" onclick="findNCDataShow()">查询</a>
+	</div>
+	<!-- 	编辑绘制工具条 -->
+	<div id="toolbars" class="param-container tool-bar">
+	   <button type="button" id="point" class="button black">绘制点</button>
+	   <button type="button" id="polyline" class="button black">绘制线</button>
+	   <button type="button" id="polygon" class="button black">绘制面</button>
+	   <button type="button" id="marker" class="button black">添加地标</button>
+	   <button type="button" id="clear" class="button black">清除</button>
+	</div>
+<!-- 	量算工具条 -->
+	<div id="mea-cal-toolbar" class="param-container tool-bar">
+	    <button type="button" id="distance" class="button black">测距</button>
+	    <button type="button" id="area" class="button black">测面</button>
+	    <button type="button" id="height" class="button black">测高</button>
+	    <button type="button" id="clear1" class="button black">清除</button>
+	    <div style="width: 120px;">
+	        <select id="selOpt">
+	            <option selected value="1">空间量算</option>
+	            <option value="2">贴地量算</option>
+	        </select>
+	    </div>
+	</div>
+	<div id="divwind" class="card">
+		<div class="card-header">风向图</div>
+		<div class="card-body">
+			<button type="button" id="chooseView" 
+				class="btn btn-primary">选择视域</button>
+			
+		</div>
+	</div>
+	<!-- 左边toolbar开始 -->
+	<!-- <div class="tool-container">		
+		  <div class="t-item tool-box">
+			  <a href="javascript:;" ><span  class="com-icon tool-icon tool-box-icon fa fa-wrench"></span> 
+			<span class="tool-text">通用工具</span> <em class="triangle tool-container-triangle fa fa-angle-up"></em></a> 
+			<ul class="tool-ul" style="">
+				<li class="tool-li">
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="getPosition()" class="tool-item">
+							<span class="com-icon fa fa-i-cursor"></span> 
+							<span class="tool-text">拾取位置</span>
+						</a> 
+				   </div> 
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="editDraw()" class="tool-item">
+							<span class="com-icon fa fa-map-o"></span> 
+							<span class="tool-text">编辑绘制</span>
+					    </a> 
+					</div> 
+					<div class="tool-item-box">
+					<a href="javascript:;" onclick="measureCal()" class="tool-item">
+							<span class="com-icon  fa fa-folder-open-o"></span> 
+							<span class="tool-text">量算</span></a> 
+					</div> 
+					</li> 
+				</ul>
+			</div> 
+			
+			<div class="t-item tool-box">
+			  <a href="javascript:;" ><span  class="com-icon tool-icon tool-box-icon fa fa-wrench"></span> 
+			<span class="tool-text">可视化</span> <em class="triangle tool-container-triangle fa fa-angle-up"></em></a> 
+			<ul class="tool-ul" style="">
+				<li class="tool-li">
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="initTmp()" class="tool-item">
+							<span class="com-icon fa fa-i-cursor"></span> 
+							<span class="tool-text">温度</span>
+						</a> 
+				   </div> 
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="initRain()" class="tool-item">
+							<span class="com-icon fa fa-map-o"></span> 
+							<span class="tool-text">降水</span>
+					    </a> 
+					</div> 
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="initArid()" class="tool-item">
+							<span class="com-icon fa fa-map-o"></span> 
+							<span class="tool-text">干旱</span>
+					    </a> 
+					</div> 
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="windMapShow()" class="tool-item">
+							<span class="com-icon  fa fa-folder-open-o"></span> 
+							<span class="tool-text">风向</span></a> 
+					</div> 
+					<div class="tool-item-box">
+						<a href="javascript:;" onclick="ncShowTog()" class="tool-item">
+							<span class="com-icon  fa fa-folder-open-o"></span> 
+							<span class="tool-text">nc干旱</span></a> 
+					</div> 
+					</li> 
+				</ul>
+			</div>
+
+			<div class="t-item">
+				<a href="javascript:;" onclick="removeAll()">
+					<span class="com-icon  tool-icon  fa fa-trash-o"></span> 
+					<span class="tool-text">清除</span>
+				</a>
+			</div> 
+	</div> -->
+	<!-- 左边toolbar结束 -->
+	<!-- 时间轴开始 -->
+	<div id="boxDiv">
+	<div class="box" id="box">
+	<div id="progressTime_control" onclick="progressTimeControl(this)" title="开始"></div>
+	<div class="progressTime" id="progressTime" style="z-index:9">
+		<div>
+			<p id="startTime" style=" float:left;margin-left:33px;opacity: 0;display: none;"></p>
+			<p  id="endTime" style=" float:right;margin-right:33px;opacity: 0;display: none;"></p>
+		</div>
+		<div class="time_slot">
+			<p>06</p>
+			<p>07</p>
+			<p>08</p>
+			<p>09</p>
+			<p>10</p>
+		</div>
+		<div id="progressTime_concent">
+			<div id="scrollBarBox">
+				<div id="scrollBar">
+					<div id="scroll_Track"></div>
+					<div id="scroll_Thumb"></div>
+				</div>
+			</div>
+			<div class="timecode"></div>
+			<div style="width:90%; margin-left: auto;margin-right: auto;">
+				<div style="width:300px;float:right;margin-right:-110px;margin-top:-8px">
+				<p id="TimeSpeed" style="float:left;margin-right:40px;display:none">×1</p>
+				<p style="float:right" id="scrollBarTxt"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>	
+	</div>
+	
+</div>
+	<!-- 时间轴结束 -->
+	<script src="../js/commonjs/jquery-3.2.1.min.js"></script>
+	<script src="../js/commonjs/vue.min.js"></script>
+	<script src="../js/commonjs/axios.min.js"></script>
+	<script src="../js/commonjs/layui-v2.4.5/layui/layui.js"></script>
+	
+
+	<script src="../config/config.js"></script>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+<!-- 	<script type="text/javascript" src="../js/cesium3D/require.min.js" -->
+<!-- 		data-main="js/main"></script> -->
+<!-- 	<script type="text/javascript" src="../Build/Sandcastle/Sandcastle-header.js"></script> -->
+	<script type="text/javascript" src="../Build/Cesium/Cesium.js"></script>
+	<script type="text/javascript" src="../js/cesium3D/viewerCesiumNavigationMixin.min.js"></script>
+	<script type="text/javascript" src="../js/cesium3D/imageryproviders/googlemaps.js"></script>
+	<script type="text/javascript" src="../js/cesium3D/cesium_ext/ArcGisImageServerTerrainProvider.js"></script>
+	<script type="text/javascript" src="../js/cesium3D/basepicker.js"></script>
+	<script src="../scripts/jquery/jquery.min.js"></script>
+	<script src="../scripts/jquery/jquery.easyui.min.js"></script>
+	<script src="../scripts/jquery/easyui-lang-zh_CN.js"></script>
+	<script src="../scripts/bootstrap/popper.min.js"></script>
+	<script src="../scripts/bootstrap/bootstrap.min.js"></script>
+	<script src="../scripts/bootstrap/bootstrap-select.min.js"></script>
+	<script src="../js/commonjs/bootstraptable/bootstrap-table.js"></script>
+	<script src="../js/commonjs/bootstraptable/bootstrap-table-zh-CN.js"></script>
+<!-- 	<script type="text/javascript" src="../js/cesium3D/cesium_ext/HeatmapImageryProvider.js"></script> -->
+<!-- 	<script src="../scripts/shows/windPath.js"></script> -->
+	<script src="../scripts/commons/timeLine.js"></script>
+<!-- 	<script src="../scripts/datas/landtemperature.js"></script> -->
+<!-- 	<script src="../scripts/datas/rainfall.js"></script> -->
+<!-- 	<script src="../scripts/commons/position.js"></script> -->
+<!-- 	<script src="../scripts/commons/tooltip.js"></script> -->
+<!-- 	<script src="../scripts/commons/editDraw.js"></script> -->
+<!-- 	<script src="../scripts/commons/measureCal.js"></script> -->
+	<script src="../scripts/nc/Read3DNetCDF.js"></script>
+	<script src="../scripts/nc/ncScpdsi.js"></script>
+	<script src="../scripts/nc/ncTa.js"></script>
+	<script src="../scripts/nc/ncWind.js"></script>
+	<script src="../scripts/nc/ncHeight.js"></script>
+	<script src="../scripts/site/readSite3D.js"></script>
+	<script src="../scripts/site/high.js"></script>
+	<script src="../scripts/site/land.js"></script>
+	<script src="../scripts/panel.js"></script>
+	<script src="../scripts/FileSaver.min.js"></script>
+	<script src="../scripts/app.min.js"></script>
+	<script src="../scripts/nicescroll.js"></script>
+	<script src="../scripts/demo.js"></script>
+	<script src="../scripts/init.js"></script>
+	<script>
+			// 工具条
+			var tool_a = $(".tool-container .t-item>a");
+			tool_a.click(function(){	
+				$(this).toggleClass("active");
+				if($(this).hasClass("active")){
+					$(this).siblings(".tool-ul ").slideDown();
+					$(this).parents(".t-item").siblings(".t-item").find("a").removeClass("active");
+					$(this).parents(".t-item").siblings(".t-item").find(".tool-ul").slideUp();
+				}else{
+					$(this).siblings(".tool-ul ").slideUp();
+				}
+			})
+				
+				$(".toTop").tooltip("toTop",{
+						'movespeed':'300',
+						'showspeed':'300',
+						'overheight':'400'
+				});
+			</script>
+			
+</body>
+</html>

@@ -1,0 +1,61 @@
+var ctx = "${ctx}";
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+	lineNumbers: true,
+	matchBrackets: true,
+	mode: "text/x-python",
+	indentUnit: 4,
+	indentWithTabs: true,
+});
+checkOne(0);
+$('#aaa').click(function() {
+    console.log(editor.getValue());
+});
+//<!--切换-- >
+$(function () {
+	$(".sub_nav ul li").click(function () {
+	    $(this).addClass("on").siblings().removeClass("on");
+	    $(".bd >div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
+	});
+});
+//数据切换
+$(function () {
+	$(".list_date ul li").click(function () {
+	    $(this).addClass("cur").siblings().removeClass("cur");
+	    $(".txtbox >div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
+	});
+});
+//算法切换
+$(function () {
+	$(".list_Algorithm ul li").click(function () {
+	    $(this).addClass("cur").siblings().removeClass("cur");
+	    $(".algorithmbox >div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
+	});
+});
+
+function checkOne(num) {    
+	$($(".sub_nav ul li")[num]).addClass("on").siblings().removeClass("on");
+	$(".bd >div").eq($($(".sub_nav ul li")[num]).index()).removeClass("hidden").siblings().addClass("hidden");
+}
+
+function commitComment(){
+	var frm = $("#CommentForm");
+	var params=frm.serialize();
+	$.ajax({
+	    type : "POST",
+	    url : '/comment',
+	    data : params,
+	    success : function(data) {
+	    	data=eval("("+data+")");
+				alert(data.msg);
+				if(data.code==0){
+					//window.location.href="../resource/main?tableId="+$("#tableId").val(); 
+					refreshPage();
+					checkOne(4);
+					$("#comment").val("");
+				}else if(data.code==2){
+					window.location.href="/login"; 
+				}
+	    }
+	});
+}
+

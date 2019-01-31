@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <script>/*@cc_on window.location.href="http://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); @*/</script>
+    <title>工作动态详情</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../../images/favicon.ico"/> 
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/commoncss/normalize.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_header.css">
+    <link rel="stylesheet" href="../../css/commoncss/common_footer.css">
+    <link rel="stylesheet" href="../../css/commoncss/common.css">
+    <link rel="stylesheet" href="../../css/commoncss/dynamicScience.css">
+    <link rel="stylesheet" href="../../css/commoncss/newsDetail.css">
+    <style>
+            [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper" id="app" v-cloak>
+        <!-- 头部 start-->
+       <head-nav></head-nav>    
+       <!-- 头部 end-->
+       <div class="main-container">
+            <div class="g-container">
+                    <div class="page-nav"><span class="last-page">科技动态</span><span class="arrow-icon">&gt;</span><span class="last-page">工作动态</span><span class="arrow-icon">&gt;</span><span>详情</span></div> 
+               <div class="white content-wrapper c-border">
+                    <div class="title">
+                        <div class="model-title model-padding">
+                                <div class="title-text ">工作动态</div> 
+                                <div class="line-dot">
+                                   
+                                </div>
+                        </div>
+                    </div>
+                    <!-- 内容 start-->
+                    <div class="c-wrapper" v-if="newsDetail">
+                        <!-- 标题 start-->
+                            <div class="datas-title">
+                                <h4 class="article-title">{{this.newsDetail.title}}</h4> 
+                                <div class="article-author">
+                                    <div class="author-box">
+                                        <span class="b-color">文章来源</span>
+                                        <span class="dot-e">:</span>
+                                        <span class="text-c">{{this.newsDetail.newsSource}}</span>
+                                        <span class="dot-d">•</span>
+                                    </div> 
+                                    <div class="data-origin">
+                                        <span class="b-color">发布时间</span>
+                                        <span class="dot-e">:</span>
+                                        <span class="text-c">{{this.newsDetail.submtDate.split(' ')[0]}}</span>
+                                        <!-- <span class="dot-d">•</span> -->
+                                    </div>
+                                    <!-- <div class="data-origin">
+                                            <span class="b-color">字号</span>
+                                            <span class="dot-e">:</span>
+                                            <span class="text-c"><i class="fontsizeBtn">大</i><i class="fontsizeBtn">中</i><i class="fontsizeBtn">小</i></span>
+                                    </div> -->
+                                </div>
+                            </div> 
+                            <!-- 标题 end-->
+                            <!-- 正文 start-->
+                            <div class="page-cnt" v-html="newsDetail.content">
+                                <!-- <div class="page-img">
+                                    <img src="../../images/news/newsDetail.png" alt="">
+                                </div>
+                                <div class="page-para">
+                                    <p class="p-para">
+                                            10月14日，国家重点研发计划“全球变化及应对”重点专项“全球变化大数据的科学认知与云共享平台”项目启动暨实施方案论证会在中国科学院遥感与数字地球研究所召开。
+                                    </p>
+                                    <p class="p-para">
+                                            中科院生态环境研究中心研究员、中科院院士傅伯杰，地理科学与资源研究所研究员、中国工程院院士孙九林，遥感地球所研究员、中科院院士郭华东等7位专家组成论证专家组。来自项目主管部门科学技术部高技术研究发展中心全球变化专项办、项目推荐单位中科院前沿科学与教育局，以及项目承担与参与单位的科研骨干共计48人参加了会议。
+                                    </p>
+                                    <p class="p-para">
+                                            专家组听取了项目与课题的汇报，就项目实施方案进行了详尽的质询，并就如何进一步促进项目实施提出意见和建议，要求进一步细化项目与课题实施方案，明确要素指标，坚持以科学问题为导向，不畏艰险、勇于创新，用大数据推动科学新发现。
+                                    </p>
+                                    <p class="p-para">
+                                            项目负责人、遥感地球所研究员吴炳方代表项目组讲话，表示将根据会议建议与意见修改完善实施方案，并对项目下一阶段的工作进行了安排，希望项目参与人员精诚团结、永攀高峰，以主人翁的精神全力投入到项目中，不负国家的重托。
+                                    </p>
+                                </div> -->
+
+                            </div>
+                            <!-- 正文 end-->
+
+                    </div>
+
+                    <!-- 内容 end-->
+               </div>
+                
+            </div>
+       </div>
+       <foot></foot>
+        <!-- 回到顶部 start-->
+        <div class="toTop">
+                <i class="iconfont icon-gengduo"></i>
+            </div>
+            <!-- 回到顶部 end-->
+    </div>
+    <script src="../../js/commonjs/polyfill.min.js"></script>
+    <script src="../../js/commonjs/jquery-3.2.1.min.js"></script>
+    <script src="../../js/commonjs/axios.min.js"></script>
+    <script src="../../js/commonjs/vue.min.js"></script>
+    <script src="../../js/commonjs/header.js"></script>
+    <script src="../../js/commonjs/footer.js"></script>
+    <script src="../../js/commonjs/toTop.js"></script>
+    <script src="../../js/scienceDynamic/news_detail.js"></script>
+    
+</body>
+</html>

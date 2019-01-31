@@ -1,0 +1,195 @@
+.main-right-box{
+    padding-top: 20px;
+    padding-left: 22px;
+    background: #fff;
+    border: 1px solid #dedede;
+    padding-bottom: 40px;
+}
+.flex-right{
+    height: auto;
+}
+.right-title{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.right-title .title{
+    position: relative;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    background: #e7edf7;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.right-title .line{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    color: #aa580f;
+    font-size: 14px;
+    padding-left: 10px;
+    height: 40px;
+    border-bottom: 2px solid #e7edf7;
+}
+/* 内容 */
+.result-box{
+    padding: 22px;
+    background: #f9f9f9;
+    margin-bottom: 10px;
+}
+.res-ul>li{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.res-ul>li:not(:last-child){
+    margin-bottom: 15px;
+}
+.res-ul>li .sub-ul{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+}
+.res-ul>li .sub-ul>li{
+    margin-right:13px;
+    margin-bottom: 10px;
+}
+.res-ul>li .res-title{
+    width: 70px;
+    padding-top: 4px;
+    color: #000;
+}
+.res-ul>li .sub-ul li .item{
+    display: inline-block;
+    padding: 4px 8px;
+    background: #ebebeb;
+    color: #7b7b7b;
+    font-size: 14px;
+    border-radius: 3px;
+
+}
+.res-ul>li .sub-ul li .item.nobg{
+    background: none;
+    padding: 0;
+}
+.res-ul>li .sub-ul li .item:not(:first-child){
+    margin-right: 22px;
+}
+.icon-buy{
+    margin-right: 5px;
+}
+/* 表格样式 */
+.res-table{
+    padding-right: 22px;
+}
+
+/* .bootstrap-table .table > thead > tr > th{
+    border-bottom: none;
+    border-right-color: #ededed;
+    border-left: 1px solid #ededed;
+}
+.bootstrap-table .table > thead > tr {
+    border: 1px solid #e2f0ff;
+}
+.fixed-table-container{
+    border-radius: 0;
+}
+.table-box thead{
+    background: #f3fcff;
+}
+.fixed-table-container thead th .th-inner, .fixed-table-container tbody td .th-inner{
+    color: #000;
+    font-size: 14px;
+    text-align: center;
+    font-weight: normal;
+}
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td{
+    border-top: none;
+}
+.fixed-table-container tbody td{
+    border-left: none;
+}
+.table-box tbody tr{
+    cursor: pointer;
+}
+.table-box tbody tr td{
+    color: #717171;
+    font-size: 14px;
+    font-family: 'arial';
+}
+.bootstrap-table .table:not(.table-condensed), .bootstrap-table .table:not(.table-condensed) > tbody > tr > th, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > th, .bootstrap-table .table:not(.table-condensed) > thead > tr > td, .bootstrap-table .table:not(.table-condensed) > tbody > tr > td, .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td{
+    padding:0;
+    text-align: center;
+    padding: 8px;
+    vertical-align: middle;
+}
+.fixed-table-container{
+    border: none;
+}
+
+.table-box{
+    border: none;
+}
+.table-box tbody tr td{
+
+    border-top: 1px dashed #ededed;
+    border-bottom: 1px dashed #ededed;
+    border-left: 1px solid #ededed;
+    border-right: 1px solid #ededed;
+    
+}
+.table-box tbody tr:last-child td{
+    border-bottom: 1px solid #ededed;
+}
+.table-box tbody tr:nth-child(even){
+    background: #fafafa;
+} */
+
+.order-btn{
+    padding: 0 22px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+.a-btn{
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #6466f4;
+    color: #fff;
+    font-size: 16px;
+    border: 1px solid #6466f4;
+}
+.a-btn.a-back{
+    background: none;
+    color: #6466f4;
+}
+.o:hover,.o:focus,.o:visited,.o:active{
+    color: #fff;
+}
+.a-btn:not(:last-child){
+    margin-right:20px;
+}
